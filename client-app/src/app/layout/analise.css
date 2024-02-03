@@ -1,0 +1,433 @@
+.analisebody{
+  background: rgba(40, 42, 54, 0.8);
+  color: #FFF;
+
+  padding-bottom: 40px;
+  overflow-x: hidden;
+}
+
+.buttons-container
+{
+  display: flex;
+  justify-content: center;
+
+  margin-top: 5rem;
+}
+
+.buttons-container .btn
+{
+  margin: .2rem;
+  width: 15%;
+  height: 2.6rem;
+  background:  rgba(40, 42, 54, 0.4);
+  box-shadow: 1px 2px 2px 1px  rgba(40, 42, 54, 0.2);
+  color: #FFF;
+  font-weight: 500;
+  transition: all 400ms ease;
+  border-top: 1px solid rgba(40, 42, 54, 0.8);
+}
+
+.buttons-container .selected
+{
+  border-top: 4px solid var(--color-green);
+  background: #34495E;
+}
+
+.buttons-container .btn:hover
+{
+  color: var(--color-green);
+  box-shadow: 2px 2px 2px 2px rgba(40, 42, 54, 0.2);
+  border-top: 0;
+  border-bottom: 2px solid var(--color-green);
+}
+
+.analises
+{
+  margin-top: 2rem;
+}
+
+.title-analise
+{
+  padding: 13px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background:  rgba(40, 42, 54, 0.4);
+  box-shadow: 2px 2px 2px 2px rgba(40, 42, 54, 0.2);
+
+  margin-top: 1.5rem;
+}
+
+.back-sombra
+{
+  background:  rgba(40, 42, 54, 0.5);
+  box-shadow: 2px 2px 2px 2px rgba(40, 42, 54, 0.4);
+
+  padding-bottom: 20px;
+}
+.title-analise-ultimos-jogos
+{
+ padding: 8px;
+
+ flex-direction: column;
+}
+
+.title-analise-ultimos-jogos a
+{
+  font-size: 12px;
+  text-decoration: none;
+}
+
+#plus-jogos
+{
+  border: 0;
+  float: right;
+}
+
+.line-ultimos-jogos
+{
+  padding: 8px;
+  margin-top: .5rem;
+  justify-content: space-around;
+
+  width: 95%;
+
+  border-left: 3px solid var(--color-dark);
+}
+
+.line-ultimos-jogos span
+{
+  font-size: 14px;
+  color: #FFF;
+  font-weight: 500;
+}
+
+.flag button
+{
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px;
+  width: 1.3rem;
+
+  background:  rgba(40, 42, 54, 0.6);
+  box-shadow: 2px 2px 2px 2px rgba(40, 42, 54, 0.1);
+
+  color: #ffffff;
+  border: 0px;
+
+  align-items: center;
+
+  display: flex;
+  justify-content: center;
+}
+
+.relatorio-ultimos-jogos
+{
+  display: flex;
+  flex-direction: column;
+
+  margin-top: .8rem;
+  align-items: center;
+}
+
+.vitoria
+{
+  border: 1px solid var(--color-green)
+}
+
+.derrota
+{
+  border: 1px solid var(--color-red)
+}
+
+.empate
+{
+  border: 1px solid var(--color-yellow)
+}
+
+.prox-partida
+{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.prox-partida .title-analise
+{
+  border-left: 3px solid var(--color-green);
+  color: var(--color-green);
+
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.adversarios
+{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: .5rem;
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(200,0,0,0.2)), url("https://img.freepik.com/fotos-gratis/estadio-de-futebol-3d-render-arena-de-campo-de-estadio-de-futebol_3544-1363.jpg?size=2000&ext=jpg") no-repeat bottom center fixed; 
+  height: 15rem;
+}
+
+.adversarios span
+{
+  font-weight: 600;
+  font-size: 24px;
+}
+
+.adversarios img
+{
+  margin: 2rem;
+}
+
+#tab-confrontos
+{
+  width: 100%;
+  margin-top: 1.5rem;
+  border: 0;
+}
+
+#tab-confrontos li
+{
+  width: 50% !important;
+  background: none;
+  border: 0;
+}
+
+  #tab-confrontos li a {
+      border: 0;
+      text-align: center;
+      color: rgba(255,255,255, 0.9) !important;
+      background: rgba(40, 42, 54, 0.4) !important;
+      font-size: 1rem;
+      font-weight: 500;
+  }
+
+  #tab-confrontos li .active {
+      background: #34495E !important;
+      box-shadow: 2px 2px 2px 2px rgba(40, 42, 54, 0.1);
+      border-left: 4px solid var(--color-green);
+      border-radius: 0;
+      transition: all 400ms ease;
+  }
+
+#tab-confronts-content
+{
+  margin-top: 1rem;
+}
+
+
+#geral, #casa, #ultimosjogostime2, 
+#ultimosjogosemcasatime2, #ultimosjogostime1, #ultimosjogosemcasa1
+{
+  padding: 2.5%;
+  padding-left: 5%;
+}
+
+.confrontos-button
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.confrontos-button span + span
+{
+  margin-left: 5px;
+}
+
+.panel-title
+{
+  font-size: 24px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
+
+  border-left: 3px solid var(--color-yellow);
+
+  transition: all 500ms ease-in;
+}
+
+.panel-title:hover
+{
+  color: var(--color-yellow)
+}
+
+.modal-content
+{
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(200,0,0,0.2)), url("https://img.freepik.com/fotos-gratis/estadio-de-futebol-3d-render-arena-de-campo-de-estadio-de-futebol_3544-1363.jpg?size=1000&ext=jpg") no-repeat center center fixed; 
+  padding: 20px;
+
+  border: 3px solid #FFF;
+}
+
+.title
+{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+
+.title-ultimos-jogos
+{
+  padding: 10px;
+  width: 48%;
+  background: rgba(40, 42, 54, 0.8);
+  text-align: center;
+  border-left: 3px solid var(--color-yellow);
+}
+
+.ultimos-jogos-time
+{
+  display: flex;
+  flex-direction: column;
+}
+
+#quantidadeJogos, #quantidadeJogos-mandante
+{
+  width: 98%;
+  margin-left: 2rem;
+  height: 2.6rem;
+  border-radius: .5rem;
+  border: 0;
+  
+  padding-left: 10px;
+}
+
+.btn-search, .btn-search-mandante
+{
+  height: 2.6rem;
+  border: 0;
+
+  border-radius: 0.2rem;
+
+  background: var(--color-yellow);
+
+  font-weight: 700;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+input[type=number]::-webkit-inner-spin-button { 
+  -webkit-appearance: none;
+  
+}
+input[type=number] { 
+ -moz-appearance: textfield;
+ appearance: textfield;
+
+}
+
+.letter-title h6
+{
+  text-align: center;
+  align-items: center;
+  height: 100%;
+  font-size: 26px;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.4;
+}
+
+.show
+{
+  display: block !important;
+}
+
+.table-analise table {
+  width: 100%;
+}
+
+.table-analise th {
+  height: 1.6rem;
+}
+
+.table-analise td {
+  height: 2.1rem;
+  padding: 5px;
+}
+
+.table-analise td, .table-analise th {
+  color: #FFF;
+  font-size: 16px;
+  background: #34495E;
+  border-bottom: 2px solid var(--color-yellow);
+  text-align: center;
+}
+
+.percent-box {
+  display: flex;
+  border-radius: 3px;
+  width: 110px;
+}
+
+.percent-box-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px solid #FFF;
+  border-radius: 3px;
+  height: auto;
+  width: 35px;
+}
+
+  .percent-box-icon > span {
+      color: #000;
+      font-size: 1rem;
+  }
+
+.percent-box-content {
+  height: auto;
+  width: 100%;
+  color: #000;
+}
+
+.percent-box.percent-60-or-more {
+  background-color: #34C38F;
+  animation: mudarCor 2s infinite;
+}
+
+.percent-box-icon.percent-60-or-more-icon {
+  background-color: #52CCA0;
+  animation: mudarCor 2s infinite;
+}
+
+.percent-box.percent-between-45-and-60 {
+  background-color: #FFD473;
+}
+
+.percent-box-icon.percent-between-45-and-60-icon {
+  background-color: #FFCC5A;
+}
+
+.percent-box.percent-45-or-minus {
+  background-color: #F17E7E;
+}
+
+.percent-box-icon.percent-45-or-minus-icon {
+  background-color: #EF6767;
+}
+
+@media only screen and (max-width: 592px) {
+  table.table-analise td {
+      padding: 2px;
+  }
+
+  table.table-analise th {
+      height: 1.6rem;
+  }
+
+  table.table-analise > thead > tr > th,
+  table.table-analise > tbody > tr > td {
+      font-size: 75%;
+  }
+
+  #quantidadeJogos, #quantidadeJogos-mandante {
+      margin-left: 0 !important;
+  }
+
+  .letter-title h6 {
+      text-align: left !important;
+      align-items: flex-start !important;
+  }
+}

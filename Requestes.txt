@@ -1,0 +1,116 @@
+https://www.milionariotips.com.br/Api/view/horarios/competition/[ID COMPETIÇAO]/[MERCADO]/Resultado%20FT/[TEMPO]/0/Invalid%20date
+
+Mercado:
+Gols Par/Impar:
+https://www.milionariotips.com.br/Api/view/horarios/competition/20700663/GOLSPAR/Resultado%20FT/24/0/Invalid%20date
+https://www.milionariotips.com.br/Api/view/horarios/competition/20700663/GOLSIMPAR/Resultado%20FT/24/0/Invalid%20date
+GOLSPAR
+GOLSIMPAR
+
+Over Gols:
+https://www.milionariotips.com.br/Api/view/horarios/competition/20700663/OVER05/Resultado%20FT/24/0/Invalid%20date
+https://www.milionariotips.com.br/Api/view/horarios/competition/20700663/OVER15/Resultado%20FT/24/0/Invalid%20date
+https://www.milionariotips.com.br/Api/view/horarios/competition/20700663/OVER25/Resultado%20FT/24/0/Invalid%20date
+https://www.milionariotips.com.br/Api/view/horarios/competition/20700663/OVER35/Resultado%20FT/24/0/Invalid%20date
+OVER05
+OVER15
+OVER25
+OVER35
+
+Under Gols
+https://www.milionariotips.com.br/Api/view/horarios/competition/20700663/UNDER05/Resultado%20FT/24/0/Invalid%20date
+https://www.milionariotips.com.br/Api/view/horarios/competition/20700663/UNDER15/Resultado%20FT/24/0/Invalid%20date
+https://www.milionariotips.com.br/Api/view/horarios/competition/20700663/UNDER25/Resultado%20FT/24/0/Invalid%20date
+https://www.milionariotips.com.br/Api/view/horarios/competition/20700663/UNDER35/Resultado%20FT/24/0/Invalid%20date
+UNDER05
+UNDER15
+UNDER25
+UNDER35
+
+Ambas Marcam:
+https://www.milionariotips.com.br/Api/view/horarios/competition/20700663/AMBAS_NAO_MARCAM/Resultado%20FT/24/0/Invalid%20date
+https://www.milionariotips.com.br/Api/view/horarios/competition/20700663/AMBAS_MARCAM/Resultado%20FT/24/0/Invalid%20date
+AMBAS_NAO_MARCAM
+AMBAS_MARCAM
+
+Resultado FT:
+https://www.milionariotips.com.br/Api/view/horarios/competition/20700663/RESULTADOFT_MANDANTE/Resultado%20FT/24/0/Invalid%20date
+https://www.milionariotips.com.br/Api/view/horarios/competition/20700663/RESULTADOFT_VISITANTE/Resultado%20FT/24/0/Invalid%20date
+https://www.milionariotips.com.br/Api/view/horarios/competition/20700663/RESULTADOFT_EMPATE/Resultado%20FT/24/0/Invalid%20date
+RESULTADOFT_MANDANTE
+RESULTADOFT_VISITANTE
+RESULTADOFT_EMPATE
+
+Resultado HT:
+https://www.milionariotips.com.br/Api/view/horarios/competition/20700663/RESULTADOHT_MANDANTE/Resultado%20FT/24/0/Invalid%20date
+https://www.milionariotips.com.br/Api/view/horarios/competition/20700663/RESULTADOHT_VISITANTE/Resultado%20FT/24/0/Invalid%20date
+https://www.milionariotips.com.br/Api/view/horarios/competition/20700663/RESULTADOHT_EMPATE/Resultado%20FT/24/0/Invalid%20date
+https://www.milionariotips.com.br/Api/view/horarios/competition/20700663/RESULTADOHT_OUTROS/Resultado%20FT/24/0/Invalid%20date
+RESULTADOHT_MANDANTE
+RESULTADOHT_VISITANTE
+RESULTADOHT_EMPATE
+RESULTADOHT_OUTROS
+
+Gols:
+https://www.milionariotips.com.br/Api/view/horarios/competition/20700663/0GOLS/Resultado%20FT/24/0/Invalid%20date
+https://www.milionariotips.com.br/Api/view/horarios/competition/20700663/1GOLS/Resultado%20FT/24/0/Invalid%20date
+https://www.milionariotips.com.br/Api/view/horarios/competition/20700663/3GOLS/Resultado%20FT/24/0/Invalid%20date
+https://www.milionariotips.com.br/Api/view/horarios/competition/20700663/4GOLS/Resultado%20FT/24/0/Invalid%20date
+https://www.milionariotips.com.br/Api/view/horarios/competition/20700663/5MAISGOLS/Resultado%20FT/24/0/Invalid%20date
+0GOLS
+1GOLS
+3GOLS
+4GOLS
+5MAISGOLS
+
+Mandante Marca:
+https://www.milionariotips.com.br/Api/view/horarios/competition/20700663/MANDANTE_MARCA/Resultado%20FT/24/0/Invalid%20date
+https://www.milionariotips.com.br/Api/view/horarios/competition/20700663/MANDANTE_NAO_MARCA/Resultado%20FT/24/0/Invalid%20date
+MANDANTE_MARCA
+MANDANTE_NAO_MARCA
+
+Visitante Marca:
+https://www.milionariotips.com.br/Api/view/horarios/competition/20700663/VISITANTE_MARCA/Resultado%20FT/24/0/Invalid%20date
+https://www.milionariotips.com.br/Api/view/horarios/competition/20700663/VISITANTE_NAO_MARCA/Resultado%20FT/24/0/Invalid%20date
+VISITANTE_MARCA
+VISITANTE_NAO_MARCA
+
+Resultado de Grupo:
+https://www.milionariotips.com.br/Api/view/horarios/competition/20700663/RESULTADOCORRETOGRUPO_CASA_1X0_2X0_2X1/Resultado%20FT/24/0/Invalid%20date
+https://www.milionariotips.com.br/Api/view/horarios/competition/20700663/RESULTADOCORRETOGRUPO_CASA_3X0_3X1_4X0/Resultado%20FT/24/0/Invalid%20date
+https://www.milionariotips.com.br/Api/view/horarios/competition/20700663/RESULTADOCORRETOGRUPO_EMPATE_1X1_2X2_3X3/Resultado%20FT/24/0/Invalid%20date
+https://www.milionariotips.com.br/Api/view/horarios/competition/20700663/RESULTADOCORRETOGRUPO_VISITANTE_1X0_2X0_2X1/Resultado%20FT/24/0/Invalid%20date
+https://www.milionariotips.com.br/Api/view/horarios/competition/20700663/RESULTADOCORRETOGRUPO_VISITANTE_3X0_3X1_4X0/Resultado%20FT/24/0/Invalid%20date
+RESULTADOCORRETOGRUPO_CASA_1X0_2X0_2X1
+RESULTADOCORRETOGRUPO_CASA_3X0_3X1_4X0
+RESULTADOCORRETOGRUPO_EMPATE_1X1_2X2_3X3
+RESULTADOCORRETOGRUPO_VISITANTE_1X0_2X0_2X1
+RESULTADOCORRETOGRUPO_VISITANTE_3X0_3X1_4X0
+
+Primeiro time a marcar:
+https://www.milionariotips.com.br/Api/view/horarios/competition/20700663/TIMEAMARCARPRIMEIRO_CASA/Resultado%20FT/24/0/Invalid%20date
+https://www.milionariotips.com.br/Api/view/horarios/competition/20700663/TIMEAMARCARPRIMEIRO_NENHUM/Resultado%20FT/24/0/Invalid%20date
+https://www.milionariotips.com.br/Api/view/horarios/competition/20700663/TIMEAMARCARPRIMEIRO_VISITANTE/Resultado%20FT/24/0/Invalid%20date
+TIMEAMARCARPRIMEIRO_CASA
+TIMEAMARCARPRIMEIRO_NENHUM
+TIMEAMARCARPRIMEIRO_VISITANTE
+
+Ultimo a Marcar:
+https://www.milionariotips.com.br/Api/view/horarios/competition/20700663/TIMEAMARCARPORULTIMO_CASA/Resultado%20FT/24/0/Invalid%20date
+https://www.milionariotips.com.br/Api/view/horarios/competition/20700663/TIMEAMARCARPORULTIMO_NENHUM/Resultado%20FT/24/0/Invalid%20date
+https://www.milionariotips.com.br/Api/view/horarios/competition/20700663/TIMEAMARCARPORULTIMO_VISITANTE/Resultado%20FT/24/0/Invalid%20date
+TIMEAMARCARPORULTIMO_CASA
+TIMEAMARCARPORULTIMO_NENHUM
+TIMEAMARCARPORULTIMO_VISITANTE
+
+
+
+Horarios{
+  3
+  6
+  12
+  24
+  48
+  72
+  96
+}

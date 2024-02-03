@@ -1,0 +1,51 @@
+version: '3.4'
+
+services:
+  backend:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    environment:
+      - TZ=America/Sao_Paulo
+    ports:
+      - "8080:8080"
+    # depends_on: 
+    #   - external-api
+      # - mssql
+    networks:
+      - result-scores
+
+  frontend:
+    stdin_open: true
+    build: 
+      context: \client-app\.
+      dockerfile: Dockerfile
+    container_name: client-app
+    restart: always
+    depends_on:
+      - backend
+    environment:
+      - TZ=America/Sao_Paulo
+    ports:
+      - "80:80"
+    networks:
+      - result-scores
+
+  # external-api:
+  #   build: 
+  #     context: \RequestsFromAPI\.
+  #     dockerfile: Dockerfile
+  #   container_name: external-api
+  #   restart: always
+  #   environment:
+  #     - TZ=America/Sao_Paulo
+  #   ports:
+  #     - "5000:5000"
+  #   networks:
+  #     - result-scores
+
+networks:
+  result-scores:
+  
+  

@@ -1,0 +1,215 @@
+@font-face {
+  font-family: 'Tw Cen MT Condensed Extra Bold';
+  src: url('../../../public/assets/fonts/tw-cen-mt-condensed-extra-bold.ttf') format('truetype');
+}
+
+@font-face{
+  font-family: 'Goldman-Regular';
+  src: url('../../../public/assets/fonts/Goldman-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Rationale';
+  src: url('../../../public/assets/fonts/Rationale-Regular.ttf') format('truetype');
+}
+
+
+
+body {
+  background-color: #34495e !important;
+  font-family: "Poppins";
+}
+
+.ui.inverted.top.fixed.menu {
+  background-color: #485b6e;
+
+
+  /*background-image: linear-gradient(
+    135deg, 
+    rgb(52, 73, 94) 0%, 
+    rgb(52, 73, 94) 69%, 
+    rgb(52, 73, 94) 89%) !important;*/
+}
+
+
+.react-calendar {
+  width: 100%;
+  border: none;
+  box-shadow: 0 1px 2px 0 rgba(34, 36, 38, .15);
+}
+
+/*home page styles*/
+
+.menuName{
+  color: #fff !important;
+}
+
+#time-analyzer{
+  color: #fff;
+}
+
+#market-analyzer{
+  color: #fff;
+}
+
+.masthead {
+  display: flex;
+  align-items: center;
+  background-image: linear-gradient(
+          135deg,
+          rgb(52, 73, 94) 0%,
+          rgb(33, 138, 174) 69%,
+          rgb(32, 167, 172) 89%
+  ) !important;
+  height: 100vh;
+}
+
+.masthead .ui.menu .ui.button,
+.ui.menu a.ui.inverted.button {
+  margin-left: 0.5em;
+}
+
+.masthead h1.ui.header {
+  font-size: 4em;
+  font-weight: normal;
+}
+
+.masthead h2 {
+  font-size: 1.7em;
+  font-weight: normal;
+}
+
+.titulo-mercado{
+  color: #fff;
+}
+
+/*end home page styles*/
+
+.green{
+  background-color: #56cf6a !important;
+}
+
+.red{
+  background-color: #cf4c4c !important;
+}
+
+.react-datepicker-wrapper {
+  width: 100%;
+}
+
+.coluna_esquerda{
+  color: #000000;
+}
+
+.table_header{
+  background-color: #ffffff !important;
+}
+
+
+.table {
+  /* background-color: #34495e !important; */
+  color: #ffffff !important; 
+  border-radius: 4px;
+}
+
+.leagues_buton{
+  width: 85%;
+  cursor: pointer;
+  border-radius: 8px;
+  -webkit-box-shadow: 0px 15px 35px 0px rgba(7,10,13,0.10);
+  -moz-box-shadow: 0px 15px 35px 0px rgba(7,10,13,0.10);
+  box-shadow: 0px 15px 35px 0px rgba(7,10,13,0.10);
+  border: 3px solid rgba(255, 255, 255, 0.42);
+  margin-bottom: 2rem;
+}
+
+
+.leagues_buton:hover{
+  border: 3px solid rgba(255, 255, 255, 0.60);
+  -webkit-animation: leagues_buton 0.3s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+	        animation: leagues_buton 0.3s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+}
+
+.table_detail_header {
+  background-color: #f1c40f !important;
+  color: #000 !important;
+  font-family: "Goldman-Regular" !important;
+  border-radius: 5px !important;
+}
+
+.table_detail_body {
+  background-color: none !important;
+  color: #fff !important;
+  font-family: "Rationale" !important;
+} 
+
+.span_detail{
+  font-size: small !important;
+}
+
+.font_small{
+  font-size: small !important;
+}
+
+.table_exact_score_row {
+  background-color: none !important;
+  color: #000 !important;
+  font-family: "Rationale" !important;
+  font-size: small !important;
+}
+
+.span_max{
+  color: #2ecc71;
+}
+
+/* ############### TABLES MÁXIMAS ######### */
+.tablesMax{
+  background-color: #34495E !important;
+}
+
+/*################ KEY FRAMES ##############*/
+
+@-webkit-keyframes leagues_buton {
+  0% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    border: 3px solid rgba(255, 255, 255, 0.42);
+  }
+  100% {
+    -webkit-transform: translateY(-4px);
+            transform: translateY(-4px);
+    border: 3px solid rgba(255, 255, 255, 0.90);
+  }
+}
+@keyframes leagues_buton {
+  0% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    border: 3px solid rgba(255, 255, 255, 0.42);
+  }
+  100% {
+    -webkit-transform: translateY(-4px);
+            transform: translateY(-4px);
+    border: 3px solid rgba(255, 255, 255, 0.90);
+  }
+}
+
+/* ################ MOBILE ############## */
+
+@media screen and (max-width:540px){
+
+  .cellHorario{
+    font-size: 0.7rem !important;
+    padding: 1rem 2rem !important;
+    text-align: justify !important;
+  }
+  
+  .leagues_buton{
+    width: 90%;
+  }
+
+  .gridLigas{
+    flex-wrap: nowrap !important;
+    
+  }
+}
