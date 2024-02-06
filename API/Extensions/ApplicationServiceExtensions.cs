@@ -46,7 +46,7 @@ namespace API.Extensions
             services.Configure<CloudinarySettings>(config.GetSection("Cloudinary"));
             services.AddSignalR();
             services.AddHttpClient();
-            services.AddMvc().AddGitHubWebHooks().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+            services.AddMvc().AddGitHubWebHooks();
 
             return services;
         }

@@ -1,10 +1,9 @@
 using Application.Activities;
 using Application.Comments;
 using Application.Profiles;
-using Application.FutebolVirtualGames;
 using Domain;
 using Application.Config;
-using Application.FutebolVirtualLeagues;
+using Application.Hubla.Sale;
 
 namespace Application.Core
 {
@@ -43,16 +42,16 @@ namespace Application.Core
                 .ForMember(d => d.Category, o => o.MapFrom(s => s.Activity.Category))
                 .ForMember(d => d.HostUsername, o => o.MapFrom(s =>
                     s.Activity.Attendees.FirstOrDefault(x => x.IsHost).AppUser.UserName));
-            CreateMap<FutebolVirtualGame, FutebolVirtualGamesDto>();
-            CreateMap<FutebolVirtualGamesDto, FutebolVirtualGame>();
-            CreateMap<FutebolVirtualLeague, FutebolVirtualLeaguesDto>();
-            CreateMap<FutebolVirtualLeaguesDto, FutebolVirtualLeague>();
+
+            // Configuração
             CreateMap<Configuration, ConfigurationDto>();
             CreateMap<ConfigurationDto, Configuration>();
-            CreateMap<GameTime, GameTimeDto>();
-            CreateMap<GameTimeDto, GameTime>();
-            CreateMap<Maxima, MaxDto>();
-            CreateMap<MaxDto, Maxima>();
+
+            // Hubla
+            CreateMap<HublaNewSale, SaleDto>();
+            CreateMap<SaleDto, HublaNewSale>();
+            CreateMap<HublaCanceledSale, CanceledSaleDto>();
+            CreateMap<CanceledSaleDto, HublaCanceledSale>();
         }
     }
 }

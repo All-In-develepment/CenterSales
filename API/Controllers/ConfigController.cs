@@ -1,12 +1,9 @@
-using System.Collections.Generic;
 using Application.Config;
 using Domain;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
-    // [Authorize]
     public class ConfigController : BaseApiController
     {
         [HttpGet]

@@ -16,8 +16,13 @@ namespace Persistence
         public DbSet<Comment> Comments { get; set; }
         public DbSet<UserFollowing> UserFollowings { get; set; }
         public DbSet<Configuration> Configurations { get; set; }
-        public DbSet<FutebolVirtualGame> FutebolVirtualGames { get; set; }
-        public DbSet<FutebolVirtualLeague> FutebolVirtualLeagues { get; set; }
+        public DbSet<HublaNewSale> HublaNewSales { get; set; }
+        public DbSet<HublaEventNewSale> HublaEventNewSales { get; set; }
+        public DbSet<HublaAffiliate> HublaAffiliates { get; set; }
+        public DbSet<HublaCanceledSale> HublaCanceledSales { get; set; }
+        public DbSet<HublaEventCanceledSale> HublaEventCanceledSales { get; set; }
+        public DbSet<HublaEventNewUser> HublaEventNewUsers { get; set; }
+        public DbSet<HublaNewUser> HublaNewUsers { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)
