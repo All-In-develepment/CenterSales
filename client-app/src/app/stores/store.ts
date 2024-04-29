@@ -5,11 +5,10 @@ import UserStore from "./userStore";
 import ModalStore from "./modalStore";
 import ProfileStore from "./profileStore";
 import CommentStore from "./commentStore";
-import FutebolVirtualStore from "./futebolVirtualStore";
-import MaximasStore from "./maximasStore";
-
-import LastGamesStore from "./lastGamesStore";
-import OddsStore from "./oddsStore";
+import ProjectStore from "./projectStore";
+import SellerStore from "./sellerStore";
+import SaleStore from "./saleStore";
+import ProductStore from "./productStore";
 
 interface Store {
   activityStore: ActivityStore;
@@ -18,10 +17,10 @@ interface Store {
   modalStore: ModalStore;
   profileStore: ProfileStore;
   commentStore: CommentStore;
-  FutebolVirtualStore: FutebolVirtualStore;
-  MaximasStore: MaximasStore;
-  LastGames: LastGamesStore;
-  Odds: OddsStore;
+  projectStore: ProjectStore;
+  sellerStore: SellerStore;
+  saleStore: SaleStore;
+  productStore: ProductStore;
 }
 
 export const store: Store = {
@@ -31,10 +30,10 @@ export const store: Store = {
   modalStore: new ModalStore(),
   profileStore: new ProfileStore(),
   commentStore: new CommentStore(),
-  FutebolVirtualStore: new FutebolVirtualStore(),
-  MaximasStore: new MaximasStore(),
-  LastGames: new LastGamesStore(),
-  Odds: new OddsStore(),
+  projectStore: new ProjectStore(),
+  sellerStore: new SellerStore(),
+  saleStore: new SaleStore(),
+  productStore: new ProductStore(),
 };
 
 export const StoreContext = createContext(store);

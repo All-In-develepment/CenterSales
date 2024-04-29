@@ -60,8 +60,6 @@ export default class ActivityStore {
 
   get axiosParams() {
     const params = new URLSearchParams();
-    console.log({ params });
-
     params.append("pageNumber", this.pagingParams.pageNumber.toString());
     params.append("pageSize", this.pagingParams.pageSize.toString());
     this.predicate.forEach((value, key) => {

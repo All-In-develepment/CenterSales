@@ -8,10 +8,15 @@ import TestErrors from "../../features/errors/TestError";
 import ProfilePage from "../../features/profiles/ProfilePage";
 import LoginForm from "../../features/users/LoginForm";
 import App from "../layout/App";
-import MaximasDashboard from "../../features/futebolVirtualGames/maximas/MaximasDashboard";
-import TimesDashboard from "../../features/futebolVirtualGames/times/TimesDashboard";
-import LastGames from "../../features/futebolVirtualGames/lastGames/LastGames";
-import MultiTimesDashboard from "../../features/futebolVirtualGames/times/MultiTimesDashboard";
+import ProjectDashboard from "../../features/project/dashboard/ProjectDashboard";
+import SellerDashboard from "../../features/sellers/Dashboard/SellerDashboard";
+import SaleDashboard from "../../features/sales/Dashboard/SaleDashboard";
+import RankSale from "../../features/sales/Rank/RankSale";
+import ProjectForm from "../../features/project/form/ProjectForm";
+import SellerForm from "../../features/sellers/form/SellerForm";
+import SalesForm from "../../features/sales/Form/SalesForm";
+import ProductDashBoard from "../../features/product/dashboard/ProductDashBoard";
+import ProductForm from "../../features/product/Form/ProductForm";
 
 export const routes: RouteObject[] = [
   {
@@ -27,10 +32,18 @@ export const routes: RouteObject[] = [
       { path: "errors", element: <TestErrors /> },
       { path: "not-found", element: <NotFound /> },
       { path: "server-error", element: <ServerError /> },
-      { path: "maximas", element: <MaximasDashboard /> },
-      { path: "game-times", element: <TimesDashboard /> },
-      { path: "game-multtimes", element: <MultiTimesDashboard /> },
-      { path: "last-games", element: <LastGames /> },
+      { path: "projects", element: <ProjectDashboard /> },
+      { path: "projects/save", element: <ProjectForm /> },
+      { path: "projects/:id", element: <ProjectForm /> },
+      { path: "sellers", element: <SellerDashboard /> },
+      { path: "sellers/save", element: <SellerForm /> },
+      { path: "sellers/:id", element: <SellerForm /> },
+      { path: "sales", element: <SaleDashboard /> },
+      { path: "sales/save", element: <SalesForm /> },
+      { path: "sales/rank", element: <RankSale /> },
+      { path: "products", element: <ProductDashBoard /> },
+      { path: "products/save", element: <ProductForm /> },
+      { path: "products/:id", element: <ProductForm /> },
       { path: "*", element: <Navigate replace to="/not-found" /> },
     ],
   },

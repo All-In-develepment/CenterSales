@@ -1,23 +1,23 @@
 @font-face {
-  font-family: 'Tw Cen MT Condensed Extra Bold';
-  src: url('../../../public/assets/fonts/tw-cen-mt-condensed-extra-bold.ttf') format('truetype');
+  font-family: 'Oswald';
+  src: url('../../../public/assets/fonts/Oswald-VariableFont_wght.ttf') format('truetype');
 }
 
 @font-face{
-  font-family: 'Goldman-Regular';
-  src: url('../../../public/assets/fonts/Goldman-Regular.ttf') format('truetype');
+  font-family: 'BellotaText-Regular';
+  src: url('../../../public/assets/fonts/BellotaText-Regular.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: 'Rationale';
-  src: url('../../../public/assets/fonts/Rationale-Regular.ttf') format('truetype');
+  font-family: 'Volkhov-Regular';
+  src: url('../../../public/assets/fonts/Volkhov-Regular.ttf') format('truetype');
 }
 
 
 
 body {
-  background-color: #34495e !important;
-  font-family: "Poppins";
+  background-color: #e5d9ff !important;
+  font-family: "BellotaText-Regular";
 }
 
 .ui.inverted.top.fixed.menu {
@@ -107,7 +107,7 @@ body {
 
 
 .table {
-  /* background-color: #34495e !important; */
+  /* background-color: #e5d9ff !important; */
   color: #ffffff !important; 
   border-radius: 4px;
 }
@@ -133,7 +133,7 @@ body {
 .table_detail_header {
   background-color: #f1c40f !important;
   color: #000 !important;
-  font-family: "Goldman-Regular" !important;
+  font-family: "BellotaText-Regular" !important;
   border-radius: 5px !important;
 }
 
@@ -164,7 +164,7 @@ body {
 
 /* ############### TABLES MÁXIMAS ######### */
 .tablesMax{
-  background-color: #34495E !important;
+  background-color: #e5d9ff !important;
 }
 
 /*################ KEY FRAMES ##############*/

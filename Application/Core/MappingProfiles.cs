@@ -3,7 +3,10 @@ using Application.Comments;
 using Application.Profiles;
 using Domain;
 using Application.Config;
-using Application.Hubla.Sale;
+using Application.Sales;
+using Application.Project;
+using Application.Seller;
+using Application.Products;
 
 namespace Application.Core
 {
@@ -25,7 +28,7 @@ namespace Application.Core
                 .ForMember(d => d.FollowingCount, o => o.MapFrom(s => s.AppUser.Followings.Count))
                 .ForMember(d => d.Following,
                     o => o.MapFrom(s => s.AppUser.Followers.Any(x => x.Observer.UserName == currentUsername)));
-            CreateMap<AppUser, Profiles.Profile>()
+            CreateMap<AppUser, Profile>()
                 .ForMember(d => d.Image, s => s.MapFrom(o => o.Photos.FirstOrDefault(x => x.IsMain).Url))
                 .ForMember(d => d.FollowersCount, o => o.MapFrom(s => s.Followers.Count))
                 .ForMember(d => d.FollowingCount, o => o.MapFrom(s => s.Followings.Count))
@@ -42,16 +45,15 @@ namespace Application.Core
                 .ForMember(d => d.Category, o => o.MapFrom(s => s.Activity.Category))
                 .ForMember(d => d.HostUsername, o => o.MapFrom(s =>
                     s.Activity.Attendees.FirstOrDefault(x => x.IsHost).AppUser.UserName));
-
-            // Configuração
             CreateMap<Configuration, ConfigurationDto>();
             CreateMap<ConfigurationDto, Configuration>();
-
-            // Hubla
-            CreateMap<HublaNewSale, SaleDto>();
-            CreateMap<SaleDto, HublaNewSale>();
-            CreateMap<HublaCanceledSale, CanceledSaleDto>();
-            CreateMap<CanceledSaleDto, HublaCanceledSale>();
+            CreateMap<Sale, SaleDto>();
+            CreateMap<SaleDto, Sale>();
+            CreateMap<SaleDto, SaleDto>();
+            CreateMap<Domain.Project, ProjectDto>().ReverseMap();
+            CreateMap<Domain.Seller, SellerDto>();
+            CreateMap<SellerDto, Domain.Seller>();
+            CreateMap<Product, ProductDto>().ReverseMap();
         }
     }
 }

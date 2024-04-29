@@ -6,11 +6,10 @@ import { Photo, Profile, UserActivity } from "../models/profile";
 import { User, UserFormValues } from "../models/user";
 import { router } from "../router/Routes";
 import { store } from "../stores/store";
-import { Maximas } from "../models/maximas";
-import { FutebolVirtualGames } from "../models/futebolVirtualGames";
-import { GameTimes } from "../models/gameTimes";
-import { ILastGames } from "../models/lastGames";
-import { IOdd } from "../models/odds";
+import { Project, ProjectFormValues } from "../models/project";
+import { Seller, SellerFormValues } from "../models/seller";
+import { Sale, SaleFormValues } from "../models/sale";
+import { Product, ProductFormValues } from "../models/product";
 
 const sleep = (delay: number) => {
   return new Promise((resolve) => {
@@ -18,7 +17,7 @@ const sleep = (delay: number) => {
   });
 };
 
-axios.defaults.baseURL = "http://localhost:5000/api";
+axios.defaults.baseURL = "http://localhost:8080/api";
 
 const responseBody = <T>(response: AxiosResponse<T>) => response.data;
 
@@ -130,43 +129,63 @@ const Profiles = {
     ),
 };
 
-const Maxima = {
-  list: async (leagueId: string) =>
-    await axios
-      .get<Maximas>(`/futebolvirtual/max/${leagueId}`)
+const Projects = {
+  list: (params: URLSearchParams) =>
+    axios
+      .get<PaginatedResult<Project[]>>("/projects", { params })
+      .then(responseBody),
+  details: (id: string) => requests.get<Project>(`/projects/${id}`),
+  create: (project: ProjectFormValues) =>
+    requests.post<void>(`/projects`, project),
+  update: (project: ProjectFormValues) =>
+    requests.put<void>(`/projects/${project.projectId}`, project),
+};
+
+const Sellers = {
+  list: (params: URLSearchParams) =>
+    axios
+      .get<PaginatedResult<Seller[]>>("/sellers", { params })
+      .then(responseBody),
+  details: (id: string) => requests.get<Seller>(`/sellers/${id}`),
+  create: (seller: SellerFormValues) => requests.post<void>(`/sellers`, seller),
+  update: (seller: SellerFormValues) =>
+    requests.put<void>(`/sellers/${seller.sellerId}`, seller),
+};
+
+const Sales = {
+  list: (params: URLSearchParams) =>
+    axios.get<PaginatedResult<Sale[]>>("/sales", { params }).then(responseBody),
+  details: (id: string) => requests.get<Sale>(`/sales/${id}`),
+  create: (sale: SaleFormValues) => requests.post<void>(`/sales`, sale),
+  update: (sale: SaleFormValues) =>
+    requests.put<void>(`/sales/${sale.saleId}`, sale),
+  saleRank: (params: URLSearchParams) =>
+    axios
+      .get<PaginatedResult<Sale[]>>("/sales/groupbyseler", { params })
       .then(responseBody),
 };
 
-const FutebolVirtualGame = {
-  list: async (leagueId: string, market: string, time: string) => {
-    return await axios
-      .get<GameTimes>(`/futebolvirtual/GameTime/${leagueId}/${market}/${time}`)
-      .then(responseBody);
-  },
-  details: (id: string) =>
-    requests.get<FutebolVirtualGames>(`/futebolVirtual/${id}`),
-};
-
-const LastGames = {
-  list: async (gameDate: string) =>
-    await axios
-      .get<ILastGames[]>(`/futebolvirtual/lastGames/${gameDate}`)
+const Products = {
+  list: (params: URLSearchParams) =>
+    axios
+      .get<PaginatedResult<Product[]>>("/products", { params })
       .then(responseBody),
-};
-
-const Odds = {
-  list: async (leagueId: string) =>
-    await axios.get<IOdd>(`/futebolvirtual/odd/${leagueId}`).then(responseBody),
+  details: (id: string) => requests.get<Product>(`/products/${id}`),
+  create: (product: ProductFormValues) =>
+    requests.post<void>(`/products`, product),
+  update: (product: ProductFormValues) =>
+    requests.put<void>(`/products/${product.productId}`, product),
+  delete: (id: string) => requests.del<void>(`/products/${id}`),
 };
 
 const agent = {
   Activities,
   Account,
   Profiles,
-  Maxima,
-  FutebolVirtualGame,
-  LastGames,
-  Odds,
+  Projects,
+  Sellers,
+  Sales,
+  Products,
 };
 
 export default agent;

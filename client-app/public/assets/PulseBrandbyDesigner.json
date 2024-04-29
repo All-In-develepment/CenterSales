@@ -1,0 +1,15 @@
+{
+  "Palette": [
+    "#0055ff",
+    "#ff2b7f",
+    "#2a00ff",
+    "#7f02ff",
+    "#e5d9ff"
+  ],
+  "Fonts": {
+    "HeadingFont": "Oswald",
+    "SubheadingFont": "Volkhov",
+    "BodyFont": "Bell MT"
+  },
+  "BrandVoice": "Confident and active - Emphasizing action and the power of change"
+}

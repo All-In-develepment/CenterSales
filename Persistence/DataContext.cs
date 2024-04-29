@@ -16,13 +16,10 @@ namespace Persistence
         public DbSet<Comment> Comments { get; set; }
         public DbSet<UserFollowing> UserFollowings { get; set; }
         public DbSet<Configuration> Configurations { get; set; }
-        public DbSet<HublaNewSale> HublaNewSales { get; set; }
-        public DbSet<HublaEventNewSale> HublaEventNewSales { get; set; }
-        public DbSet<HublaAffiliate> HublaAffiliates { get; set; }
-        public DbSet<HublaCanceledSale> HublaCanceledSales { get; set; }
-        public DbSet<HublaEventCanceledSale> HublaEventCanceledSales { get; set; }
-        public DbSet<HublaEventNewUser> HublaEventNewUsers { get; set; }
-        public DbSet<HublaNewUser> HublaNewUsers { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Project> Projects { get; set; }
+        public DbSet<Sale> Sales { get; set; }
+        public DbSet<Seller> Sellers { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -40,6 +37,33 @@ namespace Persistence
                 .HasOne(u => u.Activity)
                 .WithMany(u => u.Attendees)
                 .HasForeignKey(aa => aa.ActivityId);
+
+            builder.Entity<Seller>()
+                .HasOne(p => p.Project)
+                .WithMany(s => s.Sellers)
+                .HasForeignKey(s => s.ProjectId)
+                .OnDelete(DeleteBehavior.NoAction);
+            
+            // Relação de Seller com Sale, para converter SellerId em SellerName
+            builder.Entity<Sale>()
+                .HasOne(s => s.Seller)
+                .WithMany(s => s.Sales)
+                .HasForeignKey(s => s.SellerId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            // Relação de Product com Sale, para converter ProductId em ProductName
+            builder.Entity<Sale>()
+                .HasOne(p => p.Product)
+                .WithMany(s => s.Sales)
+                .HasForeignKey(p => p.ProductId)
+                .OnDelete(DeleteBehavior.NoAction);
+            
+            // Relação de Project com Sale, para converter ProjectId em ProjectName
+            builder.Entity<Sale>()
+                .HasOne(p => p.Project)
+                .WithMany(s => s.Sales)
+                .HasForeignKey(p => p.ProjectId)
+                .OnDelete(DeleteBehavior.NoAction);
 
             builder.Entity<Comment>()
                 .HasOne(a => a.Activity)
@@ -59,6 +83,7 @@ namespace Persistence
                     .HasForeignKey(t => t.TargetId)
                     .OnDelete(DeleteBehavior.NoAction);
             });
+
         }
     }
 }

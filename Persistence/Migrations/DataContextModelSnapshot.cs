@@ -195,249 +195,6 @@ namespace Persistence.Migrations
                     b.ToTable("Configurations");
                 });
 
-            modelBuilder.Entity("Domain.HublaAffiliate", b =>
-                {
-                    b.Property<Guid>("HublaAffiliateId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("AffiliateAmount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("AffiliateId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("AffiliateName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid?>("HublaEventCanceledSaleId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("HublaEventNewSaleId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("HublaAffiliateId");
-
-                    b.HasIndex("HublaEventCanceledSaleId");
-
-                    b.HasIndex("HublaEventNewSaleId");
-
-                    b.ToTable("HublaAffiliates");
-                });
-
-            modelBuilder.Entity("Domain.HublaCanceledSale", b =>
-                {
-                    b.Property<Guid>("HublaCanceledSaleId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("EventHublaEventCanceledSaleId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Type")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("HublaCanceledSaleId");
-
-                    b.HasIndex("EventHublaEventCanceledSaleId");
-
-                    b.ToTable("HublaCanceledSales");
-                });
-
-            modelBuilder.Entity("Domain.HublaEventCanceledSale", b =>
-                {
-                    b.Property<Guid>("HublaEventCanceledSaleId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CreditCardLR")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Discount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("GroupId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("GroupName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsRenewing")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("PaymentMethod")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Reason")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Recurring")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SellerId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("TotalAmount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("TransactionId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserDocument")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserEmail")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserPhone")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("HublaEventCanceledSaleId");
-
-                    b.ToTable("HublaEventCanceledSales");
-                });
-
-            modelBuilder.Entity("Domain.HublaEventNewSale", b =>
-                {
-                    b.Property<Guid>("HublaEventNewSaleId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Discount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("GroupId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("GroupName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsRenewing")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("PaymentMethod")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Recurring")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SellerId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("TotalAmount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("TransactionId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserDocument")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserEmail")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserPhone")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("HublaEventNewSaleId");
-
-                    b.ToTable("HublaEventNewSales");
-                });
-
-            modelBuilder.Entity("Domain.HublaEventNewUser", b =>
-                {
-                    b.Property<Guid>("HublaEventNewUserId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Amount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("GroupId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("GroupName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SellerId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserDocument")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserEmail")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserPhone")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("HublaEventNewUserId");
-
-                    b.ToTable("HublaEventNewUsers");
-                });
-
-            modelBuilder.Entity("Domain.HublaNewSale", b =>
-                {
-                    b.Property<Guid>("HublaNewSaleId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("EventHublaEventNewSaleId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Type")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("HublaNewSaleId");
-
-                    b.HasIndex("EventHublaEventNewSaleId");
-
-                    b.ToTable("HublaNewSales");
-                });
-
-            modelBuilder.Entity("Domain.HublaNewUser", b =>
-                {
-                    b.Property<Guid>("HublaNewUserId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("EventHublaEventNewUserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Type")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("HublaNewUserId");
-
-                    b.HasIndex("EventHublaEventNewUserId");
-
-                    b.ToTable("HublaNewUsers");
-                });
-
             modelBuilder.Entity("Domain.Photo", b =>
                 {
                     b.Property<string>("Id")
@@ -457,6 +214,103 @@ namespace Persistence.Migrations
                     b.HasIndex("AppUserId");
 
                     b.ToTable("Photos");
+                });
+
+            modelBuilder.Entity("Domain.Product", b =>
+                {
+                    b.Property<Guid>("ProductId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("ProductIsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ProductName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("ProductPrice")
+                        .HasColumnType("decimal(18, 2)");
+
+                    b.Property<string>("ProdutcDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ProductId");
+
+                    b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("Domain.Project", b =>
+                {
+                    b.Property<Guid>("ProjectId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ProjectDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("ProjectIsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ProjectName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ProjectId");
+
+                    b.ToTable("Projects");
+                });
+
+            modelBuilder.Entity("Domain.Sale", b =>
+                {
+                    b.Property<Guid>("SaleId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ProductId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ProjectId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("SaleDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("SalePrice")
+                        .HasColumnType("decimal(18, 2)");
+
+                    b.Property<Guid>("SellerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("SaleId");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("ProjectId");
+
+                    b.HasIndex("SellerId");
+
+                    b.ToTable("Sales");
+                });
+
+            modelBuilder.Entity("Domain.Seller", b =>
+                {
+                    b.Property<Guid>("SellerId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ProjectId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("SellerIsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SellerName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("SellerId");
+
+                    b.HasIndex("ProjectId");
+
+                    b.ToTable("Sellers");
                 });
 
             modelBuilder.Entity("Domain.UserFollowing", b =>
@@ -642,49 +496,49 @@ namespace Persistence.Migrations
                     b.Navigation("Author");
                 });
 
-            modelBuilder.Entity("Domain.HublaAffiliate", b =>
-                {
-                    b.HasOne("Domain.HublaEventCanceledSale", null)
-                        .WithMany("Affiliates")
-                        .HasForeignKey("HublaEventCanceledSaleId");
-
-                    b.HasOne("Domain.HublaEventNewSale", null)
-                        .WithMany("Affiliates")
-                        .HasForeignKey("HublaEventNewSaleId");
-                });
-
-            modelBuilder.Entity("Domain.HublaCanceledSale", b =>
-                {
-                    b.HasOne("Domain.HublaEventCanceledSale", "Event")
-                        .WithMany()
-                        .HasForeignKey("EventHublaEventCanceledSaleId");
-
-                    b.Navigation("Event");
-                });
-
-            modelBuilder.Entity("Domain.HublaNewSale", b =>
-                {
-                    b.HasOne("Domain.HublaEventNewSale", "Event")
-                        .WithMany()
-                        .HasForeignKey("EventHublaEventNewSaleId");
-
-                    b.Navigation("Event");
-                });
-
-            modelBuilder.Entity("Domain.HublaNewUser", b =>
-                {
-                    b.HasOne("Domain.HublaEventNewUser", "Event")
-                        .WithMany()
-                        .HasForeignKey("EventHublaEventNewUserId");
-
-                    b.Navigation("Event");
-                });
-
             modelBuilder.Entity("Domain.Photo", b =>
                 {
                     b.HasOne("Domain.AppUser", null)
                         .WithMany("Photos")
                         .HasForeignKey("AppUserId");
+                });
+
+            modelBuilder.Entity("Domain.Sale", b =>
+                {
+                    b.HasOne("Domain.Product", "Product")
+                        .WithMany("Sales")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Project", "Project")
+                        .WithMany("Sales")
+                        .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Seller", "Seller")
+                        .WithMany("Sales")
+                        .HasForeignKey("SellerId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("Project");
+
+                    b.Navigation("Seller");
+                });
+
+            modelBuilder.Entity("Domain.Seller", b =>
+                {
+                    b.HasOne("Domain.Project", "Project")
+                        .WithMany("Sellers")
+                        .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Project");
                 });
 
             modelBuilder.Entity("Domain.UserFollowing", b =>
@@ -775,14 +629,21 @@ namespace Persistence.Migrations
                     b.Navigation("Photos");
                 });
 
-            modelBuilder.Entity("Domain.HublaEventCanceledSale", b =>
+            modelBuilder.Entity("Domain.Product", b =>
                 {
-                    b.Navigation("Affiliates");
+                    b.Navigation("Sales");
                 });
 
-            modelBuilder.Entity("Domain.HublaEventNewSale", b =>
+            modelBuilder.Entity("Domain.Project", b =>
                 {
-                    b.Navigation("Affiliates");
+                    b.Navigation("Sales");
+
+                    b.Navigation("Sellers");
+                });
+
+            modelBuilder.Entity("Domain.Seller", b =>
+                {
+                    b.Navigation("Sales");
                 });
 #pragma warning restore 612, 618
         }

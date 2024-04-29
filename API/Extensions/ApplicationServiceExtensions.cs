@@ -6,7 +6,6 @@ using FluentValidation.AspNetCore;
 using Infrastructure.Photos;
 using Infrastructure.Security;
 using MediatR;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 
@@ -32,8 +31,8 @@ namespace API.Extensions
                         .AllowAnyMethod()
                         .AllowAnyHeader()
                         .AllowCredentials()
-                        .WithOrigins("http://localhost:3000", "http://191.252.5.226:3000/");
-                        // .WithOrigins("http://localhost:3000");
+                        .WithOrigins("http://localhost:3333", "http://191.252.5.226:3333/");
+                        // .WithOrigins("http://localhost:3333");
                 });
             });
             services.AddMediatR(typeof(List.Handler));
@@ -46,7 +45,6 @@ namespace API.Extensions
             services.Configure<CloudinarySettings>(config.GetSection("Cloudinary"));
             services.AddSignalR();
             services.AddHttpClient();
-            services.AddMvc().AddGitHubWebHooks();
 
             return services;
         }

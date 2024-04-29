@@ -4,7 +4,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { useStore } from "../stores/store";
 import { observer } from "mobx-react-lite";
 import React from "react";
-import { AppBar, Avatar, Box, Button, Container, IconButton, Menu, MenuItem, Toolbar, Tooltip, Typography } from "@mui/material";
+import { AppBar, Avatar, Box, Container, IconButton, Menu, MenuItem, Toolbar, Tooltip, Typography } from "@mui/material";
 
 const pages = ["Horarios", "Maximas", "Ultimos Jogos"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -33,11 +33,11 @@ export default observer(function NavBar() {
     userStore: { user, logout },
   } = useStore();
   return (
-    <AppBar position="static">
+    <AppBar position="static" className="main_header">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <img src="/assets/logo.png" alt="logo" style={{ marginRight: 10 }} height={50} />
-          Virtual-Analyzer
+          <span className="title">Pulse</span>
 
           <Box sx={{ flexGrow: 1, display: {xs: "flex", md: "none"} }} >
             <IconButton
@@ -69,23 +69,23 @@ export default observer(function NavBar() {
               }}
             >
               <MenuItem onClick={handleCloseNavMenu}>
-                <NavLink to={"/game-times"} >
-                  <Typography textAlign="center">Horarios</Typography>
+                <NavLink to={"/projects"} >
+                  <Typography textAlign="center" className="subheadingFont">Pojetos</Typography>
                 </NavLink>
               </MenuItem>
               <MenuItem onClick={handleCloseNavMenu}>
-                <NavLink to={"/game-multtimes"} >
-                  <Typography textAlign="center">Multi Horarios</Typography>
+                <NavLink to={"/sellers"} >
+                  <Typography textAlign="center">Vendedores</Typography>
                 </NavLink>
               </MenuItem>
               <MenuItem onClick={handleCloseNavMenu}>
-                <NavLink to="/maximas" >
-                  <Typography textAlign="center">Máximas</Typography>
+                <NavLink to="/sales" >
+                  <Typography textAlign="center">Vendas & Cadastros</Typography>
                 </NavLink>
               </MenuItem>
               <MenuItem onClick={handleCloseNavMenu}>
-                <NavLink to="/last-games" >
-                  <Typography textAlign="center">Últimos Jogos</Typography>
+                <NavLink to="/products" >
+                  <Typography textAlign="center">Produtos</Typography>
                 </NavLink>
               </MenuItem>
             </Menu>
@@ -93,23 +93,23 @@ export default observer(function NavBar() {
 
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             <MenuItem onClick={handleCloseNavMenu}>
-              <NavLink to={"/game-times"} >
-                <Typography textAlign="center" className="menuName">Horarios</Typography>
+              <NavLink to={"/projects"} >
+                <Typography textAlign="center" className="menuName">Projetos</Typography>
               </NavLink>
             </MenuItem>
             <MenuItem onClick={handleCloseNavMenu}>
-              <NavLink to={"/game-multtimes"} >
-                <Typography textAlign="center" className="menuName">Multi Horarios</Typography>
+              <NavLink to={"/sellers"} >
+                <Typography textAlign="center" className="menuName">Vendedores</Typography>
               </NavLink>
             </MenuItem>
             <MenuItem onClick={handleCloseNavMenu}>
-              <NavLink to="/maximas" >
-                <Typography textAlign="center" className="menuName">Máximas</Typography>
+              <NavLink to="/sales" >
+                <Typography textAlign="center" className="menuName">Vendas & Cadastros</Typography>
               </NavLink>
             </MenuItem>
             <MenuItem onClick={handleCloseNavMenu}>
-              <NavLink onClick={handleCloseNavMenu} to="/last-games" >
-                <Typography textAlign="center" className="menuName">Últimos Jogos</Typography>
+              <NavLink to="/products" >
+                <Typography textAlign="center" className="menuName">Produtos</Typography>
               </NavLink>
             </MenuItem>
           </Box>

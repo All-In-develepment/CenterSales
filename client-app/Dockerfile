@@ -1,17 +1,22 @@
-FROM node:20.9.0-alpine3.17
+FROM node:20-alpine
 
 WORKDIR /app
 
-# COPY package*.json ./
+RUN chown node:node /app
+
+RUN apk add --no-cache tzdata
+
+COPY package*.json ./
+
+# Limpe o cache do npm
+RUN npm cache clean --force
+
+RUN npm install --legacy-peer-deps
 
 COPY . .
 
-# RUN npm update --save
+ENV TZ=America/Sao_Paulo
 
-RUN npm install
-
-# RUN npm run build
-
-EXPOSE 3000
+EXPOSE 3333
 
 CMD ["npm", "start"]

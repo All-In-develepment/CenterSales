@@ -39,8 +39,6 @@ app.UseAuthorization();
 app.MapControllers();
 app.MapHub<ChatHub>("/chat");
 
-// app.UseMvc().UseMvcWithDefaultRoute();
-
 using var scope = app.Services.CreateScope();
 var services = scope.ServiceProvider;
 
