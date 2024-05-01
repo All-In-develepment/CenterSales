@@ -3,13 +3,13 @@ using FluentValidation;
 using MediatR;
 using Persistence;
 
-namespace Application.Project
+namespace Application.Register
 {
-    public class CreateProject
+    public class CreateRegister
     {
         public class Command : IRequest<Result<Unit>>
         {
-            public Domain.Project Project { get; set; }
+            public Domain.Register Register { get; set; }
         }
 
         public class Handler : IRequestHandler<Command, Result<Unit>>
@@ -24,17 +24,18 @@ namespace Application.Project
             {
                 public CommandValidator()
                 {
-                    RuleFor(x => x.Project).SetValidator(new ProjectValidator());
+                    RuleFor(x => x.Register).SetValidator(new RegisterValidator());
                 }
             }
 
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
-                _context.Projects.Add(request.Project);
+                request.Register.RegisterAVG = request.Register.RegisterAmount / request.Register.RegisterTotal;
+                _context.Registers.Add(request.Register);
 
                 var result = await _context.SaveChangesAsync() > 0;
 
-                if (!result) return Result<Unit>.Failure("Failed to create project");
+                if (!result) return Result<Unit>.Failure("Failed to create register");
 
                 return Result<Unit>.Success(Unit.Value);
             }

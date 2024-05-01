@@ -2,22 +2,12 @@ using Application.Hubla.Sale;
 using Domain;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.WebHooks;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace API.Controllers
 {
     [AllowAnonymous]
     public class HublaNewSaleWebHookController : BaseApiController
     {
-        [GitHubWebHook]
-        public ContentResult GitHubHandler(JObject data)
-        {
-            var result = JsonConvert.SerializeObject(data);
-            return Content(result);
-        }
-
         // função para recever o payload do webhook e converter para um objeto do tipo NewSale
         [HttpPost("hubla-new-sale")]
         public async Task<IActionResult> HublaNewSale([FromBody] HublaNewSale payload)

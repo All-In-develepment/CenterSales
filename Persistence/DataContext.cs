@@ -20,6 +20,12 @@ namespace Persistence
         public DbSet<Project> Projects { get; set; }
         public DbSet<Sale> Sales { get; set; }
         public DbSet<Seller> Sellers { get; set; }
+        public DbSet<Events> Events { get; set; }
+        public DbSet<Register> Registers { get; set; }
+        public DbSet<HublaNewUser> HublaNewUsers { get; set; }
+        public DbSet<HublaNewSale> HublaNewSales { get; set; }
+        public DbSet<HublaCanceledSale> HublaCanceledSales { get; set; }
+        public DbSet<Bookmaker> Bookmakers { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -69,6 +75,28 @@ namespace Persistence
                 .HasOne(a => a.Activity)
                 .WithMany(c => c.Comments)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            // Relação de Register com Events, de um para muitos
+            builder.Entity<Register>()
+                .HasOne(e => e.Events)
+                .WithMany(r => r.Registers)
+                .HasForeignKey(e => e.EventsId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            // Relação de Register com Seller, de um para muitos
+            builder.Entity<Register>()
+                .HasOne(s => s.Seller)
+                .WithMany(r => r.Registers)
+                .HasForeignKey(s => s.SellerId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            // Relação de Register com Bookmaker, de um para muitos
+            builder.Entity<Register>()
+                .HasOne(b => b.Bookmaker)
+                .WithMany(r => r.Registers)
+                .HasForeignKey(b => b.BookmakerId)
+                .OnDelete(DeleteBehavior.NoAction);
+
 
             builder.Entity<UserFollowing>(b =>
             {

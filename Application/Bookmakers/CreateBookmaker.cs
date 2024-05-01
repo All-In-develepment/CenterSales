@@ -1,15 +1,16 @@
 using Application.Core;
+using Domain;
 using FluentValidation;
 using MediatR;
 using Persistence;
 
-namespace Application.Project
+namespace Application.Bookmakers
 {
-    public class CreateProject
+    public class CreateBookmaker
     {
         public class Command : IRequest<Result<Unit>>
         {
-            public Domain.Project Project { get; set; }
+            public Bookmaker Bookmaker { get; set; }
         }
 
         public class Handler : IRequestHandler<Command, Result<Unit>>
@@ -24,17 +25,17 @@ namespace Application.Project
             {
                 public CommandValidator()
                 {
-                    RuleFor(x => x.Project).SetValidator(new ProjectValidator());
+                    RuleFor(x => x.Bookmaker).SetValidator(new BookmakerValidator());
                 }
             }
-
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
-                _context.Projects.Add(request.Project);
+                Console.WriteLine(request.Bookmaker.BookmakerName);
+                _context.Bookmakers.Add(request.Bookmaker);
 
                 var result = await _context.SaveChangesAsync() > 0;
 
-                if (!result) return Result<Unit>.Failure("Failed to create project");
+                if (!result) return Result<Unit>.Failure("Failed to create bookmakers");
 
                 return Result<Unit>.Success(Unit.Value);
             }
