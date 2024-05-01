@@ -3,13 +3,13 @@ using FluentValidation;
 using MediatR;
 using Persistence;
 
-namespace Application.Project
+namespace Application.Events
 {
-    public class CreateProject
+    public class CreateEvent
     {
         public class Command : IRequest<Result<Unit>>
         {
-            public Domain.Project Project { get; set; }
+            public Domain.Events Event { get; set; }
         }
 
         public class Handler : IRequestHandler<Command, Result<Unit>>
@@ -24,17 +24,17 @@ namespace Application.Project
             {
                 public CommandValidator()
                 {
-                    RuleFor(x => x.Project).SetValidator(new ProjectValidator());
+                    RuleFor(x => x.Event).SetValidator(new EventValidator());
                 }
             }
 
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
-                _context.Projects.Add(request.Project);
+                _context.Events.Add(request.Event);
 
                 var result = await _context.SaveChangesAsync() > 0;
 
-                if (!result) return Result<Unit>.Failure("Failed to create project");
+                if (!result) return Result<Unit>.Failure("Failed to create event");
 
                 return Result<Unit>.Success(Unit.Value);
             }

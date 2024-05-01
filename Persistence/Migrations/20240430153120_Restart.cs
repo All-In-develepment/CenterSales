@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialMigration : Migration
+    public partial class Restart : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -73,6 +73,18 @@ namespace Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Bookmaker",
+                columns: table => new
+                {
+                    BookmakerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    BookmakerName = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Bookmaker", x => x.BookmakerId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Configurations",
                 columns: table => new
                 {
@@ -86,12 +98,100 @@ namespace Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Events",
+                columns: table => new
+                {
+                    EventsId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    EventName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    EventDescription = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Events", x => x.EventsId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "HublaEventCanceledSale",
+                columns: table => new
+                {
+                    HublaEventCanceledSaleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserPhone = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TotalAmount = table.Column<int>(type: "int", nullable: false),
+                    GroupId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    GroupName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Recurring = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PaymentMethod = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreditCardLR = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Reason = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Discount = table.Column<int>(type: "int", nullable: false),
+                    IsRenewing = table.Column<bool>(type: "bit", nullable: false),
+                    SellerId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    TransactionId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserDocument = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HublaEventCanceledSale", x => x.HublaEventCanceledSaleId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "HublaEventNewSale",
+                columns: table => new
+                {
+                    HublaEventNewSaleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserPhone = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TotalAmount = table.Column<int>(type: "int", nullable: false),
+                    GroupId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    GroupName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Recurring = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PaymentMethod = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Discount = table.Column<int>(type: "int", nullable: false),
+                    IsRenewing = table.Column<bool>(type: "bit", nullable: false),
+                    SellerId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    TransactionId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserDocument = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HublaEventNewSale", x => x.HublaEventNewSaleId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "HublaEventNewUser",
+                columns: table => new
+                {
+                    HublaEventNewUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserPhone = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    GroupId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Amount = table.Column<int>(type: "int", nullable: false),
+                    SellerId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserDocument = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    GroupName = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HublaEventNewUser", x => x.HublaEventNewUserId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Products",
                 columns: table => new
                 {
                     ProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ProductName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ProdutcDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ProductIsActive = table.Column<bool>(type: "bit", nullable: false),
                     ProductPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
@@ -105,27 +205,12 @@ namespace Persistence.Migrations
                 {
                     ProjectId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ProjectName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ProjectDescription = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    ProjectDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ProjectIsActive = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Projects", x => x.ProjectId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Sales",
-                columns: table => new
-                {
-                    SaleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    SellerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ProjectId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    SalePrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    SaleDate = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Sales", x => x.SaleId);
                 });
 
             migrationBuilder.CreateTable(
@@ -328,11 +413,92 @@ namespace Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "HublaCanceledSales",
+                columns: table => new
+                {
+                    HublaCanceledSaleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Type = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    EventHublaEventCanceledSaleId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HublaCanceledSales", x => x.HublaCanceledSaleId);
+                    table.ForeignKey(
+                        name: "FK_HublaCanceledSales_HublaEventCanceledSale_EventHublaEventCanceledSaleId",
+                        column: x => x.EventHublaEventCanceledSaleId,
+                        principalTable: "HublaEventCanceledSale",
+                        principalColumn: "HublaEventCanceledSaleId");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "HublaAffiliate",
+                columns: table => new
+                {
+                    HublaAffiliateId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    AffiliateAmount = table.Column<int>(type: "int", nullable: false),
+                    AffiliateId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AffiliateName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    HublaEventCanceledSaleId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    HublaEventNewSaleId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HublaAffiliate", x => x.HublaAffiliateId);
+                    table.ForeignKey(
+                        name: "FK_HublaAffiliate_HublaEventCanceledSale_HublaEventCanceledSaleId",
+                        column: x => x.HublaEventCanceledSaleId,
+                        principalTable: "HublaEventCanceledSale",
+                        principalColumn: "HublaEventCanceledSaleId");
+                    table.ForeignKey(
+                        name: "FK_HublaAffiliate_HublaEventNewSale_HublaEventNewSaleId",
+                        column: x => x.HublaEventNewSaleId,
+                        principalTable: "HublaEventNewSale",
+                        principalColumn: "HublaEventNewSaleId");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "HublaNewSales",
+                columns: table => new
+                {
+                    HublaNewSaleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Type = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    EventHublaEventNewSaleId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HublaNewSales", x => x.HublaNewSaleId);
+                    table.ForeignKey(
+                        name: "FK_HublaNewSales_HublaEventNewSale_EventHublaEventNewSaleId",
+                        column: x => x.EventHublaEventNewSaleId,
+                        principalTable: "HublaEventNewSale",
+                        principalColumn: "HublaEventNewSaleId");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "HublaNewUsers",
+                columns: table => new
+                {
+                    HublaNewUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Type = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    EventHublaEventNewUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HublaNewUsers", x => x.HublaNewUserId);
+                    table.ForeignKey(
+                        name: "FK_HublaNewUsers_HublaEventNewUser_EventHublaEventNewUserId",
+                        column: x => x.EventHublaEventNewUserId,
+                        principalTable: "HublaEventNewUser",
+                        principalColumn: "HublaEventNewUserId");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Sellers",
                 columns: table => new
                 {
                     SellerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     SellerName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SellerIsActive = table.Column<bool>(type: "bit", nullable: false),
                     ProjectId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
@@ -342,8 +508,73 @@ namespace Persistence.Migrations
                         name: "FK_Sellers_Projects_ProjectId",
                         column: x => x.ProjectId,
                         principalTable: "Projects",
-                        principalColumn: "ProjectId",
+                        principalColumn: "ProjectId");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Registers",
+                columns: table => new
+                {
+                    RegisterId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    RegisterDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    RegisterTotal = table.Column<int>(type: "int", nullable: false),
+                    RegisterAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    RegisterAVG = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    RegisterValue = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    EventsId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    SellerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    BookmakerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Registers", x => x.RegisterId);
+                    table.ForeignKey(
+                        name: "FK_Registers_Bookmaker_BookmakerId",
+                        column: x => x.BookmakerId,
+                        principalTable: "Bookmaker",
+                        principalColumn: "BookmakerId",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Registers_Events_EventsId",
+                        column: x => x.EventsId,
+                        principalTable: "Events",
+                        principalColumn: "EventsId");
+                    table.ForeignKey(
+                        name: "FK_Registers_Sellers_SellerId",
+                        column: x => x.SellerId,
+                        principalTable: "Sellers",
+                        principalColumn: "SellerId");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Sales",
+                columns: table => new
+                {
+                    SaleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    SellerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ProjectId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    SalePrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    SaleDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Sales", x => x.SaleId);
+                    table.ForeignKey(
+                        name: "FK_Sales_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "ProductId");
+                    table.ForeignKey(
+                        name: "FK_Sales_Projects_ProjectId",
+                        column: x => x.ProjectId,
+                        principalTable: "Projects",
+                        principalColumn: "ProjectId");
+                    table.ForeignKey(
+                        name: "FK_Sales_Sellers_SellerId",
+                        column: x => x.SellerId,
+                        principalTable: "Sellers",
+                        principalColumn: "SellerId");
                 });
 
             migrationBuilder.CreateIndex(
@@ -401,9 +632,64 @@ namespace Persistence.Migrations
                 column: "AuthorId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_HublaAffiliate_HublaEventCanceledSaleId",
+                table: "HublaAffiliate",
+                column: "HublaEventCanceledSaleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_HublaAffiliate_HublaEventNewSaleId",
+                table: "HublaAffiliate",
+                column: "HublaEventNewSaleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_HublaCanceledSales_EventHublaEventCanceledSaleId",
+                table: "HublaCanceledSales",
+                column: "EventHublaEventCanceledSaleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_HublaNewSales_EventHublaEventNewSaleId",
+                table: "HublaNewSales",
+                column: "EventHublaEventNewSaleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_HublaNewUsers_EventHublaEventNewUserId",
+                table: "HublaNewUsers",
+                column: "EventHublaEventNewUserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Photos_AppUserId",
                 table: "Photos",
                 column: "AppUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Registers_BookmakerId",
+                table: "Registers",
+                column: "BookmakerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Registers_EventsId",
+                table: "Registers",
+                column: "EventsId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Registers_SellerId",
+                table: "Registers",
+                column: "SellerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Sales_ProductId",
+                table: "Sales",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Sales_ProjectId",
+                table: "Sales",
+                column: "ProjectId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Sales_SellerId",
+                table: "Sales",
+                column: "SellerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Sellers_ProjectId",
@@ -444,16 +730,25 @@ namespace Persistence.Migrations
                 name: "Configurations");
 
             migrationBuilder.DropTable(
+                name: "HublaAffiliate");
+
+            migrationBuilder.DropTable(
+                name: "HublaCanceledSales");
+
+            migrationBuilder.DropTable(
+                name: "HublaNewSales");
+
+            migrationBuilder.DropTable(
+                name: "HublaNewUsers");
+
+            migrationBuilder.DropTable(
                 name: "Photos");
 
             migrationBuilder.DropTable(
-                name: "Products");
+                name: "Registers");
 
             migrationBuilder.DropTable(
                 name: "Sales");
-
-            migrationBuilder.DropTable(
-                name: "Sellers");
 
             migrationBuilder.DropTable(
                 name: "UserFollowings");
@@ -465,10 +760,31 @@ namespace Persistence.Migrations
                 name: "Activities");
 
             migrationBuilder.DropTable(
-                name: "Projects");
+                name: "HublaEventCanceledSale");
+
+            migrationBuilder.DropTable(
+                name: "HublaEventNewSale");
+
+            migrationBuilder.DropTable(
+                name: "HublaEventNewUser");
+
+            migrationBuilder.DropTable(
+                name: "Bookmaker");
+
+            migrationBuilder.DropTable(
+                name: "Events");
+
+            migrationBuilder.DropTable(
+                name: "Products");
+
+            migrationBuilder.DropTable(
+                name: "Sellers");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Projects");
         }
     }
 }

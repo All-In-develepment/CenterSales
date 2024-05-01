@@ -1,40 +1,36 @@
 using Application.Core;
-using FluentValidation;
 using MediatR;
 using Persistence;
 
-namespace Application.Project
+namespace Application.Register
 {
-    public class CreateProject
+    public class DeleteRegister
     {
         public class Command : IRequest<Result<Unit>>
         {
-            public Domain.Project Project { get; set; }
+            public Guid Id { get; set; }
         }
 
         public class Handler : IRequestHandler<Command, Result<Unit>>
         {
             private readonly DataContext _context;
+
             public Handler(DataContext context)
             {
                 _context = context;
             }
 
-            public class CommandValidator : AbstractValidator<Command>
-            {
-                public CommandValidator()
-                {
-                    RuleFor(x => x.Project).SetValidator(new ProjectValidator());
-                }
-            }
-
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
-                _context.Projects.Add(request.Project);
+                var register = await _context.Registers.FindAsync(request.Id);
+
+                if (register == null) return null;
+
+                _context.Remove(register);
 
                 var result = await _context.SaveChangesAsync() > 0;
 
-                if (!result) return Result<Unit>.Failure("Failed to create project");
+                if (!result) return Result<Unit>.Failure("Failed to delete the register");
 
                 return Result<Unit>.Success(Unit.Value);
             }
