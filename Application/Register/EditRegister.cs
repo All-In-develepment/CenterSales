@@ -39,6 +39,13 @@ namespace Application.Register
                 if (register == null) return null;
 
                 _mapper.Map(request.Register, register);
+                register.RegisterDate = request.Register.RegisterDate;
+                register.RegisterTotal = request.Register.RegisterTotal;
+                register.RegisterAmount = request.Register.RegisterAmount;
+                register.BookmakerId = request.Register.BookmakerId;
+                register.EventsId = request.Register.EventsId;
+                register.SellerId = request.Register.SellerId;
+                register.EventsId = request.Register.EventsId;
 
                 var result = await _context.SaveChangesAsync() > 0;
 
