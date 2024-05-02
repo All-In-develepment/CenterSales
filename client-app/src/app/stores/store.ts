@@ -9,6 +9,7 @@ import ProjectStore from "./projectStore";
 import SellerStore from "./sellerStore";
 import SaleStore from "./saleStore";
 import ProductStore from "./productStore";
+import BookmakerStore from "./bookmakerStore";
 
 interface Store {
   activityStore: ActivityStore;
@@ -21,6 +22,7 @@ interface Store {
   sellerStore: SellerStore;
   saleStore: SaleStore;
   productStore: ProductStore;
+  bookmakerStore: BookmakerStore;
 }
 
 export const store: Store = {
@@ -34,6 +36,7 @@ export const store: Store = {
   sellerStore: new SellerStore(),
   saleStore: new SaleStore(),
   productStore: new ProductStore(),
+  bookmakerStore: new BookmakerStore(),
 };
 
 export const StoreContext = createContext(store);

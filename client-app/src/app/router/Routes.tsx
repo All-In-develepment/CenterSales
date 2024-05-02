@@ -17,6 +17,7 @@ import SellerForm from "../../features/sellers/form/SellerForm";
 import SalesForm from "../../features/sales/Form/SalesForm";
 import ProductDashBoard from "../../features/product/dashboard/ProductDashBoard";
 import ProductForm from "../../features/product/Form/ProductForm";
+import BookmakerDashboard from "../../features/bookmaker/dashboard/BookmakerDashboard";
 
 export const routes: RouteObject[] = [
   {
@@ -44,6 +45,7 @@ export const routes: RouteObject[] = [
       { path: "products", element: <ProductDashBoard /> },
       { path: "products/save", element: <ProductForm /> },
       { path: "products/:id", element: <ProductForm /> },
+      { path: "bookmakers", element: <BookmakerDashboard /> },
       { path: "*", element: <Navigate replace to="/not-found" /> },
     ],
   },

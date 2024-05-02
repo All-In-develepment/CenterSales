@@ -61,7 +61,7 @@ export default class ProductStore {
     });
 
     return params;
-  }
+  };
 
   loadProducts = async () => {
     this.loadingInitial = true;
