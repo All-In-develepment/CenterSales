@@ -14,8 +14,12 @@ import MyTextInput from "../../../app/common/form/MyTextInput";
 
 export default observer(function ProjectForm() {
   const { projectStore } = useStore();
-  const { createProject, updateProject, loadProject, loadingInitial } =
-    projectStore;
+  const { 
+    createProject, 
+    updateProject, 
+    loadProject, 
+    loadingInitial 
+  } = projectStore;
   const { id } = useParams();
   const navigate = useNavigate();
 

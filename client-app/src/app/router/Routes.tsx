@@ -21,6 +21,8 @@ import BookmakerDashboard from "../../features/bookmaker/dashboard/BookmakerDash
 import BookmakerForm from "../../features/bookmaker/form/BookmakerForm";
 import EventDashboard from "../../features/event/dashboard/EventDashboard";
 import EventForm from "../../features/event/form/EventForm";
+import RegisterDashboard from "../../features/register/dashboard/RegisterDashboard";
+import RegisterForm from "../../features/register/from/RegisterForm";
 
 export const routes: RouteObject[] = [
   {
@@ -54,6 +56,10 @@ export const routes: RouteObject[] = [
       { path: "events", element: <EventDashboard /> },
       { path: "events/save", element: <EventForm /> },
       { path: "events/:id", element: <EventForm /> },
+      { path: "registers", element: <RegisterDashboard /> },
+      { path: "registers/save", element: <RegisterForm /> },
+      { path: "registers/:id", element: <RegisterForm /> },
+      { path: "/", element: <Navigate to="/activities" /> },
       { path: "*", element: <Navigate replace to="/not-found" /> },
     ],
   },
