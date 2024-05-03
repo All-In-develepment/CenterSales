@@ -7,8 +7,6 @@ export default observer( function BookmakerList() {
   const { bookmakerStore } = useStore();
   const { allBookmakers } = bookmakerStore;
 
-  console.log(allBookmakers)
-
   return (
     <>
       {allBookmakers.map(bookmaker => (

@@ -11,6 +11,7 @@ import { Seller, SellerFormValues } from "../models/seller";
 import { Sale, SaleFormValues } from "../models/sale";
 import { Product, ProductFormValues } from "../models/product";
 import { Bookmaker } from "../models/bookmaker";
+import { OriginEvent } from "../models/originEvent";
 
 const sleep = (delay: number) => {
   return new Promise((resolve) => {
@@ -190,6 +191,15 @@ const Bookmakers = {
   delete: (id: string) => requests.del<void>(`/bookmaker/${id}`),
 };
 
+const Events = {
+  list: (params: URLSearchParams) =>
+    axios.get<PaginatedResult<OriginEvent[]>>("/events", { params }).then(responseBody),
+  details: (id: string) => requests.get<OriginEvent>(`/events/${id}`),
+  create: (event: OriginEvent) => requests.post<void>("/events", event),
+  update: (event: OriginEvent) => requests.put<void>(`/events/${event.eventsId}`, event),
+  delete: (id: string) => requests.del<void>(`/events/${id}`),
+};
+
 const agent = {
   Activities,
   Account,
@@ -199,6 +209,7 @@ const agent = {
   Sales,
   Products,
   Bookmakers,
+  Events,
 };
 
 export default agent;
