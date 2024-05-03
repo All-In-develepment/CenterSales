@@ -4,6 +4,5 @@ namespace Application.Bookmakers
     {
         public Guid BookmakerId { get; set; }
         public string BookmakerName { get; set; }
-        public ICollection<Domain.Register> Registers { get; set; }
     }
 }

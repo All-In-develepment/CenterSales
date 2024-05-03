@@ -10,6 +10,7 @@ import { Project, ProjectFormValues } from "../models/project";
 import { Seller, SellerFormValues } from "../models/seller";
 import { Sale, SaleFormValues } from "../models/sale";
 import { Product, ProductFormValues } from "../models/product";
+import { Bookmaker } from "../models/bookmaker";
 
 const sleep = (delay: number) => {
   return new Promise((resolve) => {
@@ -178,6 +179,17 @@ const Products = {
   delete: (id: string) => requests.del<void>(`/products/${id}`),
 };
 
+const Bookmakers = {
+  list: (params: URLSearchParams) =>
+    axios
+      .get<PaginatedResult<Bookmaker[]>>("/bookmaker", { params })
+      .then(responseBody),
+  details: (id: string) => requests.get<Bookmaker>(`/bookmaker/${id}`),
+  create: (bookmaker: Bookmaker) => requests.post<void>(`/bookmaker`, bookmaker),
+  update: (bookmaker: Bookmaker) => requests.put<void>(`/bookmaker/${bookmaker.bookmakerId}`, bookmaker),
+  delete: (id: string) => requests.del<void>(`/bookmaker/${id}`),
+};
+
 const agent = {
   Activities,
   Account,
@@ -186,6 +198,7 @@ const agent = {
   Sellers,
   Sales,
   Products,
+  Bookmakers,
 };
 
 export default agent;

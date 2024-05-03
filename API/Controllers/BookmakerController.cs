@@ -11,7 +11,7 @@ namespace API.Controllers
         public async Task<IActionResult> GetBookmakers([FromQuery] PagingParams param)
         {
             // Retorna a lista de bookmakers
-            return HandleResult(await Mediator.Send(new ListBookmaker.Query{Params = param}));
+            return HandlePagedResult(await Mediator.Send(new ListBookmaker.Query{Params = param}));
         }
 
         [HttpGet("{id}")]
