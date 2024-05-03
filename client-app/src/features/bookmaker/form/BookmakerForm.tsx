@@ -3,6 +3,7 @@ import { useStore } from "../../../app/stores/store";
 import { Form, Link, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import * as Yup from "yup";
+import { v4 as uuid } from "uuid";
 import { BookmakerFormValues } from "../../../app/models/bookmaker";
 import { Button, Header, Segment } from "semantic-ui-react";
 import { Formik } from "formik";
@@ -30,16 +31,16 @@ export default observer(function BookmakerForm() {
     if (!bookmaker.bookmakerId) {
       let newBookmaker = {
         ...bookmaker,
-        bookmakerId: bookmaker.bookmakerId,
+        bookmakerId: uuid(),
       };
       createBookmaker(newBookmaker).then(() => {
         navigate(`/bookmakers`);
-        window.location.reload();
+        // window.location.reload();
       });
     } else {
       updateBookmaker(bookmaker).then(() => {
         navigate(`/bookmakers`);
-        window.location.reload();
+        // window.location.reload();
       });
     }
   }
@@ -57,7 +58,7 @@ export default observer(function BookmakerForm() {
       >
         {({ handleSubmit, isValid, isSubmitting, dirty }) => (
           <Form className='ui form' onSubmit={handleSubmit} autoComplete='off'>
-            <MyTextInput name='bookmakerName' placeholder='Bookmaker Name' />
+            <MyTextInput name='bookmakerName' placeholder='Nome da Casa de aposta' />
             <Button
               disabled={isSubmitting || !dirty || !isValid}
               loading={isSubmitting}
