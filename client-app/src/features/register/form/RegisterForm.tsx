@@ -10,15 +10,17 @@ import LoadingComponent from "../../../app/layout/LoadingComponent";
 import { Button, Header, Segment } from "semantic-ui-react";
 import { Formik } from "formik";
 import MyTextInput from "../../../app/common/form/MyTextInput";
+import MySelectInput from "../../../app/common/form/MySelectInput";
 
 export default observer(function RegisterForm() {
-  const { registerStore } = useStore();
-  const {
-    createRegister,
-    updateRegister,
-    loadRegister,
-    loadingInitial,
-  } = registerStore;
+  const { registerStore, bookmakerStore, eventStore, sellerStore } = useStore();
+  const { createRegister, updateRegister, loadRegister, loadingInitial } =
+    registerStore;
+
+  const { loadBookmakers, allBookmakers } = bookmakerStore;
+  const { loadEvents, allEvents } = eventStore;
+  const { loadSellers, allSellers } = sellerStore;
+
   const { id } = useParams();
   const navigate = useNavigate();
   const [register, setRegister] = useState<RegisterFormValues>(
@@ -35,11 +37,14 @@ export default observer(function RegisterForm() {
   });
 
   useEffect(() => {
+    // loadBookmakers();
+    // loadEvents();
+    loadSellers();
     if (id)
       loadRegister(id).then((register) =>
         setRegister(new RegisterFormValues(register))
       );
-  }, [id, loadRegister]);
+  }, [id, loadRegister, loadBookmakers, loadEvents, loadSellers]);
 
   function handleFormSubmit(register: RegisterFormValues) {
     if (!register.registerId) {
@@ -68,15 +73,38 @@ export default observer(function RegisterForm() {
         enableReinitialize
         initialValues={register}
         onSubmit={(values) => handleFormSubmit(values)}
-        >
+      >
         {({ handleSubmit, isValid, isSubmitting, dirty }) => (
           <Form className="ui form" onSubmit={handleSubmit} autoComplete="off">
             <MyTextInput name="registerDate" placeholder="Register Date" />
             <MyTextInput name="registerTotal" placeholder="Register Total" />
             <MyTextInput name="registerAmount" placeholder="Register Amount" />
-            <MyTextInput name="eventsId" placeholder="Event" />
-            <MyTextInput name="sellerId" placeholder="Seller" />
-            <MyTextInput name="bookmakerId" placeholder="Bookmaker" />
+
+            <MySelectInput
+              options={allEvents.map((event) => ({
+                text: event.eventName,
+                value: event.eventsId,
+              }))}
+              placeholder="Event"
+              name="eventsId"
+            />
+            <MySelectInput
+              options={allSellers.map((seller) => ({
+                text: seller.sellerName,
+                value: seller.sellerId,
+              }))}
+              placeholder="Seller"
+              name="sellerId"
+            />
+            <MySelectInput
+              options={allBookmakers.map((bookMaker) => ({
+                text: bookMaker.bookmakerName,
+                value: bookMaker.bookmakerId,
+              }))}
+              placeholder="Bookmaker"
+              name="bookmakerId"
+            />
+
             <Button
               disabled={isSubmitting || !dirty || !isValid}
               loading={isSubmitting}
@@ -94,7 +122,7 @@ export default observer(function RegisterForm() {
             />
           </Form>
         )}
-        </Formik>
-      </Segment>
-    );
+      </Formik>
+    </Segment>
+  );
 });

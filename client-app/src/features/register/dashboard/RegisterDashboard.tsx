@@ -10,12 +10,15 @@ import RegisterList from "./RegisterList";
 export default observer(function RegisterDashboard() {
   const { registerStore } = useStore();
   const { allRegisters } = registerStore;
-  const [ loading, setLoading ] = useState(true);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   function handleGetNext() {
     setLoading(true);
-    registerStore.setPagination({ ...registerStore.pagination!, currentPage: registerStore.pagination!.currentPage + 1 });
+    registerStore.setPagination({
+      ...registerStore.pagination!,
+      currentPage: registerStore.pagination!.currentPage + 1,
+    });
     registerStore.loadRegisters().then(() => setLoading(false));
   }
 
@@ -52,7 +55,8 @@ export default observer(function RegisterDashboard() {
               hasMore={
                 !loading &&
                 !!registerStore.pagination &&
-                registerStore.pagination.currentPage < registerStore.pagination.totalPages
+                registerStore.pagination.currentPage <
+                  registerStore.pagination.totalPages
               }
             >
               <RegisterList />
@@ -61,5 +65,5 @@ export default observer(function RegisterDashboard() {
         </Grid.Column>
       </Grid>
     </>
-  )
+  );
 });

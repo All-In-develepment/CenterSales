@@ -22,7 +22,7 @@ import BookmakerForm from "../../features/bookmaker/form/BookmakerForm";
 import EventDashboard from "../../features/event/dashboard/EventDashboard";
 import EventForm from "../../features/event/form/EventForm";
 import RegisterDashboard from "../../features/register/dashboard/RegisterDashboard";
-import RegisterForm from "../../features/register/from/RegisterForm";
+import RegisterForm from "../../features/register/form/RegisterForm";
 
 export const routes: RouteObject[] = [
   {
