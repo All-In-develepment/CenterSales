@@ -80,7 +80,12 @@ export default observer(function NavBar() {
               </MenuItem>
               <MenuItem onClick={handleCloseNavMenu}>
                 <NavLink to="/sales" >
-                  <Typography textAlign="center">Vendas & Cadastros</Typography>
+                  <Typography textAlign="center">Vendas</Typography>
+                </NavLink>
+              </MenuItem>
+              <MenuItem onClick={handleCloseNavMenu}>
+                <NavLink to="/registers" >
+                  <Typography textAlign="center">Cdastros</Typography>
                 </NavLink>
               </MenuItem>
               <MenuItem onClick={handleCloseNavMenu}>
@@ -104,7 +109,12 @@ export default observer(function NavBar() {
             </MenuItem>
             <MenuItem onClick={handleCloseNavMenu}>
               <NavLink to="/sales" >
-                <Typography textAlign="center" className="menuName">Vendas & Cadastros</Typography>
+                <Typography textAlign="center" className="menuName">Vendas</Typography>
+              </NavLink>
+            </MenuItem>
+            <MenuItem onClick={handleCloseNavMenu}>
+              <NavLink to="/registers" >
+                <Typography textAlign="center" className="menuName">Cadastros</Typography>
               </NavLink>
             </MenuItem>
             <MenuItem onClick={handleCloseNavMenu}>

@@ -27,21 +27,29 @@ export default observer(function SaleDashboard() {
     <>
       <Grid>
         <Grid.Row>
-          <Grid.Column width="10">
-            <h1>Sale Dashboard</h1>
+          <Grid.Column width="8">
+            <h1>Painel de vendas</h1>
           </Grid.Column>
-          <Grid.Column width="6" textAlign="right">
+          <Grid.Column width="8" textAlign="right">
             <a
               className="ui primary button"
               style={{ marginTop: "1.5em" }}
               target="_blank"
               href="sales/rank"
             >
-              <Icon name="list ol" /> Open Rank
+              <Icon name="list ol" /> Rank por vendedor
+            </a>
+            <a
+              className="ui primary button"
+              style={{ marginTop: "1.5em" }}
+              target="_blank"
+              href="sales/rankProject"
+            >
+              <Icon name="list ol" /> Rank por projeto
             </a>
             <button
               onClick={() => navigate("/sales/save")}
-              className="ui primary button"
+              className="ui green button"
               style={{ marginTop: "1.5em" }}
             >
               Criar

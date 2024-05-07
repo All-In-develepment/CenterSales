@@ -131,4 +131,50 @@ export default class RegisterStore {
   get allRegisters() {
     return Array.from(this.registerRegistry.values());
   };
+
+  clearSelectedRegister = () => {
+    this.selectedRegister = undefined;
+  };
+
+  getGroupedBySeller = async () => {
+    this.loadingInitial = true;
+    try {
+      const result = await agent.Registers.registerRankBySeller(this.axiosParams);
+      result.data
+        .sort((a, b) => (b.registerAVGConversion ?? 0) - a.registerAVGConversion ?? 0)
+        .forEach((register) => {
+          this.setRegister(register);
+        });
+      this.setPagination(result.pagination);
+      this.setLoadingInitial(false);
+    } catch (error) {
+      console.log(error);
+      this.setLoadingInitial(false);
+    }
+  };
+  
+  get groupedBySeller() {
+    return Array.from(this.registerRegistry.values());
+  };
+
+  getGroupedByProject = async () => {
+    this.loadingInitial = true;
+    try {
+      const result = await agent.Registers.registerRankByProject(this.axiosParams);
+      result.data
+        .sort((a, b) => (b.registerAVGConversion ?? 0) - a.registerAVGConversion ?? 0)
+        .forEach((register) => {
+          this.setRegister(register);
+        });
+      this.setPagination(result.pagination);
+      this.setLoadingInitial(false);
+    } catch (error) {
+      console.log(error);
+      this.setLoadingInitial(false);
+    }
+  };
+
+  get groupedByProject() {
+    return Array.from(this.registerRegistry.values());
+  };
 }

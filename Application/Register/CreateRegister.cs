@@ -31,6 +31,8 @@ namespace Application.Register
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
                 request.Register.RegisterAVG = request.Register.RegisterAmount / request.Register.RegisterTotal;
+                // request.Register.RegisterAVGConversion = request.Register.RegisterTotal / request.Register.RegisterLeads;
+                request.Register.RegisterAVGConversion = ((float)request.Register.RegisterTotal / (float)request.Register.RegisterLeads) * 100;
                 _context.Registers.Add(request.Register);
 
                 var result = await _context.SaveChangesAsync() > 0;

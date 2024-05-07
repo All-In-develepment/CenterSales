@@ -6,7 +6,7 @@ interface Props {
   sale: Sale
 }
 
-export default observer(function RankListItem({sale}: Props) {
+export default observer(function RankByProjectListItem({sale}: Props) {
 
   return(
     <>
@@ -16,7 +16,7 @@ export default observer(function RankListItem({sale}: Props) {
             <FeedEvent>
               <Feed.Content>
                 <Feed.Summary>
-                  {sale.sellerName}
+                  {sale.projectName}
                 </Feed.Summary>
                 <br />
                 <Feed.Date>

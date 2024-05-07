@@ -8,5 +8,6 @@ namespace Domain
         public bool ProjectIsActive { get; set; }
         public ICollection<Seller> Sellers { get; set; }
         public ICollection<Sale> Sales { get; set; }
+        public ICollection<Register> Registers { get; set; }
     }
 }

@@ -1,31 +1,26 @@
-import { Item, Segment } from "semantic-ui-react";
+import { TableCell, TableRow } from "semantic-ui-react";
 import { Register } from "../../../app/models/register";
+import { useStore } from "../../../app/stores/store";
+import RegisterDetail from "./RegisterDetail";
 
 interface Props {
   register: Register;
 }
 
 export default function RegisterListItem({ register }: Props) {
+  const { modalStore } = useStore();
   return (
-    <Segment.Group>
-      <Segment>
-        <Item.Group>
-          <Item>
-            <Item.Content>
-              <Item.Header>{register.registerDate}</Item.Header>
-              <Item.Description>
-                <div>{register.registerTotal}</div>
-                <div>{register.registerAmount}</div>
-                <div>{register.registerAVG}</div>
-                <div>{register.registerValue}</div>
-                <div>{register.eventsId}</div>
-                <div>{register.sellerId}</div>
-                <div>{register.bookmakerId}</div>
-              </Item.Description>
-            </Item.Content>
-          </Item>
-        </Item.Group>
-      </Segment>
-    </Segment.Group>
+    <TableRow
+      onClick={() => modalStore.openModal(<RegisterDetail registerObj={register} />, 'small')} 
+      key={register.registerId}
+    >
+      <TableCell>{register.registerDate.split('T')[0]}</TableCell>
+      <TableCell>{register.registerLeads}</TableCell>
+      <TableCell>{register.registerTotal}</TableCell>
+      <TableCell>{register.registerAVGConversion}%</TableCell>
+      <TableCell>R${register.registerAmount}</TableCell>
+      <TableCell>R${register.registerAVG}</TableCell>
+      <TableCell>{register.eventsName}</TableCell>
+    </TableRow>
   );
 }

@@ -166,6 +166,10 @@ const Sales = {
     axios
       .get<PaginatedResult<Sale[]>>("/sales/groupbyseler", { params })
       .then(responseBody),
+  saleRankByProject: (params: URLSearchParams) =>
+    axios
+      .get<PaginatedResult<Sale[]>>("/sales/grouped-by-project", { params })
+      .then(responseBody),
 };
 
 const Products = {
@@ -208,6 +212,14 @@ const Registers = {
   create: (event: Register) => requests.post<void>("/register", event),
   update: (event: Register) => requests.put<void>(`/register/${event.eventsId}`, event),
   delete: (id: string) => requests.del<void>(`/register/${id}`),
+  registerRankBySeller: (params: URLSearchParams) =>
+    axios
+      .get<PaginatedResult<Register[]>>("/register/grouped-by-seller", { params })
+      .then(responseBody),
+  registerRankByProject: (params: URLSearchParams) =>
+    axios
+      .get<PaginatedResult<Register[]>>("/register/grouped-by-project", { params })
+      .then(responseBody),
 };
 
 const agent = {

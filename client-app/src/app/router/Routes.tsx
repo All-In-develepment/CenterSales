@@ -22,7 +22,10 @@ import BookmakerForm from "../../features/bookmaker/form/BookmakerForm";
 import EventDashboard from "../../features/event/dashboard/EventDashboard";
 import EventForm from "../../features/event/form/EventForm";
 import RegisterDashboard from "../../features/register/dashboard/RegisterDashboard";
-import RegisterForm from "../../features/register/from/RegisterForm";
+import RegisterForm from "../../features/register/form/RegisterForm";
+import RankByProject from "../../features/sales/Rank/RankByProject";
+import RankBySellerDashboard from "../../features/register/Ranks/RankBySeller/RankBySellerDashboard";
+import RankREgisterByProjectDashboard from "../../features/register/Ranks/RankByProjects/RankREgisterByProjectDashboard";
 
 export const routes: RouteObject[] = [
   {
@@ -47,6 +50,7 @@ export const routes: RouteObject[] = [
       { path: "sales", element: <SaleDashboard /> },
       { path: "sales/save", element: <SalesForm /> },
       { path: "sales/rank", element: <RankSale /> },
+      { path: "sales/rankProject", element: <RankByProject />},
       { path: "products", element: <ProductDashBoard /> },
       { path: "products/save", element: <ProductForm /> },
       { path: "products/:id", element: <ProductForm /> },
@@ -59,6 +63,8 @@ export const routes: RouteObject[] = [
       { path: "registers", element: <RegisterDashboard /> },
       { path: "registers/save", element: <RegisterForm /> },
       { path: "registers/:id", element: <RegisterForm /> },
+      { path: "registers/rankseller", element: <RankBySellerDashboard />} ,
+      { path: "registers/rankProject", element: <RankREgisterByProjectDashboard /> },
       { path: "/", element: <Navigate to="/activities" /> },
       { path: "*", element: <Navigate replace to="/not-found" /> },
     ],

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence;
 
@@ -11,9 +12,11 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20240506185300_AddAVGConvertionInRegister")]
+    partial class AddAVGConvertionInRegister
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -545,14 +548,11 @@ namespace Persistence.Migrations
                     b.Property<Guid>("EventsId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("ProjectId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<decimal>("RegisterAVG")
                         .HasColumnType("decimal(18, 2)");
 
                     b.Property<float>("RegisterAVGConversion")
-                        .HasColumnType("float(18, 2)");
+                        .HasColumnType("real");
 
                     b.Property<decimal>("RegisterAmount")
                         .HasColumnType("decimal(18, 2)");
@@ -574,8 +574,6 @@ namespace Persistence.Migrations
                     b.HasIndex("BookmakerId");
 
                     b.HasIndex("EventsId");
-
-                    b.HasIndex("ProjectId");
 
                     b.HasIndex("SellerId");
 
@@ -878,12 +876,6 @@ namespace Persistence.Migrations
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("Domain.Project", "Project")
-                        .WithMany("Registers")
-                        .HasForeignKey("ProjectId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
                     b.HasOne("Domain.Seller", "Seller")
                         .WithMany("Registers")
                         .HasForeignKey("SellerId")
@@ -893,8 +885,6 @@ namespace Persistence.Migrations
                     b.Navigation("Bookmaker");
 
                     b.Navigation("Events");
-
-                    b.Navigation("Project");
 
                     b.Navigation("Seller");
                 });
@@ -1052,8 +1042,6 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Project", b =>
                 {
-                    b.Navigation("Registers");
-
                     b.Navigation("Sales");
 
                     b.Navigation("Sellers");

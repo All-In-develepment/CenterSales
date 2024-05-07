@@ -36,5 +36,17 @@ namespace API.Controllers
         {
             return HandleResult(await Mediator.Send(new DeleteRegister.Command { Id = id }));
         }
+
+        [HttpGet("grouped-by-project")]
+        public async Task<IActionResult> GetRegistersGroupedByProject([FromQuery] RegisterParams param)
+        {
+            return HandlePagedResult(await Mediator.Send(new ListGroupedByProjectRegister.Query { Params = param }));
+        }
+
+        [HttpGet("grouped-by-seller")]
+        public async Task<IActionResult> GetRegistersGroupedBySeller([FromQuery] RegisterParams param)
+        {
+            return HandlePagedResult(await Mediator.Send(new ListGroupedByProjectSeller.Query { Params = param }));
+        }
     }
 }
