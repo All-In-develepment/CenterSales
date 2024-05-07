@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite";
 import { useStore } from "../../../../app/stores/store";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Grid } from "semantic-ui-react";
 import InfiniteScroll from "react-infinite-scroller";
 import RankRegiterList from "./RankRegiterList";
@@ -15,6 +15,10 @@ export default observer(function RankREgisterByProjectDashboard() {
     setPagination({ ...pagination!, currentPage: pagination!.currentPage + 1 });
     getGroupedByProject().then(() => setLoadingNext(false));
   }
+
+  useEffect(() => {
+    getGroupedByProject();
+  }, [getGroupedByProject]);
 
   return (
     <>

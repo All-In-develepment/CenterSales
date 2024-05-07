@@ -14,7 +14,7 @@ export default function RankListItemBySeller({ register }: Props) {
             <FeedEvent>
               <Feed.Content>
                 <Feed.Summary>
-                  {register.sellerName}
+                  {register.projectName}
                 </Feed.Summary>
                 <br />
                 <Feed.Date>

@@ -7,10 +7,6 @@ export default observer(function RankBySellerList() {
   const { registerStore } = useStore();
   const { groupedBySeller } = registerStore;
 
-  groupedBySeller.map((register) => {
-    console.log(register.bookmakerId)
-  });
-
   return (
     <>
       {groupedBySeller.map((register) => (

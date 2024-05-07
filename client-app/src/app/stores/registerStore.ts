@@ -162,7 +162,7 @@ export default class RegisterStore {
     try {
       const result = await agent.Registers.registerRankByProject(this.axiosParams);
       result.data
-        .sort((a, b) => (b.registerAVGConversion ?? 0) - a.registerAVGConversion ?? 0)
+        .sort((a, b) => (b.registerAmount ?? 0) - a.registerAmount ?? 0)
         .forEach((register) => {
           this.setRegister(register);
         });

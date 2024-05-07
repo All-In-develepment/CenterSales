@@ -11,7 +11,6 @@ export default observer(function RankRegiterList() {
     <>
       {groupedByProject.map(project => (
         <Fragment key={project.projectId}>
-          <p>Porraaa</p>
           <RankByProjectListItem register={project} />
         </Fragment>
       ))}
