@@ -7,6 +7,7 @@ export default function MyDateInput(props: Partial<ReactDatePickerProps>) {
     const [field, meta, helpers] = useField(props.name!);
     return (
         <Form.Field error={meta.touched && !!meta.error}>
+            <label>Data</label>
             <DatePicker
                 {...field}
                 {...props}

@@ -97,6 +97,13 @@ namespace Persistence
                 .HasForeignKey(b => b.BookmakerId)
                 .OnDelete(DeleteBehavior.NoAction);
 
+            // Relação de Register com Project, de um para muitos
+            builder.Entity<Register>()
+                .HasOne(p => p.Project)
+                .WithMany(r => r.Registers)
+                .HasForeignKey(p => p.ProjectId)
+                .OnDelete(DeleteBehavior.NoAction);
+
 
             builder.Entity<UserFollowing>(b =>
             {

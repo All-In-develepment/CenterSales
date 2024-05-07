@@ -144,7 +144,27 @@ export default class SaleStore {
   };
 
   get groupedSaler() {
-    console.log(`saleStore: ${this.saleRegistry.values()}`);
     return Array.from(this.saleRegistry.values());
-  }
+  };
+
+  getGroupedSalesByProject = async () => {
+    this.loadingInitial = true;
+    try {
+      const result = await agent.Sales.saleRankByProject(this.axiosParams);
+      result.data
+        .sort((a, b) => (b.salePrice ?? 0) - (a.salePrice ?? 0))
+        .forEach((sale) => {
+          this.setSale(sale);
+        });
+      this.setPagination(result.pagination);
+      this.setLoadingInitial(false);
+    } catch (error) {
+      console.log(error);
+      this.setLoadingInitial(false);
+    }
+  };
+
+  get groupedProject() {
+    return Array.from(this.saleRegistry.values());
+  };
 }

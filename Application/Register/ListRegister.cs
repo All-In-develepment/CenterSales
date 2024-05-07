@@ -2,6 +2,7 @@ using Application.Core;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Persistence;
 
 namespace Application.Register
@@ -26,6 +27,28 @@ namespace Application.Register
             public async Task<Result<PagedList<RegisterDto>>> Handle(Query request, CancellationToken cancellationToken)
             {
                 var query = _context.Registers
+                    .Include(e => e.Events)
+                    .Include(s => s.Seller)
+                    .Include(b => b.Bookmaker)
+                    .Include(p => p.Project)
+                    .Select(r => new RegisterDto
+                    {
+                        RegisterId = r.RegisterId,
+                        RegisterDate = r.RegisterDate,
+                        RegisterTotal = r.RegisterTotal,
+                        RegisterAmount = r.RegisterAmount,
+                        RegisterAVG = r.RegisterAVG,
+                        RegisterLeads = r.RegisterLeads,
+                        RegisterAVGConversion = r.RegisterAVGConversion,
+                        EventsId = r.EventsId,
+                        EventsName = r.Events.EventName,
+                        SellerId = r.SellerId,
+                        SellerName = r.Seller.SellerName,
+                        BookmakerId = r.BookmakerId,
+                        BookmakerName = r.Bookmaker.BookmakerName,
+                        ProjectId = r.ProjectId,
+                        ProjectName = r.Project.ProjectName
+                    })
                     .OrderBy(d => d.RegisterDate)
                     .ProjectTo<RegisterDto>(_mapper.ConfigurationProvider)
                     .AsQueryable();

@@ -7,19 +7,21 @@ import * as Yup from "yup";
 import { v4 as uuid } from "uuid";
 import { RegisterFormValues } from "../../../app/models/register";
 import LoadingComponent from "../../../app/layout/LoadingComponent";
-import { Button, Header, Segment } from "semantic-ui-react";
+import { Button, Header, Label, Segment } from "semantic-ui-react";
 import { Formik } from "formik";
 import MyTextInput from "../../../app/common/form/MyTextInput";
 import MySelectInput from "../../../app/common/form/MySelectInput";
+import MyDateInput from "../../../app/common/form/MyDateInput";
 
 export default observer(function RegisterForm() {
-  const { registerStore, bookmakerStore, eventStore, sellerStore } = useStore();
+  const { registerStore, bookmakerStore, eventStore, sellerStore, projectStore } = useStore();
   const { createRegister, updateRegister, loadRegister, loadingInitial } =
     registerStore;
 
   const { loadBookmakers, allBookmakers } = bookmakerStore;
   const { loadEvents, allEvents } = eventStore;
   const { loadSellers, allSellers } = sellerStore;
+  const { loadProjects, allProjects } = projectStore;
 
   const { id } = useParams();
   const navigate = useNavigate();
@@ -37,9 +39,10 @@ export default observer(function RegisterForm() {
   });
 
   useEffect(() => {
-    // loadBookmakers();
-    // loadEvents();
+    loadBookmakers();
+    loadEvents();
     loadSellers();
+    loadProjects();
     if (id)
       loadRegister(id).then((register) =>
         setRegister(new RegisterFormValues(register))
@@ -48,18 +51,20 @@ export default observer(function RegisterForm() {
 
   function handleFormSubmit(register: RegisterFormValues) {
     if (!register.registerId) {
+      const data = new Date(register.registerDate);
       let newRegister = {
         ...register,
         registerId: uuid(),
+        registerDate: data.toISOString().slice(0, 19),
       };
       createRegister(newRegister).then(() => {
-        navigate(`/register`);
-        window.location.reload();
+        navigate(`/registers`);
+        // window.location.reload();
       });
     } else {
       updateRegister({
         ...register,
-      }).then(() => navigate(`/register`));
+      }).then(() => navigate(`/registers`));
     }
   }
 
@@ -76,16 +81,17 @@ export default observer(function RegisterForm() {
       >
         {({ handleSubmit, isValid, isSubmitting, dirty }) => (
           <Form className="ui form" onSubmit={handleSubmit} autoComplete="off">
-            <MyTextInput name="registerDate" placeholder="Register Date" />
-            <MyTextInput name="registerTotal" placeholder="Register Total" />
-            <MyTextInput name="registerAmount" placeholder="Register Amount" />
+            <MyDateInput name="registerDate" />
+            <MyTextInput name="registerTotal" placeholder="Register Total" label="Total de cadastros" />
+            <MyTextInput name="registerAmount" placeholder="Register Amount" label="Valor total de depósitos" />
+            <MyTextInput name="registerLeads" placeholder="Register Leads" label="Total de leads recebidos"/>
 
             <MySelectInput
               options={allEvents.map((event) => ({
                 text: event.eventName,
                 value: event.eventsId,
               }))}
-              placeholder="Event"
+              placeholder="Evento"
               name="eventsId"
             />
             <MySelectInput
@@ -93,7 +99,7 @@ export default observer(function RegisterForm() {
                 text: seller.sellerName,
                 value: seller.sellerId,
               }))}
-              placeholder="Seller"
+              placeholder="Vendedor"
               name="sellerId"
             />
             <MySelectInput
@@ -101,8 +107,17 @@ export default observer(function RegisterForm() {
                 text: bookMaker.bookmakerName,
                 value: bookMaker.bookmakerId,
               }))}
-              placeholder="Bookmaker"
+              placeholder="Casa de aposta"
               name="bookmakerId"
+            />
+
+            <MySelectInput
+              options={allProjects.map((project) => ({
+                text: project.projectName,
+                value: project.projectId,
+              }))}
+              placeholder="Projeto"
+              name="projectId"
             />
 
             <Button
@@ -111,14 +126,14 @@ export default observer(function RegisterForm() {
               floated="right"
               positive
               type="submit"
-              content="Submit"
+              content="Salvar"
             />
             <Button
               as={Link}
-              to="/register"
+              to="/registers"
               floated="right"
               type="button"
-              content="Cancel"
+              content="Cancelar"
             />
           </Form>
         )}

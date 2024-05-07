@@ -2,7 +2,7 @@ import { observer } from "mobx-react-lite";
 import { useStore } from "../../../app/stores/store";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Grid } from "semantic-ui-react";
+import { Grid, Icon } from "semantic-ui-react";
 import EventListItemPlaceholder from "../../event/dashboard/EventListItemPlaceholder";
 import InfiniteScroll from "react-infinite-scroller";
 import RegisterList from "./RegisterList";
@@ -30,10 +30,26 @@ export default observer(function RegisterDashboard() {
     <>
       <Grid>
         <Grid.Row>
-          <Grid.Column width="10">
+          <Grid.Column width="8">
             <h1>Register Dashboard</h1>
           </Grid.Column>
-          <Grid.Column width="6" textAlign="right">
+          <Grid.Column width="8" textAlign="right">
+            <a
+              className="ui primary button"
+              style={{ marginTop: "1.5em" }}
+              target="_blank"
+              href="registers/rankseller"
+            >
+              <Icon name="list ol" /> Rank por vendedor
+            </a>
+            <a
+              className="ui primary button"
+              style={{ marginTop: "1.5em" }}
+              target="_blank"
+              href="registers/rankProject"
+            >
+              <Icon name="list ol" /> Rank por projeto
+            </a>
             <button
               onClick={() => navigate("/registers/save")}
               className="ui primary button"

@@ -23,5 +23,11 @@ namespace API.Controllers
         {
             return HandleResult(await Mediator.Send(new CreateSale.Command { Sale = sale }));
         }
+
+        [HttpGet("grouped-by-project")]
+        public async Task<IActionResult> GetSalesGroupedByProject([FromQuery] SaleParams param)
+        {
+            return HandlePagedResult(await Mediator.Send(new SaleListGroupByProject.Query { Params = param }));
+        }
     }
 }

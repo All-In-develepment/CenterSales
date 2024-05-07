@@ -15,9 +15,10 @@ namespace Domain
 
         [Column(TypeName = "decimal(18, 2)")]
         public decimal RegisterAVG { get; set; }
+        public int RegisterLeads { get; set; }
 
-        [Column(TypeName = "decimal(18, 2)")]
-        public decimal RegisterValue { get; set; }
+        [Column(TypeName = "float(18, 2)")]
+        public float RegisterAVGConversion { get; set; }
         
         // Relação de Register com Events, para converter EventsId em EventName
         public Events Events { get; set; }
@@ -30,5 +31,9 @@ namespace Domain
         // Relação de Register com Bookmaker, para converter BookmakerId em BookmakerName
         public Guid BookmakerId { get; set; }
         public Bookmaker Bookmaker { get; set; }
+
+        // Relação de Register com Project, para converter ProjectId em ProjectName
+        public Guid ProjectId { get; set; }
+        public Project Project { get; set; }
     }
 }

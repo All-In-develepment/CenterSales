@@ -64,6 +64,7 @@ namespace Application.Core
                 .ForMember(d => d.SellerId, o => o.MapFrom(s => s.Seller.SellerId))
                 .ReverseMap();
             CreateMap<Domain.Events, EventDto>().ReverseMap();
+            CreateMap<RegisterDto, RegisterDto>();
         }
     }
 }

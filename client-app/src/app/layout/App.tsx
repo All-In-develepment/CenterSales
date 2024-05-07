@@ -25,15 +25,21 @@ function App() {
 
   if (!commonStore.appLoaded) return <LoadingComponent content='Loading app...' />
 
+  const pathsWithoutNavBar = ["/registers/rankProject", "/registers/rankseller", "/sales/rankProject", "/sales/rank"];
+
+  const showNavBar = !pathsWithoutNavBar.includes(location.pathname);
+
   return (
     <>
       <ModalContainer />
-      <ToastContainer position='bottom-right' hideProgressBar theme='colored' />
-      {location.pathname === '/' ? <HomePage /> : (
+      <ToastContainer position="bottom-right" hideProgressBar theme="colored" />
+      {location.pathname === "/" ? (
+        <HomePage />
+      ) : (
         <>
-          <NavBar />
+          {showNavBar && <NavBar />}
           {/* <MenuSidebar /> */}
-          <Container style={{ marginTop: '7em' }}>
+          <Container style={{ marginTop: "7em" }}>
             <Outlet />
           </Container>
         </>

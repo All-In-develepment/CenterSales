@@ -7,8 +7,6 @@ export default observer(function RankList() {
   const { saleStore } = useStore();
   const { groupedSaler } = saleStore;
 
-  console.log(`Rank List: ${groupedSaler}`)
-
   return(
     <>
       {groupedSaler.map(sale => (

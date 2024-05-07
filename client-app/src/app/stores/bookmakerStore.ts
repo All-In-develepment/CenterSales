@@ -60,7 +60,6 @@ export default class BookmakerStore {
     try {
       const result = await agent.Bookmakers.list(this.axiosParams);
       result.data.forEach((bookmaker) => {
-        console.log(bookmaker)
         this.bookmakerRegistry.set(bookmaker.bookmakerId, bookmaker);
       });
       this.setPagination(result.pagination);
