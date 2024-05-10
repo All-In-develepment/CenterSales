@@ -98,6 +98,11 @@ export default observer(function NavBar() {
                   <Typography textAlign="center">Casa de Apostsa</Typography>
                 </NavLink>
               </MenuItem>
+              <MenuItem onClick={handleCloseNavMenu}>
+                <NavLink to="/events" >
+                  <Typography textAlign="center">Eventos</Typography>
+                </NavLink>
+              </MenuItem>
             </Menu>
           </Box>
 
@@ -130,6 +135,11 @@ export default observer(function NavBar() {
             <MenuItem onClick={handleCloseNavMenu}>
               <NavLink to="/bookmakers" >
                 <Typography textAlign="center" className="menuName">Casa de Apostas</Typography>
+              </NavLink>
+            </MenuItem>
+            <MenuItem onClick={handleCloseNavMenu}>
+              <NavLink to="/events" >
+                <Typography textAlign="center" className="menuName">Eventos</Typography>
               </NavLink>
             </MenuItem>
           </Box>
