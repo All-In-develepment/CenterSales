@@ -28,7 +28,7 @@ export default observer(function BookmakerDashboard() {
       <Grid>
         <Grid.Row>
           <Grid.Column width="10">
-            <h1>Bookmaker Dashboard</h1>
+            <h1>Painel Casa de Apostas</h1>
           </Grid.Column>
           <Grid.Column width="6" textAlign="right">
             <button
