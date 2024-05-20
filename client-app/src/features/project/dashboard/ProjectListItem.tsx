@@ -23,7 +23,7 @@ export default function ProjectListItem({ project }: Props) {
               <Item.Description>{project.projectDescription}</Item.Description>
               <Item></Item>
               <Item.Extra>
-                <Button content='Editar' color='blue' floated='right' as={Link} to={`/projects/${project.projectId}`} />
+                <Button className='editProject' content='Editar' floated='right' as={Link} to={`/projects/${project.projectId}`} />
               </Item.Extra>
             </Item.Content>
           </Item>

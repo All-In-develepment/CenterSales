@@ -37,7 +37,7 @@ export default observer(function NavBar() {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <img src="/assets/logo.png" alt="logo" style={{ marginRight: 10 }} height={50} />
-          <span className="title">Pulse</span>
+          <span className="title">Gestao de vendas</span>
 
           <Box sx={{ flexGrow: 1, display: {xs: "flex", md: "none"} }} >
             <IconButton

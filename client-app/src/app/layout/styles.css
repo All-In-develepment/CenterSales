@@ -16,7 +16,12 @@
 
 
 body {
-  background-color: #e5d9ff !important;
+  /*background-color: #e5d9ff !important;*/
+  background-color: linear-gradient(
+    0deg,
+    rgb(243,243,243) 0%,
+    rgb(255,255,255) 100%,
+    ) !important;
   font-family: "BellotaText-Regular";
 }
 
@@ -52,16 +57,31 @@ body {
   color: #fff;
 }
 
+.container{
+  height: 600px;
+  background-color: #ffffff;
+  padding: 5rem 0;
+  filter: drop-shadow(0px 15px 35px #00000008);
+  border-radius: 10px;
+}
+
 .masthead {
   display: flex;
   align-items: center;
   background-image: linear-gradient(
-          135deg,
-          rgb(52, 73, 94) 0%,
-          rgb(33, 138, 174) 69%,
-          rgb(32, 167, 172) 89%
+          0deg,
+          rgb(243, 243, 243) 0%,
+          rgb(255, 255, 255) 100%
   ) !important;
   height: 100vh;
+}
+
+.title{
+  color: #131313;
+}
+
+.subtitle{
+  color: #131313 !important;
 }
 
 .masthead .ui.menu .ui.button,
@@ -81,6 +101,12 @@ body {
 
 .titulo-mercado{
   color: #fff;
+}
+
+.nextButton{
+  background-color: #E0B672 !important;
+  color: #ffffff !important;
+  width: 250px !important;
 }
 
 /*end home page styles*/
@@ -103,6 +129,11 @@ body {
 
 .table_header{
   background-color: #ffffff !important;
+}
+
+.editProject{
+  background-color: #E0B672 !important;
+  color: #ffffff !important;
 }
 
 

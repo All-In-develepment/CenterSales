@@ -10,7 +10,7 @@ export default observer(function HomePage() {
   const { userStore, modalStore } = useStore();
   return (
     <Segment inverted textAlign="center" vertical className="masthead">
-      <Container text>
+      <Container className="container" text>
         <Header as="h1" inverted>
           <Image
             size="massive"
@@ -20,17 +20,17 @@ export default observer(function HomePage() {
           />
           Pulse
         </Header>
-        <Header as="h2" inverted>
+        <Header className="subtitle" as="h2" >
           Gestão de vendas
         </Header>
         {userStore.isLoggedIn ? (
           <>
             <Header
               as="h3"
-              inverted
+              
               content={`Bem-vindo de volta ${userStore.user?.displayName}`}
             />
-            <Button as={Link} to="/sales" size="huge" inverted>
+            <Button className="nextButton" as={Link} to="/sales" size="huge" >
               Prosseguir
             </Button>
           </>
