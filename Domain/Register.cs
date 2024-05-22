@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -19,6 +20,9 @@ namespace Domain
 
         [Column(TypeName = "float(18, 2)")]
         public float RegisterAVGConversion { get; set; }
+
+        [DefaultValue("Novo")]
+        public RegisterType RegisterType { get; set; }
         
         // Relação de Register com Events, para converter EventsId em EventName
         public Events Events { get; set; }
@@ -35,5 +39,11 @@ namespace Domain
         // Relação de Register com Project, para converter ProjectId em ProjectName
         public Guid ProjectId { get; set; }
         public Project Project { get; set; }
+    }
+
+    public enum RegisterType
+    {
+        Novo,
+        Redeposito
     }
 }

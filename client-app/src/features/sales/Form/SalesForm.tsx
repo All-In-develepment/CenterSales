@@ -1,17 +1,14 @@
 import { observer } from "mobx-react-lite";
 import { useStore } from "../../../app/stores/store";
-import { Form, Link, useNavigate, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { ProjectFormValues } from "../../../app/models/project";
+import { Form, Link, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import * as Yup from "yup";
 import { v4 as uuid } from "uuid";
 import LoadingComponent from "../../../app/layout/LoadingComponent";
 import { Button, Header, Segment } from "semantic-ui-react";
 import { Formik } from "formik";
 import MySelectInput from "../../../app/common/form/MySelectInput";
-import MyTextArea from "../../../app/common/form/MyTextArea";
 import MyTextInput from "../../../app/common/form/MyTextInput";
-import { SellerFormValues } from "../../../app/models/seller";
 import { SaleFormValues } from "../../../app/models/sale";
 
 export default observer(function SalesForm() {

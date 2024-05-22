@@ -26,6 +26,8 @@ import RegisterForm from "../../features/register/form/RegisterForm";
 import RankByProject from "../../features/sales/Rank/RankByProject";
 import RankBySellerDashboard from "../../features/register/Ranks/RankBySeller/RankBySellerDashboard";
 import RankREgisterByProjectDashboard from "../../features/register/Ranks/RankByProjects/RankREgisterByProjectDashboard";
+import SPTDashBoard from "../../features/salesPerformanceTeam/DashBoard/SPTDashBoard";
+import SalePerformanceTeamForm from "../../features/salesPerformanceTeam/Form/SalePerformanceTeamForm";
 
 export const routes: RouteObject[] = [
   {
@@ -65,6 +67,8 @@ export const routes: RouteObject[] = [
       { path: "registers/:id", element: <RegisterForm /> },
       { path: "registers/rankseller", element: <RankBySellerDashboard />} ,
       { path: "registers/rankProject", element: <RankREgisterByProjectDashboard /> },
+      { path: "spt", element: <SPTDashBoard /> },
+      { path: "spt/save", element: <SalePerformanceTeamForm /> },
       { path: "/", element: <Navigate to="/activities" /> },
       { path: "*", element: <Navigate replace to="/not-found" /> },
     ],
