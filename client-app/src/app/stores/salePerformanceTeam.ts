@@ -46,6 +46,7 @@ export default class SalePerformanceTeamStore {
     const params = new URLSearchParams();
     params.append("pageNumber", this.pagingParams.pageNumber.toString());
     params.append("pageSize", this.pagingParams.pageSize.toString());
+    // params.append("StartDate", this.)
     return params;
   };
 
@@ -134,5 +135,68 @@ export default class SalePerformanceTeamStore {
 
   clearSelectedSalePerformanceTeam = () => {
     this.selectedSalePerformanceTeam = undefined;
+  };
+
+  getRankByConversion = async () => {
+    this.loadingInitial = true;
+    try {
+      const response = await agent.SalePerformanceTeams.salePerformanceTeamRankBySeller(this.axiosParams);
+      response.data
+        .sort((a, b) => (a.sptavgConvertion > b.sptavgConvertion ? -1 : 1))
+        .forEach((salePerformanceTeam) => {
+          this.setSalePerformanceTeam(salePerformanceTeam);
+        });
+      this.setPagination(response.pagination);
+      this.setLoadingInitial(false);
+    } catch (error) {
+      console.log(error);
+      this.setLoadingInitial(false);
+    }
+  };
+
+  get groupedByConvertion() {
+    return Array.from(this.salePerformanceTeamRegistry.values());
+  };
+
+  getRankByDeposit = async () => {
+    this.loadingInitial = true;
+    try {
+      const response = await agent.SalePerformanceTeams.salePerformanceTeamRankBySeller(this.axiosParams);
+      response.data
+        .sort((a, b) => (a.sptTotalSalesAmont > b.sptTotalSalesAmont ? -1 : 1))
+        .forEach((salePerformanceTeam) => {
+          this.setSalePerformanceTeam(salePerformanceTeam);
+        });
+      this.setPagination(response.pagination);
+      this.setLoadingInitial(false);
+    } catch (error) {
+      console.log(error);
+      this.setLoadingInitial(false);
+    }
+  };
+
+  get groupedByDeposit() {
+    return Array.from(this.salePerformanceTeamRegistry.values());
+  };
+
+  getRankBySale = async () => {
+    this.loadingInitial = true;
+    try {
+      const response = await agent.SalePerformanceTeams.salePerformanceTeamRankBySeller(this.axiosParams);
+      response.data
+        .sort((a, b) => ((a.sptTotalRedepositAmont + a.sptTotalRegisterAmont) > (b.sptTotalRedepositAmont + b.sptTotalRegisterAmont) ? -1 : 1))
+        .forEach((salePerformanceTeam) => {
+          this.setSalePerformanceTeam(salePerformanceTeam);
+        });
+      this.setPagination(response.pagination);
+      this.setLoadingInitial(false);
+    } catch (error) {
+      console.log(error);
+      this.setLoadingInitial(false);
+    }
+  };
+
+  get groupedBySele() {
+    return Array.from(this.salePerformanceTeamRegistry.values());
   };
 }

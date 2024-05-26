@@ -28,6 +28,10 @@ import RankBySellerDashboard from "../../features/register/Ranks/RankBySeller/Ra
 import RankREgisterByProjectDashboard from "../../features/register/Ranks/RankByProjects/RankREgisterByProjectDashboard";
 import SPTDashBoard from "../../features/salesPerformanceTeam/DashBoard/SPTDashBoard";
 import SalePerformanceTeamForm from "../../features/salesPerformanceTeam/Form/SalePerformanceTeamForm";
+import RankSPTByConvertion from "../../features/salesPerformanceTeam/Rank/Conversion/RankSPTByConvertion";
+import RankSPTByDeposit from "../../features/salesPerformanceTeam/Rank/Depoist/RankSPTByDeposit";
+import RankSPTByTotalSales from "../../features/salesPerformanceTeam/Rank/Sales/RankSPTByTotalSales";
+import RankDashboard from "../../features/salesPerformanceTeam/Rank/RankDashboard";
 
 export const routes: RouteObject[] = [
   {
@@ -69,6 +73,9 @@ export const routes: RouteObject[] = [
       { path: "registers/rankProject", element: <RankREgisterByProjectDashboard /> },
       { path: "spt", element: <SPTDashBoard /> },
       { path: "spt/save", element: <SalePerformanceTeamForm /> },
+      { path: "spt/ranks", element: <RankDashboard /> },
+      { path: "spt/deposit-rank", element: <RankSPTByDeposit /> },
+      { path: "spt/sales-rank", element: <RankSPTByTotalSales /> },
       { path: "/", element: <Navigate to="/activities" /> },
       { path: "*", element: <Navigate replace to="/not-found" /> },
     ],

@@ -2,7 +2,7 @@ import { observer } from "mobx-react-lite";
 import LoadingComponent from "../../../app/layout/LoadingComponent";
 import { useStore } from "../../../app/stores/store";
 import { SalePerformanceTeam, SalePerformanceTeamFormValues } from "../../../app/models/salePerformanceTeam";
-import { Button, Form, Header, Segment } from "semantic-ui-react";
+import { Button, Form, FormGroup, Header, Segment } from "semantic-ui-react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import MySelectInput from "../../../app/common/form/MySelectInput";
@@ -86,49 +86,55 @@ export default observer(function SalePerformanceTeamForm() {
       >
         {({ handleSubmit, isValid, isSubmitting, dirty }) => (
           <Form className='ui form' onSubmit={handleSubmit} autoComplete='off'>
-            <MySelectInput options={
-              allSellers.map((seller) => ({
-                key: seller.sellerId,
-                text: seller.sellerName,
-                value: seller.sellerId,
-              }))} 
-              placeholder='Vendedor' 
-              name='sptSellerId' 
-            />
-            <MySelectInput options={
-              allProjects.map((project) => ({
-                key: project.projectId,
-                text: project.projectName,
-                value: project.projectId,
-              }))} 
-              placeholder='Projeto' name='sptProjectId' 
-            />
-            <MySelectInput options={
-              allBookmakers.map((bookmaker) => ({
-                key: bookmaker.bookmakerId,
-                text: bookmaker.bookmakerName,
-                value: bookmaker.bookmakerId,
-              }))} 
-              placeholder='Casa de aposta' 
-              name='sptBookmakerId' 
-            />
-            <MySelectInput options={
-              allEvents.map((event) => ({
-                key: event.eventsId,
-                text: event.eventName,
-                value: event.eventsId,
-              }))} 
-              placeholder='Evento' 
-              name='sptEventId' 
-            />
-            <MyDateInput name='sptDate' />
-            <MyTextInput placeholder='Total de leads' name='sptTotalLeads' />
-            <MyTextInput placeholder='Total de vendas' name='sptTotalSales' />
-            <MyTextInput placeholder='Total de vendas (R$)' name='sptTotalSalesAmont' />
-            <MyTextInput placeholder='Total de registros' name='sptTotalRegister' />
-            <MyTextInput placeholder='Total de registros (R$)' name='sptTotalRegisterAmont' />
-            <MyTextInput placeholder='Total de redepositos' name='sptTotalRedeposit' />
-            <MyTextInput placeholder='Total de redepositos (R$)' name='sptTotalRedepositAmont' />
+            <FormGroup widths='equal'>
+              <MySelectInput options={
+                allSellers.map((seller) => ({
+                  key: seller.sellerId,
+                  text: seller.sellerName,
+                  value: seller.sellerId,
+                }))} 
+                placeholder='Vendedor' 
+                name='sptSellerId' 
+              />
+              <MySelectInput options={
+                allProjects.map((project) => ({
+                  key: project.projectId,
+                  text: project.projectName,
+                  value: project.projectId,
+                }))} 
+                placeholder='Projeto' name='sptProjectId' 
+              />
+              <MySelectInput options={
+                allBookmakers.map((bookmaker) => ({
+                  key: bookmaker.bookmakerId,
+                  text: bookmaker.bookmakerName,
+                  value: bookmaker.bookmakerId,
+                }))} 
+                placeholder='Casa de aposta' 
+                name='sptBookmakerId' 
+              />
+              <MySelectInput options={
+                allEvents.map((event) => ({
+                  key: event.eventsId,
+                  text: event.eventName,
+                  value: event.eventsId,
+                }))} 
+                placeholder='Evento' 
+                name='sptEventId' 
+              />
+            </FormGroup>
+            <FormGroup widths='equal'>
+              <MyDateInput name='sptDate' />
+              <MyTextInput placeholder='Total de leads' name='sptTotalLeads' label="Total de Leads" />
+              <MyTextInput placeholder='Total de vendas' name='sptTotalSales' label="Total de vendas" />
+              <MyTextInput placeholder='Total em vendas (R$)' name='sptTotalSalesAmont' label="Total em vendas (R$)" />
+            </FormGroup>
+            <FormGroup widths='equal'>
+              <MyTextInput placeholder='Total de registros' name='sptTotalRegister' label="Total de Cadastros" />
+              <MyTextInput placeholder='Total em registros (R$)' name='sptTotalRegisterAmont' label="Total em registros (R$)" />
+              <MyTextInput placeholder='Total de redepositos' name='sptTotalRedeposit' label="Total de redepositos" />
+              <MyTextInput placeholder='Total em redepositos (R$)' name='sptTotalRedepositAmont' label="Total em redepositos (R$)" />
+            </FormGroup>
             <Button
               disabled={isSubmitting || !dirty || !isValid} 
               loading={isSubmitting}

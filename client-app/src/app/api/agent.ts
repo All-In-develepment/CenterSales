@@ -232,7 +232,7 @@ const SalePerformanceTeams = {
   delete: (id: number) => requests.del<void>(`/spt/${id}`),
   salePerformanceTeamRankBySeller: (params: URLSearchParams) =>
     axios
-      .get<PaginatedResult<SalePerformanceTeam[]>>("/spt/grouped-by-seller", { params })
+      .get<PaginatedResult<SalePerformanceTeam[]>>("/spt/bySeller", { params })
       .then(responseBody),
   salePerformanceTeamRankByProject: (params: URLSearchParams) =>
     axios

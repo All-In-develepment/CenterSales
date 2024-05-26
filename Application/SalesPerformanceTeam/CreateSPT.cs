@@ -36,7 +36,9 @@ namespace Application.SalesPerformanceTeam
                 request.SPT.SPTAVGRegisterAmont = request.SPT.SPTTotalRegisterAmont / request.SPT.SPTTotalRegister;
                 request.SPT.SPTAVGRedeposit = request.SPT.SPTTotalLeads / request.SPT.SPTTotalRedeposit;
                 request.SPT.SPTAVGRedepositAmont = request.SPT.SPTTotalRedepositAmont / request.SPT.SPTTotalRedeposit;
-                request.SPT.SPTAVGConvertion = (request.SPT.SPTAVGSales + request.SPT.SPTAVGRegister + request.SPT.SPTAVGRedeposit) / 3;
+                var somaTotal = request.SPT.SPTTotalSales + request.SPT.SPTTotalRegister + request.SPT.SPTTotalRedeposit;
+                request.SPT.SPTAVGConvertion = ((float)somaTotal / request.SPT.SPTTotalLeads)*100;
+                Console.WriteLine(request.SPT.SPTAVGConvertion);
                 request.SPT.SPTCreatedAt = DateTime.Now;
                 request.SPT.SPTUpdatedAt = DateTime.Now;
 

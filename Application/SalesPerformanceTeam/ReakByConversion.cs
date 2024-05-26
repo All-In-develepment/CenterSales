@@ -6,7 +6,7 @@ using Persistence;
 
 namespace Application.SalesPerformanceTeam
 {
-    public class ListGroupedBySeller
+    public class ReakByConversion
     {
         public class Query : IRequest<Result<PagedList<SalesPerformaceTeamDto>>>
         {
@@ -25,7 +25,6 @@ namespace Application.SalesPerformanceTeam
             }
             public async Task<Result<PagedList<SalesPerformaceTeamDto>>> Handle(Query request, CancellationToken cancellationToken)
             {
-                Console.WriteLine($"Data Inicial: {request.Params.StartDate}");
                 var query = _context.SalesPerformanceTeams
                     .Include(s => s.SPTSeller)
                     .Include(b => b.SPTProject)
@@ -59,7 +58,7 @@ namespace Application.SalesPerformanceTeam
                         SPTAVGRedepositAmont = spt.SPTAVGRedepositAmont,
                         SPTAVGConvertion = spt.SPTAVGConvertion
                     })
-                    .Where(x => x.SPTDate >= request.Params.StartDate)
+                    .Where(x => x.SPTDate >= request.Params.StartDate && x.SPTDate <= request.Params.EndDate)
                     .OrderBy(d => d.SPTDate)
                     .GroupBy(x => x.SPTSellerId)
                     .Select(g => new SalesPerformaceTeamDto
@@ -69,20 +68,7 @@ namespace Application.SalesPerformanceTeam
                         SPTSellerName = g.Max(x => x.SPTSellerName),
                         SPTProjectId = g.Max(x => x.SPTProjectId),
                         SPTDate = g.Max(x => x.SPTDate),
-                        SPTId = g.Max(x => x.SPTId),
-                        SPTProjectName = g.Max(x => x.SPTProjectName),
-                        SPTTotalSalesAmont = g.Sum(x => x.SPTTotalSalesAmont),
-                        SPTAVGSales = g.Average(x => x.SPTAVGSales),
-                        SPTAVGSalesAmont = g.Average(x => x.SPTAVGSalesAmont),
-                        SPTTotalRegister = g.Sum(x => x.SPTTotalRegister),
-                        SPTTotalRegisterAmont = g.Sum(x => x.SPTTotalRegisterAmont),
-                        SPTAVGRegister = g.Average(x => x.SPTAVGRegister),
-                        SPTAVGRegisterAmont = g.Average(x => x.SPTAVGRegisterAmont),
-                        SPTTotalRedeposit = g.Sum(x => x.SPTTotalRedeposit),
-                        SPTTotalRedepositAmont = g.Sum(x => x.SPTTotalRedepositAmont),
-                        SPTAVGRedeposit = g.Average(x => x.SPTAVGRedeposit),
-                        SPTAVGRedepositAmont = g.Average(x => x.SPTAVGRedepositAmont),
-                        SPTAVGConvertion = g.Average(x => x.SPTAVGConvertion)
+                        SPTId = g.Max(x => x.SPTId)
                     })
                     .AsQueryable();
 

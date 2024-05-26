@@ -35,17 +35,9 @@ export default observer(function SPTDashBoard() {
               className="ui primary button"
               style={{ marginTop: "1.5em" }}
               target="_blank"
-              href="sales/rank"
+              href="/spt/ranks"
             >
-              <Icon name="list ol" /> Rank por vendedor
-            </a>
-            <a
-              className="ui primary button"
-              style={{ marginTop: "1.5em" }}
-              target="_blank"
-              href="sales/rankProject"
-            >
-              <Icon name="list ol" /> Rank por projeto
+              <Icon name="list ol" /> Ranks
             </a>
             <button
               onClick={() => navigate("/spt/save")}
