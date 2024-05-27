@@ -9,16 +9,14 @@ import RankSPTByTotalSales from "./Sales/RankSPTByTotalSales";
 
 export default observer(function RankSPTDashBoard() {
   const [initialDate, setInitalDate] = useState<Date | null>();
-  const [finalDate, setFinalDate] = useState<Date>();
+  const [finalDate, setFinalDate] = useState<Date | null>();
   const [currentRank, setCurrentRank] = useState<string>('RankByProject');
 
   // Trate a mudança de data
   const handleChangeInitalaDate = (initialDate: Date) => {
-    console.log(format(initialDate, 'yyyy/MM/dd\'T\'00:00:00'));
     setInitalDate(initialDate);
   }
   const handleChangeFinalDate = (finalDate: Date) => {
-    console.log(format(finalDate, 'yyyy/MM/dd\'T\'23:59:59'));
     setFinalDate(finalDate);
   }
 
@@ -29,7 +27,11 @@ export default observer(function RankSPTDashBoard() {
 
   useEffect(() => {
     handleChangeInitalaDate;
-  }, [initialDate, finalDate]);
+  }, [initialDate]);
+
+  useEffect(() => {
+    handleChangeFinalDate;
+  }, [finalDate]);
 
   useEffect(() => {
     handleChangeRank;
@@ -62,6 +64,7 @@ export default observer(function RankSPTDashBoard() {
           <Grid.Column width='6'>
             <p>
               Rank
+              <br />
               <select
                 value={currentRank}
                 onChange={(e) => handleChangeRank(e.target.value)}

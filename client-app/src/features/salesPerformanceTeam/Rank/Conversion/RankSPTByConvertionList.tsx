@@ -7,7 +7,9 @@ export default observer(function RankSPTByConvertionList() {
   const { salePerformanceTeamStore } = useStore();
   const { groupedByConvertion } = salePerformanceTeamStore;
 
-  console.log(`Rank List: ${groupedByConvertion}`)
+  groupedByConvertion.map(sale => {
+    console.log(sale.sptSellerName);
+  })
 
   return(
     <>

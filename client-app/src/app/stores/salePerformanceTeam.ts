@@ -137,10 +137,18 @@ export default class SalePerformanceTeamStore {
     this.selectedSalePerformanceTeam = undefined;
   };
 
-  getRankByConversion = async () => {
+  getRankByConversion = async (initialDate? : string, finalDate? : string) => {
     this.loadingInitial = true;
     try {
+      this.salePerformanceTeamRegistry.clear();
+      if (initialDate) {
+        this.axiosParams.append("StartDate", initialDate);
+      }
+      if (finalDate) {
+        this.axiosParams.append("EndDate", finalDate);
+      }
       const response = await agent.SalePerformanceTeams.salePerformanceTeamRankBySeller(this.axiosParams);
+      console.log(response.data)
       response.data
         .sort((a, b) => (a.sptavgConvertion > b.sptavgConvertion ? -1 : 1))
         .forEach((salePerformanceTeam) => {
@@ -158,12 +166,19 @@ export default class SalePerformanceTeamStore {
     return Array.from(this.salePerformanceTeamRegistry.values());
   };
 
-  getRankByDeposit = async () => {
+  getRankByDeposit = async (initialDate? : string, finalDate? : string) => {
     this.loadingInitial = true;
     try {
+      this.salePerformanceTeamRegistry.clear();
+      if (initialDate) {
+        this.axiosParams.append("StartDate", initialDate);
+      }
+      if (finalDate) {
+        this.axiosParams.append("EndDate", finalDate);
+      }
       const response = await agent.SalePerformanceTeams.salePerformanceTeamRankBySeller(this.axiosParams);
       response.data
-        .sort((a, b) => (a.sptTotalSalesAmont > b.sptTotalSalesAmont ? -1 : 1))
+        .sort((a, b) => (b.sptTotalSalesAmont ?? 0) - (a.sptTotalSalesAmont ?? 0))
         .forEach((salePerformanceTeam) => {
           this.setSalePerformanceTeam(salePerformanceTeam);
         });
@@ -179,9 +194,16 @@ export default class SalePerformanceTeamStore {
     return Array.from(this.salePerformanceTeamRegistry.values());
   };
 
-  getRankBySale = async () => {
+  getRankBySale = async (initialDate? : string, finalDate? : string) => {
     this.loadingInitial = true;
     try {
+      this.salePerformanceTeamRegistry.clear();
+      if (initialDate) {
+        this.axiosParams.append("StartDate", initialDate);
+      }
+      if (finalDate) {
+        this.axiosParams.append("EndDate", finalDate);
+      }
       const response = await agent.SalePerformanceTeams.salePerformanceTeamRankBySeller(this.axiosParams);
       response.data
         .sort((a, b) => ((a.sptTotalRedepositAmont + a.sptTotalRegisterAmont) > (b.sptTotalRedepositAmont + b.sptTotalRegisterAmont) ? -1 : 1))

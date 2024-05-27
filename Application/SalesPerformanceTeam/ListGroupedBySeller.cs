@@ -59,7 +59,7 @@ namespace Application.SalesPerformanceTeam
                         SPTAVGRedepositAmont = spt.SPTAVGRedepositAmont,
                         SPTAVGConvertion = spt.SPTAVGConvertion
                     })
-                    .Where(x => x.SPTDate >= request.Params.StartDate)
+                    .Where(x => x.SPTDate >= request.Params.StartDate && x.SPTDate <= request.Params.EndDate)
                     .OrderBy(d => d.SPTDate)
                     .GroupBy(x => x.SPTSellerId)
                     .Select(g => new SalesPerformaceTeamDto

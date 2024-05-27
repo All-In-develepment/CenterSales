@@ -4,10 +4,11 @@ import { useEffect, useState } from "react";
 import { Grid } from "semantic-ui-react";
 import InfiniteScroll from "react-infinite-scroller";
 import RankSPTByDepositList from "./RankSPTByDepositList";
+import { format } from "date-fns";
 
 interface Props {
-  initialDate?: Date | null;
-  finalDate?: Date | null;
+  initialDate?: null | Date | undefined;
+  finalDate?: null | Date | undefined;
 }
 
 export default observer(function RankSPTByDeposit({ initialDate, finalDate }: Props) {
@@ -21,9 +22,22 @@ export default observer(function RankSPTByDeposit({ initialDate, finalDate }: Pr
     getRankByDeposit().then(() => setLoadingNext(false));
   }
 
+  let newInitialDate = undefined;
+  if (initialDate) {
+    newInitialDate = format(initialDate!, 'yyyy/MM/dd\'T\'00:00:00');
+  }else{
+    newInitialDate = undefined;
+  }
+  let newFinalDate = undefined;
+  if (finalDate) {
+    newFinalDate = format(finalDate!, 'yyyy/MM/dd\'T\'23:59:59');
+  }else{
+    newFinalDate = undefined;
+  }
+
   useEffect(() => {
-    getRankByDeposit();
-  }, [getRankByDeposit]);
+    getRankByDeposit(newInitialDate, newFinalDate);
+  }, [getRankByDeposit, initialDate, finalDate]);
 
   return (
     <>
@@ -32,8 +46,8 @@ export default observer(function RankSPTByDeposit({ initialDate, finalDate }: Pr
           <Grid.Column width='10'>
             <h1>Rank por CADASTRO & REDEPOSITO</h1>
           </Grid.Column>
-          {initialDate?.toString()}
-          {finalDate?.toString()}
+          {/* {initialDate?.toString()}
+          {finalDate?.toString()} */}
         </Grid.Row>
       </Grid>
       <Grid>
