@@ -13,6 +13,7 @@ import { Product, ProductFormValues } from "../models/product";
 import { Bookmaker } from "../models/bookmaker";
 import { OriginEvent } from "../models/originEvent";
 import { Register } from "../models/register";
+import { SalePerformanceTeam } from "../models/salePerformanceTeam";
 
 const sleep = (delay: number) => {
   return new Promise((resolve) => {
@@ -222,6 +223,23 @@ const Registers = {
       .then(responseBody),
 };
 
+const SalePerformanceTeams = {
+  list: (params: URLSearchParams) =>
+    axios.get<PaginatedResult<SalePerformanceTeam[]>>("/spt", { params }).then(responseBody),
+  details: (id: number) => requests.get<SalePerformanceTeam>(`/spt/${id}`),
+  create: (spt: SalePerformanceTeam) => requests.post<void>("/spt", spt),
+  update: (spt: SalePerformanceTeam) => requests.put<void>(`/spt/${spt.sptId}`, spt),
+  delete: (id: number) => requests.del<void>(`/spt/${id}`),
+  salePerformanceTeamRankBySeller: (params: URLSearchParams) =>
+    axios
+      .get<PaginatedResult<SalePerformanceTeam[]>>("/spt/bySeller", { params })
+      .then(responseBody),
+  salePerformanceTeamRankByProject: (params: URLSearchParams) =>
+    axios
+      .get<PaginatedResult<SalePerformanceTeam[]>>("/spt/grouped-by-project", { params })
+      .then(responseBody),
+};
+
 const agent = {
   Activities,
   Account,
@@ -233,6 +251,7 @@ const agent = {
   Bookmakers,
   Events,
   Registers,
+  SalePerformanceTeams,
 };
 
 export default agent;

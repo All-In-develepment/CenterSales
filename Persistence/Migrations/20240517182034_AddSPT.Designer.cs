@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence;
 
@@ -11,9 +12,11 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20240517182034_AddSPT")]
+    partial class AddSPT
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -625,29 +628,11 @@ namespace Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SPTId"));
 
-                    b.Property<float>("SPTAVGConvertion")
+                    b.Property<float>("SPTAVGLead")
                         .HasColumnType("real");
 
-                    b.Property<float>("SPTAVGRedeposit")
+                    b.Property<float>("SPTAVGSale")
                         .HasColumnType("real");
-
-                    b.Property<float>("SPTAVGRedepositAmont")
-                        .HasColumnType("real");
-
-                    b.Property<float>("SPTAVGRegister")
-                        .HasColumnType("real");
-
-                    b.Property<float>("SPTAVGRegisterAmont")
-                        .HasColumnType("real");
-
-                    b.Property<float>("SPTAVGSales")
-                        .HasColumnType("real");
-
-                    b.Property<float>("SPTAVGSalesAmont")
-                        .HasColumnType("real");
-
-                    b.Property<Guid>("SPTBookmakerId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("SPTCreatedAt")
                         .HasColumnType("datetime2");
@@ -656,6 +641,9 @@ namespace Persistence.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<Guid>("SPTEventId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("SPTProductId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("SPTProjectId")
@@ -667,32 +655,20 @@ namespace Persistence.Migrations
                     b.Property<int>("SPTTotalLeads")
                         .HasColumnType("int");
 
-                    b.Property<int>("SPTTotalRedeposit")
-                        .HasColumnType("int");
-
-                    b.Property<float>("SPTTotalRedepositAmont")
-                        .HasColumnType("real");
-
-                    b.Property<int>("SPTTotalRegister")
-                        .HasColumnType("int");
-
-                    b.Property<float>("SPTTotalRegisterAmont")
-                        .HasColumnType("real");
-
                     b.Property<int>("SPTTotalSales")
                         .HasColumnType("int");
 
-                    b.Property<float>("SPTTotalSalesAmont")
-                        .HasColumnType("real");
+                    b.Property<int>("SPTType")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("SPTUpdatedAt")
                         .HasColumnType("datetime2");
 
                     b.HasKey("SPTId");
 
-                    b.HasIndex("SPTBookmakerId");
-
                     b.HasIndex("SPTEventId");
+
+                    b.HasIndex("SPTProductId");
 
                     b.HasIndex("SPTProjectId");
 
@@ -1015,15 +991,15 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.SalesPerformanceTeam", b =>
                 {
-                    b.HasOne("Domain.Bookmaker", "SPTBookmaker")
-                        .WithMany()
-                        .HasForeignKey("SPTBookmakerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Domain.Events", "SPTEvent")
                         .WithMany("SalesPerformanceTeams")
                         .HasForeignKey("SPTEventId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Product", "SPTProduct")
+                        .WithMany("SalesPerformanceTeams")
+                        .HasForeignKey("SPTProductId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
@@ -1039,9 +1015,9 @@ namespace Persistence.Migrations
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.Navigation("SPTBookmaker");
-
                     b.Navigation("SPTEvent");
+
+                    b.Navigation("SPTProduct");
 
                     b.Navigation("SPTProject");
 
@@ -1172,6 +1148,8 @@ namespace Persistence.Migrations
             modelBuilder.Entity("Domain.Product", b =>
                 {
                     b.Navigation("Sales");
+
+                    b.Navigation("SalesPerformanceTeams");
                 });
 
             modelBuilder.Entity("Domain.Project", b =>

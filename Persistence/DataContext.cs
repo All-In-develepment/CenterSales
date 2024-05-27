@@ -26,6 +26,7 @@ namespace Persistence
         public DbSet<HublaNewSale> HublaNewSales { get; set; }
         public DbSet<HublaCanceledSale> HublaCanceledSales { get; set; }
         public DbSet<Bookmaker> Bookmakers { get; set; }
+        public DbSet<SalesPerformanceTeam> SalesPerformanceTeams { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -104,6 +105,26 @@ namespace Persistence
                 .HasForeignKey(p => p.ProjectId)
                 .OnDelete(DeleteBehavior.NoAction);
 
+            // Relação SalesPerformanceTeam com Seller
+            builder.Entity<SalesPerformanceTeam>()
+                .HasOne(s => s.SPTSeller)
+                .WithMany(s => s.SalesPerformanceTeams)
+                .HasForeignKey(s => s.SPTSellerId)
+                .OnDelete(DeleteBehavior.NoAction);
+            
+            // Relação SalesPerformanceTeam com Project
+            builder.Entity<SalesPerformanceTeam>()
+                .HasOne(p => p.SPTProject)
+                .WithMany(s => s.SalesPerformanceTeams)
+                .HasForeignKey(p => p.SPTProjectId)
+                .OnDelete(DeleteBehavior.NoAction);
+            
+            // Relação SalesPerformanceTeam com Events
+            builder.Entity<SalesPerformanceTeam>()
+                .HasOne(e => e.SPTEvent)
+                .WithMany(s => s.SalesPerformanceTeams)
+                .HasForeignKey(e => e.SPTEventId)
+                .OnDelete(DeleteBehavior.NoAction);
 
             builder.Entity<UserFollowing>(b =>
             {

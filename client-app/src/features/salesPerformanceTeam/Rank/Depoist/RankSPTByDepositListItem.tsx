@@ -1,13 +1,12 @@
 import { observer } from "mobx-react-lite";
-import { Sale } from "../../../app/models/sale";
+import { SalePerformanceTeam } from "../../../../app/models/salePerformanceTeam";
 import { Card, Feed, FeedEvent, Icon } from "semantic-ui-react";
 
 interface Props {
-  sale: Sale
+  sale: SalePerformanceTeam
 }
 
-export default observer(function RankByProjectListItem({sale}: Props) {
-
+export default observer(function RankSPTByDepositListItem({sale}: Props) {
   return(
     <>
       <Card style={{width: '100%'}}>
@@ -16,11 +15,11 @@ export default observer(function RankByProjectListItem({sale}: Props) {
             <FeedEvent>
               <Feed.Content>
                 <Feed.Summary>
-                  {sale.projectName}
+                  {sale.sptSellerName}
                 </Feed.Summary>
                 <br />
                 <Feed.Date>
-                  <Icon name="currency" />{sale.salePrice.toLocaleString('pt-br', { minimumFractionDigits: 2 })}
+                  <Icon name="currency" />{(sale.sptTotalRegisterAmont + sale.sptTotalRedepositAmont).toLocaleString('pt-br', { minimumFractionDigits: 2 })}
                 </Feed.Date>
               </Feed.Content>
             </FeedEvent>

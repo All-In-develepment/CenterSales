@@ -10,6 +10,7 @@ using Application.Products;
 using Application.Bookmakers;
 using Application.Register;
 using Application.Events;
+using Application.SalesPerformanceTeam;
 
 namespace Application.Core
 {
@@ -65,6 +66,13 @@ namespace Application.Core
                 .ReverseMap();
             CreateMap<Domain.Events, EventDto>().ReverseMap();
             CreateMap<RegisterDto, RegisterDto>();
+
+            CreateMap<Domain.SalesPerformanceTeam, SalesPerformaceTeamDto>()
+                .ForMember(d => d.SPTSellerId, o => o.MapFrom(s => s.SPTSeller.SellerId))
+                .ForMember(d => d.SPTProjectId, o => o.MapFrom(s => s.SPTProject.ProjectId))
+                .ForMember(d => d.SPTEventId, o => o.MapFrom(s => s.SPTEvent.EventsId))
+                .ReverseMap();
+            CreateMap<SalesPerformaceTeamDto, SalesPerformaceTeamDto>();
         }
     }
 }

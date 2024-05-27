@@ -9,5 +9,6 @@ namespace Domain
         public ICollection<Seller> Sellers { get; set; }
         public ICollection<Sale> Sales { get; set; }
         public ICollection<Register> Registers { get; set; }
+        public ICollection<SalesPerformanceTeam> SalesPerformanceTeams { get; set; }
     }
 }

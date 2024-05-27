@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence;
 
@@ -11,9 +12,11 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20240521002556_NewSPT")]
+    partial class NewSPT
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -658,6 +661,9 @@ namespace Persistence.Migrations
                     b.Property<Guid>("SPTEventId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("SPTProductId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid>("SPTProjectId")
                         .HasColumnType("uniqueidentifier");
 
@@ -693,6 +699,8 @@ namespace Persistence.Migrations
                     b.HasIndex("SPTBookmakerId");
 
                     b.HasIndex("SPTEventId");
+
+                    b.HasIndex("SPTProductId");
 
                     b.HasIndex("SPTProjectId");
 
@@ -1027,6 +1035,12 @@ namespace Persistence.Migrations
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
+                    b.HasOne("Domain.Product", "SPTProduct")
+                        .WithMany("SalesPerformanceTeams")
+                        .HasForeignKey("SPTProductId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
                     b.HasOne("Domain.Project", "SPTProject")
                         .WithMany("SalesPerformanceTeams")
                         .HasForeignKey("SPTProjectId")
@@ -1042,6 +1056,8 @@ namespace Persistence.Migrations
                     b.Navigation("SPTBookmaker");
 
                     b.Navigation("SPTEvent");
+
+                    b.Navigation("SPTProduct");
 
                     b.Navigation("SPTProject");
 
@@ -1172,6 +1188,8 @@ namespace Persistence.Migrations
             modelBuilder.Entity("Domain.Product", b =>
                 {
                     b.Navigation("Sales");
+
+                    b.Navigation("SalesPerformanceTeams");
                 });
 
             modelBuilder.Entity("Domain.Project", b =>

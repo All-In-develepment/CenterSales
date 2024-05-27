@@ -40,6 +40,7 @@ namespace Application.Register
                         RegisterAVG = r.RegisterAVG,
                         RegisterLeads = r.RegisterLeads,
                         RegisterAVGConversion = r.RegisterAVGConversion,
+                        RegisterType = r.RegisterType.ToString(),
                         EventsId = r.EventsId,
                         EventsName = r.Events.EventName,
                         SellerId = r.SellerId,

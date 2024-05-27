@@ -1,3 +1,5 @@
+using Domain;
+
 namespace Application.Register
 {
     public class RegisterDto
@@ -9,6 +11,7 @@ namespace Application.Register
         public decimal RegisterAVG { get; set; }
         public int RegisterLeads { get; set; }
         public float RegisterAVGConversion { get; set; }
+        public string RegisterType { get; set; }
         public Guid EventsId { get; set; }
         public string EventsName { get; set; }
         public Guid SellerId { get; set; }

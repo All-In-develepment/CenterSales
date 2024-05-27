@@ -9,5 +9,6 @@ namespace Domain
         public string EventName { get; set; }
         public string EventDescription { get; set; }
         public ICollection<Register> Registers { get; set; }
+        public ICollection<SalesPerformanceTeam> SalesPerformanceTeams { get; set; }
     }
 }

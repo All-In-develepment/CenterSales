@@ -32,7 +32,7 @@ export default observer(function RankByProject() {
       <Grid>
         <Grid.Column width='16'>
           {saleStore.loadingInitial && !loadingNext ? (
-            <h1>Loading...</h1>
+            <h1>Carregando...</h1>
           ) : (
             <InfiniteScroll
               pageStart={0}

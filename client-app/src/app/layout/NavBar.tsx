@@ -79,11 +79,11 @@ export default observer(function NavBar() {
                 </NavLink>
               </MenuItem>
               <MenuItem onClick={handleCloseNavMenu}>
-                <NavLink to="/sales" >
+                <NavLink to="/spt" >
                   <Typography textAlign="center">Vendas</Typography>
                 </NavLink>
               </MenuItem>
-              <MenuItem onClick={handleCloseNavMenu}>
+              {/* <MenuItem onClick={handleCloseNavMenu}>
                 <NavLink to="/registers" >
                   <Typography textAlign="center">Cdastros</Typography>
                 </NavLink>
@@ -92,7 +92,7 @@ export default observer(function NavBar() {
                 <NavLink to="/products" >
                   <Typography textAlign="center">Produtos</Typography>
                 </NavLink>
-              </MenuItem>
+              </MenuItem> */}
               <MenuItem onClick={handleCloseNavMenu}>
                 <NavLink to="/bookmakers" >
                   <Typography textAlign="center">Casa de Apostsa</Typography>
@@ -118,11 +118,11 @@ export default observer(function NavBar() {
               </NavLink>
             </MenuItem>
             <MenuItem onClick={handleCloseNavMenu}>
-              <NavLink to="/sales" >
+              <NavLink to="/spt" >
                 <Typography textAlign="center" className="menuName">Vendas</Typography>
               </NavLink>
             </MenuItem>
-            <MenuItem onClick={handleCloseNavMenu}>
+            {/* <MenuItem onClick={handleCloseNavMenu}>
               <NavLink to="/registers" >
                 <Typography textAlign="center" className="menuName">Cadastros</Typography>
               </NavLink>
@@ -131,7 +131,7 @@ export default observer(function NavBar() {
               <NavLink to="/products" >
                 <Typography textAlign="center" className="menuName">Produtos</Typography>
               </NavLink>
-            </MenuItem>
+            </MenuItem> */}
             <MenuItem onClick={handleCloseNavMenu}>
               <NavLink to="/bookmakers" >
                 <Typography textAlign="center" className="menuName">Casa de Apostas</Typography>
