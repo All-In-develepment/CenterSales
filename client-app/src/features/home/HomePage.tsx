@@ -39,7 +39,7 @@ export default observer(function HomePage() {
             <Button
               onClick={() => modalStore.openModal(<LoginForm />, "mini")}
               size="huge"
-              inverted
+              
             >
               Login!
             </Button>
