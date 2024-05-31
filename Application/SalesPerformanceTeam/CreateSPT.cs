@@ -30,15 +30,52 @@ namespace Application.SalesPerformanceTeam
 
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
-                request.SPT.SPTAVGSales = request.SPT.SPTTotalLeads / request.SPT.SPTTotalSales;
-                request.SPT.SPTAVGSalesAmont = request.SPT.SPTTotalSalesAmont / request.SPT.SPTTotalSales;
-                request.SPT.SPTAVGRegister = request.SPT.SPTTotalLeads / request.SPT.SPTTotalRegister;
-                request.SPT.SPTAVGRegisterAmont = request.SPT.SPTTotalRegisterAmont / request.SPT.SPTTotalRegister;
-                request.SPT.SPTAVGRedeposit = request.SPT.SPTTotalLeads / request.SPT.SPTTotalRedeposit;
-                request.SPT.SPTAVGRedepositAmont = request.SPT.SPTTotalRedepositAmont / request.SPT.SPTTotalRedeposit;
-                var somaTotal = request.SPT.SPTTotalSales + request.SPT.SPTTotalRegister + request.SPT.SPTTotalRedeposit;
-                request.SPT.SPTAVGConvertion = ((float)somaTotal / request.SPT.SPTTotalLeads)*100;
-                Console.WriteLine(request.SPT.SPTAVGConvertion);
+                if (request.SPT.SPTTotalLeads != 0)
+                {
+                    if (request.SPT.SPTTotalSales != 0)
+                    {
+                        request.SPT.SPTAVGSales = request.SPT.SPTTotalLeads / request.SPT.SPTTotalSales;
+                    }
+
+                    if (request.SPT.SPTTotalRegister != 0)
+                    {
+                        request.SPT.SPTAVGRegister = request.SPT.SPTTotalLeads / request.SPT.SPTTotalRegister;
+                    }
+                    
+                    if (request.SPT.SPTTotalRedeposit != 0)
+                    {
+                        request.SPT.SPTAVGRedeposit = request.SPT.SPTTotalLeads / request.SPT.SPTTotalRedeposit;
+                    }
+                    
+                    var somaTotal = request.SPT.SPTTotalSales + request.SPT.SPTTotalRegister + request.SPT.SPTTotalRedeposit;
+                    request.SPT.SPTAVGConvertion = ((float)somaTotal / request.SPT.SPTTotalLeads)*100;
+                } else {
+                    request.SPT.SPTAVGSales = 0;
+                    request.SPT.SPTAVGRegister = 0;
+                    request.SPT.SPTAVGRedeposit = 0;
+                    request.SPT.SPTAVGConvertion = 0;
+                }
+
+                if (request.SPT.SPTTotalSales != 0)
+                {
+                    request.SPT.SPTAVGSalesAmont = request.SPT.SPTTotalSalesAmont / request.SPT.SPTTotalSales;
+                } else {
+                    request.SPT.SPTAVGSalesAmont = 0;
+                }
+
+                if (request.SPT.SPTTotalRegister != 0)
+                {
+                    request.SPT.SPTAVGRegisterAmont = request.SPT.SPTTotalRegisterAmont / request.SPT.SPTTotalRegister;
+                } else {
+                    request.SPT.SPTAVGRegisterAmont = 0;
+                }
+
+                if (request.SPT.SPTTotalRedeposit != 0)
+                {
+                    request.SPT.SPTAVGRedepositAmont = request.SPT.SPTTotalRedepositAmont / request.SPT.SPTTotalRedeposit;
+                } else {
+                    request.SPT.SPTAVGRedepositAmont = 0;
+                }
                 request.SPT.SPTCreatedAt = DateTime.Now;
                 request.SPT.SPTUpdatedAt = DateTime.Now;
 
