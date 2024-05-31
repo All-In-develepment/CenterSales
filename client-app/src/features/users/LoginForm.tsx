@@ -15,7 +15,7 @@ export default observer(function LoginForm() {
       onSubmit={async (values, { setErrors }) => {
         try {
           await userStore.login(values);
-          navigate("/sales");
+          navigate("/spt");
         } catch (error) {
           setErrors({ error: "Invalid email or password" });
         }

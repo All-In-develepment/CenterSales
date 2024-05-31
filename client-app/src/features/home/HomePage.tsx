@@ -30,7 +30,7 @@ export default observer(function HomePage() {
               inverted
               content={`Bem-vindo de volta ${userStore.user?.displayName}`}
             />
-            <Button as={Link} to="/sales" size="huge" inverted>
+            <Button as={Link} to="/spt" size="huge" inverted>
               Prosseguir
             </Button>
           </>
