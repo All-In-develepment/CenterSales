@@ -82,7 +82,8 @@ namespace Application.SalesPerformanceTeam
                         SPTTotalRedepositAmont = g.Sum(x => x.SPTTotalRedepositAmont),
                         SPTAVGRedeposit = g.Average(x => x.SPTAVGRedeposit),
                         SPTAVGRedepositAmont = g.Average(x => x.SPTAVGRedepositAmont),
-                        SPTAVGConvertion = g.Average(x => x.SPTAVGConvertion)
+                        SPTAVGConvertion = g.Average(x => x.SPTAVGConvertion),
+                        SPTTotalLeads = g.Sum(x => x.SPTTotalLeads)
                     })
                     .AsQueryable();
 

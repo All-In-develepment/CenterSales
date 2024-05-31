@@ -1,8 +1,7 @@
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
 import DatePicker from 'react-datepicker';
-import { format } from 'date-fns'; // Importe a função format
-import { Grid } from "semantic-ui-react";
+import { Form, Grid } from "semantic-ui-react";
 import RankSPTByConvertion from "./Conversion/RankSPTByConvertion";
 import RankSPTByDeposit from "./Depoist/RankSPTByDeposit";
 import RankSPTByTotalSales from "./Sales/RankSPTByTotalSales";
@@ -42,38 +41,43 @@ export default observer(function RankSPTDashBoard() {
       <Grid>
         <Grid.Row>
           <Grid.Column width='5'>
-            <p>
-              Data Inicial
-              <DatePicker
-                selected={initialDate} // Use o estado para controlar a data selecionada
-                onChange={(date: Date) => handleChangeInitalaDate(date)} // Atualize o estado quando a data for alterada
-                dateFormat="dd/MM/yyyy" // Formato da data exibida
-              />
-            </p>
+            <Form>
+              <Form.Field>
+                <label>Data Inicial</label>
+                <DatePicker
+                  selected={initialDate} // Use o estado para controlar a data selecionada
+                  onChange={(date: Date) => handleChangeInitalaDate(date)} // Atualize o estado quando a data for alterada
+                  dateFormat="dd/MM/yyyy" // Formato da data exibida
+                />
+              </Form.Field>
+            </Form>
           </Grid.Column>
           <Grid.Column width='5'>
-            <p>
-              Data Final
-              <DatePicker
-              selected={finalDate} // Use o estado para controlar a data selecionada
-              onChange={(date: Date) => handleChangeFinalDate(date)} // Atualize o estado quando a data for alterada
-              dateFormat="dd/MM/yyyy" // Formato da data exibida
-            />
-            </p>
+            <Form>
+              <Form.Field>
+                <label>Data Final</label>
+                <DatePicker
+                selected={finalDate} // Use o estado para controlar a data selecionada
+                onChange={(date: Date) => handleChangeFinalDate(date)} // Atualize o estado quando a data for alterada
+                dateFormat="dd/MM/yyyy" // Formato da data exibida
+              />
+              </Form.Field>
+            </Form>
           </Grid.Column>
           <Grid.Column width='6'>
-            <p>
-              Rank
-              <br />
-              <select
-                value={currentRank}
-                onChange={(e) => handleChangeRank(e.target.value)}
-              >
-                <option value="RankByDeposit">Rank por Deposito</option>
-                <option value="RankByConversion">Rank por conversão</option>
-                <option value="RankBySales">Rank por Vendas</option>
-              </select>
-            </p>
+            <Form>
+              <Form.Field>
+                <label>Rank</label>
+                <select
+                  value={currentRank}
+                  onChange={(e) => handleChangeRank(e.target.value)}
+                >
+                  <option value="RankByDeposit">Rank por Deposito</option>
+                  <option value="RankByConversion">Rank por conversão</option>
+                  <option value="RankBySales">Rank por Vendas</option>
+                </select>
+              </Form.Field>
+            </Form>
           </Grid.Column>
         </Grid.Row>
       </Grid>
