@@ -40,6 +40,7 @@ export default observer(function RankSPTByConvertionListItem({sale}: Props) {
                 {sale.sptSellerName}
               </Typography>
             </Grid>
+            <br />
             <Grid
               container 
               rowSpacing={2} 
@@ -51,6 +52,7 @@ export default observer(function RankSPTByConvertionListItem({sale}: Props) {
                 {sale.sptavgConvertion.toFixed(2)}<PercentIcon name="percent" />
               </Typography>
             </Grid>
+            <br />
           </Box>
 
           <Box sx={{ flexGrow: 1 }}>

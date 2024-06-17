@@ -73,6 +73,7 @@ export const routes: RouteObject[] = [
       { path: "registers/rankProject", element: <RankREgisterByProjectDashboard /> },
       { path: "spt", element: <SPTDashBoard /> },
       { path: "spt/save", element: <SalePerformanceTeamForm /> },
+      { path: "spt/save/:id", element: <SalePerformanceTeamForm /> },
       { path: "spt/ranks", element: <RankDashboard /> },
       { path: "spt/deposit-rank", element: <RankSPTByDeposit /> },
       { path: "spt/sales-rank", element: <RankSPTByTotalSales /> },

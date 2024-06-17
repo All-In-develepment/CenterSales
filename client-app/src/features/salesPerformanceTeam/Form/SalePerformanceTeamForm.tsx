@@ -7,8 +7,8 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import MySelectInput from "../../../app/common/form/MySelectInput";
 import MyTextInput from "../../../app/common/form/MyTextInput";
-import { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import MyDateInput from "../../../app/common/form/MyDateInput";
 
 export default observer(function SalePerformanceTeamForm() {
@@ -18,15 +18,22 @@ export default observer(function SalePerformanceTeamForm() {
           bookmakerStore, 
           eventStore
   } = useStore();
-  const { createSalePerformanceTeam, updateSalePerformanceTeam, loadSalePerformanceTeams, loadingInitial } = salePerformanceTeamStore;
+  const { createSalePerformanceTeam, 
+          updateSalePerformanceTeam, 
+          loadSalePerformanceTeams, 
+          loadingInitial,
+          loadSalePerformanceTeam
+        } = salePerformanceTeamStore;
   const { loadProjects, allProjects } = projectStore;
   const { loadSellers, allSellers } = sellerStore;
   const { loadBookmakers, allBookmakers } = bookmakerStore;
   const { loadEvents, allEvents } = eventStore;
+  const { id } = useParams();
 
   const navigate = useNavigate();
+  const [salePerformanceTeam, setSalePerformanceTeam] = useState<SalePerformanceTeamFormValues>(new SalePerformanceTeamFormValues());
 
-  const salePerformanceTeam = new SalePerformanceTeamFormValues();
+  // const salePerformanceTeam = new SalePerformanceTeamFormValues();
 
   const validationSchema = Yup.object({
     sptSellerId: Yup.string().required("The seller name is required"),
@@ -40,6 +47,10 @@ export default observer(function SalePerformanceTeamForm() {
     sptTotalRedepositAmont: Yup.number().required("The total redeposit amount is required"),
     sptDate: Yup.string().required("The date is required"),
   });
+
+  useEffect(() => {
+    if (id) loadSalePerformanceTeam(Number(id)).then((spt) => setSalePerformanceTeam(new SalePerformanceTeamFormValues(spt)));
+  }, [id, loadSalePerformanceTeams]);
 
   useEffect(() => {
     loadProjects();

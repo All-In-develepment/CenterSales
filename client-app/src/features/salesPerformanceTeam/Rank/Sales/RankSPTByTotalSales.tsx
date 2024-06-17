@@ -5,6 +5,7 @@ import { Grid } from "semantic-ui-react";
 import InfiniteScroll from "react-infinite-scroller";
 import RankSPTByTotalSalesList from "./RankSPTByTotalSalesList";
 import { format } from "date-fns";
+import PlaceHolderRank from "../PlaceHolderRank";
 
 interface Props {
   initialDate?: null | Date | undefined;
@@ -51,7 +52,7 @@ export default observer(function RankSPTByTotalSales({ initialDate, finalDate }:
       <Grid>
         <Grid.Column width='16'>
           {salePerformanceTeamStore.loadingInitial && !loadingNext ? (
-            <h1>Carregando...</h1>
+            <PlaceHolderRank />
           ) : (
             <InfiniteScroll
               pageStart={0}

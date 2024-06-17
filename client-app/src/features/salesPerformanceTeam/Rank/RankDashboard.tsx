@@ -9,7 +9,7 @@ import RankSPTByTotalSales from "./Sales/RankSPTByTotalSales";
 export default observer(function RankSPTDashBoard() {
   const [initialDate, setInitalDate] = useState<Date | null>();
   const [finalDate, setFinalDate] = useState<Date | null>();
-  const [currentRank, setCurrentRank] = useState<string>('RankByProject');
+  const [currentRank, setCurrentRank] = useState<string>('RankByDeposit');
 
   // Trate a mudança de data
   const handleChangeInitalaDate = (initialDate: Date) => {

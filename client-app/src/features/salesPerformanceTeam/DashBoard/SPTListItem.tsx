@@ -1,5 +1,6 @@
-import { TableCell, TableRow } from "semantic-ui-react";
+import { Table, TableCell, TableRow } from "semantic-ui-react";
 import { SalePerformanceTeam } from "../../../app/models/salePerformanceTeam";
+import { Link } from "react-router-dom";
 
 interface Props {
   sale: SalePerformanceTeam
@@ -17,8 +18,8 @@ function convertToPtBrDate(dateStr: string): string {
 
 export default function SPTListItem({sale}: Props) {
   return (
-    <TableRow>
-      <TableCell icon='user' content={ sale.sptSellerName } />
+    <Table.Row>
+      <Table.Cell icon='user' content={ sale.sptSellerName } />
       <TableCell icon='users' content={ sale.sptTotalLeads } />
       <TableCell content={ sale.sptTotalSales } />
       {/* <TableCell icon='dollar' content={ sale.sptTotalSalesAmont.toLocaleString('pt-br', { minimumFractionDigits: 2 })} /> */}
@@ -26,8 +27,10 @@ export default function SPTListItem({sale}: Props) {
       <TableCell content={ sale.sptTotalRedeposit } />
       <TableCell icon='dollar' content={ sale.sptTotalSalesAmont.toLocaleString('pt-br', { minimumFractionDigits: 2 }) } />
       <TableCell icon='dollar' content={ (sale.sptTotalRedepositAmont + sale.sptTotalRegisterAmont).toLocaleString('pt-br', { minimumFractionDigits: 2 }) } />
-      <TableCell icon='percent' content={`${ sale.sptavgConvertion }`} />
+      <TableCell icon='percent' content={`${ (sale.sptavgConvertion).toLocaleString('pt-br', { minimumFractionDigits: 2 }) }`} />
       <TableCell icon='file alternate outline' content={ sale.sptProjectName } />
-    </TableRow>
+      <TableCell icon='calendar alternate' content={ convertToPtBrDate(sale.sptDate.split('T')[0]) } />
+      <TableCell icon='edit' as={Link} to={`/spt/save/${sale.sptId}`} />
+    </Table.Row>
   )
 }

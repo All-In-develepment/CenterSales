@@ -23,6 +23,7 @@ export default observer(function SPTList() {
               <Table.HeaderCell>Cadastros + Redepositos</Table.HeaderCell>
               <Table.HeaderCell>Conversão Geral</Table.HeaderCell>
               <Table.HeaderCell>Projeto</Table.HeaderCell>
+              <Table.HeaderCell>Data</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
           {allSalePerformanceTeams.map(sale => (

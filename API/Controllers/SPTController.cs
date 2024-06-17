@@ -24,5 +24,12 @@ namespace API.Controllers
         {
             return HandlePagedResult(await Mediator.Send(new ListGroupedBySeller.Query { Params = param }));
         }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> EditSPT(int id, SalesPerformanceTeam spt)
+        {
+            spt.SPTId = id;
+            return HandleResult(await Mediator.Send(new SPTEdit.Command { SalesPerformanceTeam = spt }));
+        }
     }
 }
