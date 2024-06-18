@@ -14,12 +14,13 @@ RUN dotnet restore "CenterSales.sln"
 # copy everything else build
 COPY . .
 WORKDIR /app
-RUN dotnet publish -c Release
+RUN dotnet publish -c Release -o out
 
 # build runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
 COPY --from=build-env /app/out .
-WORKDIR /app/out
+
 EXPOSE 8080
-ENTRYPOINT [ "dotnet", "API.dll" ]
+
+ENTRYPOINT [ "dotnet", "API.dll"]
