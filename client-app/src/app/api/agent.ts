@@ -21,7 +21,7 @@ const sleep = (delay: number) => {
   });
 };
 
-axios.defaults.baseURL = "http://localhost:8080/api";
+axios.defaults.baseURL = process.env.REACT_APP_ENV;
 
 const responseBody = <T>(response: AxiosResponse<T>) => response.data;
 
@@ -192,43 +192,58 @@ const Bookmakers = {
       .get<PaginatedResult<Bookmaker[]>>("/bookmaker", { params })
       .then(responseBody),
   details: (id: string) => requests.get<Bookmaker>(`/bookmaker/${id}`),
-  create: (bookmaker: Bookmaker) => requests.post<void>(`/bookmaker`, bookmaker),
-  update: (bookmaker: Bookmaker) => requests.put<void>(`/bookmaker/${bookmaker.bookmakerId}`, bookmaker),
+  create: (bookmaker: Bookmaker) =>
+    requests.post<void>(`/bookmaker`, bookmaker),
+  update: (bookmaker: Bookmaker) =>
+    requests.put<void>(`/bookmaker/${bookmaker.bookmakerId}`, bookmaker),
   delete: (id: string) => requests.del<void>(`/bookmaker/${id}`),
 };
 
 const Events = {
   list: (params: URLSearchParams) =>
-    axios.get<PaginatedResult<OriginEvent[]>>("/events", { params }).then(responseBody),
+    axios
+      .get<PaginatedResult<OriginEvent[]>>("/events", { params })
+      .then(responseBody),
   details: (id: string) => requests.get<OriginEvent>(`/events/${id}`),
   create: (event: OriginEvent) => requests.post<void>("/events", event),
-  update: (event: OriginEvent) => requests.put<void>(`/events/${event.eventsId}`, event),
+  update: (event: OriginEvent) =>
+    requests.put<void>(`/events/${event.eventsId}`, event),
   delete: (id: string) => requests.del<void>(`/events/${id}`),
 };
 
 const Registers = {
   list: (params: URLSearchParams) =>
-    axios.get<PaginatedResult<Register[]>>("/register", { params }).then(responseBody),
+    axios
+      .get<PaginatedResult<Register[]>>("/register", { params })
+      .then(responseBody),
   details: (id: string) => requests.get<Register>(`/register/${id}`),
   create: (event: Register) => requests.post<void>("/register", event),
-  update: (event: Register) => requests.put<void>(`/register/${event.eventsId}`, event),
+  update: (event: Register) =>
+    requests.put<void>(`/register/${event.eventsId}`, event),
   delete: (id: string) => requests.del<void>(`/register/${id}`),
   registerRankBySeller: (params: URLSearchParams) =>
     axios
-      .get<PaginatedResult<Register[]>>("/register/grouped-by-seller", { params })
+      .get<PaginatedResult<Register[]>>("/register/grouped-by-seller", {
+        params,
+      })
       .then(responseBody),
   registerRankByProject: (params: URLSearchParams) =>
     axios
-      .get<PaginatedResult<Register[]>>("/register/grouped-by-project", { params })
+      .get<PaginatedResult<Register[]>>("/register/grouped-by-project", {
+        params,
+      })
       .then(responseBody),
 };
 
 const SalePerformanceTeams = {
   list: (params: URLSearchParams) =>
-    axios.get<PaginatedResult<SalePerformanceTeam[]>>("/spt", { params }).then(responseBody),
+    axios
+      .get<PaginatedResult<SalePerformanceTeam[]>>("/spt", { params })
+      .then(responseBody),
   details: (id: number) => requests.get<SalePerformanceTeam>(`/spt/${id}`),
   create: (spt: SalePerformanceTeam) => requests.post<void>("/spt", spt),
-  update: (spt: SalePerformanceTeam) => requests.put<void>(`/spt/${spt.sptId}`, spt),
+  update: (spt: SalePerformanceTeam) =>
+    requests.put<void>(`/spt/${spt.sptId}`, spt),
   delete: (id: number) => requests.del<void>(`/spt/${id}`),
   salePerformanceTeamRankBySeller: (params: URLSearchParams) =>
     axios
@@ -236,7 +251,9 @@ const SalePerformanceTeams = {
       .then(responseBody),
   salePerformanceTeamRankByProject: (params: URLSearchParams) =>
     axios
-      .get<PaginatedResult<SalePerformanceTeam[]>>("/spt/grouped-by-project", { params })
+      .get<PaginatedResult<SalePerformanceTeam[]>>("/spt/grouped-by-project", {
+        params,
+      })
       .then(responseBody),
 };
 

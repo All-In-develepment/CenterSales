@@ -30,6 +30,7 @@ services:
       - "3333:3000"
     volumes:
       - ./client-app:/app
+      - /app/node_modules
     networks:
       - result-scores
 
