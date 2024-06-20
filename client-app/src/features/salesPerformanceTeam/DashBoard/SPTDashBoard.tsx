@@ -5,17 +5,18 @@ import { Grid, Icon } from "semantic-ui-react";
 import InfiniteScroll from "react-infinite-scroller";
 import { useNavigate } from "react-router-dom";
 import SPTList from "./SPTList";
+import { PagingParams } from "../../../app/models/pagination";
 
 export default observer(function SPTDashBoard() {
   const { salePerformanceTeamStore } = useStore();
-  const { loadSalePerformanceTeams, setPagination, pagination } = salePerformanceTeamStore;
+  const { loadSalePerformanceTeams, setPagingParams, pagination } = salePerformanceTeamStore;
   const [loadingNext, setLoadingNext] = useState(false);
 
   const navigate = useNavigate();
 
   function handleGetNext() {
     setLoadingNext(true);
-    setPagination({ ...pagination!, currentPage: pagination!.currentPage + 1 });
+    setPagingParams(new PagingParams(pagination!.currentPage + 1));
     loadSalePerformanceTeams().then(() => setLoadingNext(false));
   }
 
@@ -55,7 +56,7 @@ export default observer(function SPTDashBoard() {
             <h1>Loading...</h1>
           ) : (
             <InfiniteScroll
-              pageStart={1}
+              pageStart={0}
               loadMore={handleGetNext}
               hasMore={
                 !loadingNext &&

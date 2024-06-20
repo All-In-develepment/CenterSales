@@ -56,7 +56,6 @@ export default class SalePerformanceTeamStore {
 
   loadSalePerformanceTeams = async () => {
     this.loadingInitial = true;
-    this.salePerformanceTeamRegistry.clear();
     try {
       const response = await agent.SalePerformanceTeams.list(this.axiosParams);
       response.data.forEach((salePerformanceTeam) => {
