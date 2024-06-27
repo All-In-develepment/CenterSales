@@ -35,7 +35,11 @@ export default observer(function ActivityDashboard() {
                         <InfiniteScroll
                             pageStart={0}
                             loadMore={handleGetNext}
-                            hasMore={!loadingNext && !!pagination && pagination.currentPage < pagination.totalPages}
+                            hasMore={
+                                !loadingNext && 
+                                !!pagination && 
+                                pagination.currentPage < pagination.totalPages
+                            }
                             initialLoad={false}
                         >
                             <ActivityList />

@@ -54,9 +54,23 @@ export default class SalePerformanceTeamStore {
     return this.salePerformanceTeamRegistry.get(id);
   };
 
-  loadSalePerformanceTeams = async () => {
+  loadSalePerformanceTeams = async (initialDate? : string, 
+                                    finalDate? : string, 
+                                    sellerId? : string | null, 
+                                    projectId? : string | null) => {
     this.loadingInitial = true;
-    this.salePerformanceTeamRegistry.clear();
+    if (initialDate) {
+      this.axiosParams.append("StartDate", initialDate);
+    }
+    if (finalDate) {
+      this.axiosParams.append("EndDate", finalDate);
+    }
+    if (sellerId) {
+      this.axiosParams.append("SellerId", sellerId);
+    }
+    if (projectId) {
+      this.axiosParams.append("ProjectId", projectId);
+    }
     try {
       const response = await agent.SalePerformanceTeams.list(this.axiosParams);
       response.data.forEach((salePerformanceTeam) => {
@@ -190,6 +204,10 @@ export default class SalePerformanceTeamStore {
       this.setLoadingInitial(false);
     }
   };
+
+  clearSalePerformanceTeamRegistry = () => {
+    this.salePerformanceTeamRegistry.clear();
+  }
 
   get groupedByDeposit() {
     return Array.from(this.salePerformanceTeamRegistry.values());

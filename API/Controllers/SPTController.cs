@@ -14,7 +14,7 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetSPT([FromQuery] PagingParams param)
+        public async Task<IActionResult> GetSPT([FromQuery] SPTParams param)
         {
             return HandlePagedResult(await Mediator.Send(new ListSPT.Query { Params = param }));
         }
