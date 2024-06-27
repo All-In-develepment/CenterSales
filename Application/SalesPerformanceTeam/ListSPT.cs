@@ -35,8 +35,9 @@ namespace Application.SalesPerformanceTeam
                     Console.WriteLine("request.Params.StartDate: " + request.Params.StartDate);
                 }
                 Console.WriteLine("request.Params.EndDate: " + request.Params.EndDate);
-                Console.WriteLine("request.Params.Seller ID: " + request.Params.SelerId);
+                Console.WriteLine("request.Params.Seller ID: " + request.Params.SellerId);
                 Console.WriteLine("request.Params.Project ID: " + request.Params.ProjectId);
+                Console.WriteLine("----------------------------------------------------------------------------------------------------------------------");
                 // var query = _context.SalesPerformanceTeams
                 //     .Include(s => s.SPTSeller)
                 //     .Include(b => b.SPTProject)
@@ -73,7 +74,7 @@ namespace Application.SalesPerformanceTeam
                 //     .Where(x => 
                 //         request.Params.StartDate == null ? x.SPTDate >= DateTime.Today.AddDays(-30) : x.SPTDate >= request.Params.StartDate
                 //         && request.Params.EndDate == null ? x.SPTDate <= DateTime.Today : x.SPTDate <= request.Params.EndDate 
-                //         && x.SPTSellerId == request.Params.SelerId 
+                //         && x.SPTSellerId == request.Params.SellerId 
                 //         && x.SPTProjectId == request.Params.ProjectId)
                 //     .OrderBy(d => d.SPTDate)
                 //     .ProjectTo<SalesPerformaceTeamDto>(_mapper.ConfigurationProvider)
@@ -134,10 +135,10 @@ namespace Application.SalesPerformanceTeam
                     query = query.Where(x => x.SPTDate <= DateTime.Today);
                 }
 
-                // Adiciona a condição para SelerId
-                if (request.Params.SelerId != null)
+                // Adiciona a condição para SellerId
+                if (request.Params.SellerId != null)
                 {
-                    query = query.Where(x => x.SPTSellerId == request.Params.SelerId);
+                    query = query.Where(x => x.SPTSellerId == request.Params.SellerId);
                 }
 
                 // Adiciona a condição para ProjectId

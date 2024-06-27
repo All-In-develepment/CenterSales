@@ -6,7 +6,7 @@ namespace Application.SalesPerformanceTeam
     {
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
-        public Guid? SelerId { get; set; }
+        public Guid? SellerId { get; set; }
         public Guid? ProjectId { get; set; }
     }
 }
