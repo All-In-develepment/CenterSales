@@ -16,7 +16,7 @@
 
 
 body {
-  background-color: #e5d9ff !important;
+  background-color: #F2F2F2 !important;
   font-family: "BellotaText-Regular";
 }
 
@@ -107,7 +107,7 @@ body {
 
 
 .table {
-  /* background-color: #e5d9ff !important; */
+  /* background-color: #F2F2F2 !important; */
   color: #ffffff !important; 
   border-radius: 4px;
 }
@@ -164,7 +164,7 @@ body {
 
 /* ############### TABLES MÁXIMAS ######### */
 .tablesMax{
-  background-color: #e5d9ff !important;
+  background-color: #F2F2F2 !important;
 }
 
 /*################ KEY FRAMES ##############*/

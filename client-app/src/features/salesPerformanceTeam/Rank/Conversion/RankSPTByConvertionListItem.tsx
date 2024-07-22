@@ -22,6 +22,7 @@ export default observer(function RankSPTByConvertionListItem({sale}: Props) {
     backgorundColor: 'red',
     textAlign: 'center',
     margin: '10px',
+    boxShadow: "none"
   }));
 
   return(
@@ -36,7 +37,7 @@ export default observer(function RankSPTByConvertionListItem({sale}: Props) {
               justifyContent="space-evenly" 
               alignItems="center"
             >
-              <Typography variant="h5" gutterBottom>
+              <Typography variant="h5" gutterBottom style={{ color: "#BF3F3F" }}>
                 {sale.sptSellerName}
               </Typography>
             </Grid>

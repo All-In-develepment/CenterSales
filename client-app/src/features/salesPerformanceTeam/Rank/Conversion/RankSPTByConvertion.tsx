@@ -27,13 +27,13 @@ export default observer(function RankSPTByConvertion({ initialDate, finalDate }:
   if (initialDate) {
     newInitialDate = format(initialDate!, 'yyyy/MM/dd\'T\'00:00:00');
   }else{
-    newInitialDate = undefined;
+    newInitialDate = format(new Date(), 'yyyy/MM/dd\'T\'00:00:00');
   }
   let newFinalDate = undefined;
   if (finalDate) {
     newFinalDate = format(finalDate!, 'yyyy/MM/dd\'T\'23:59:59');
   }else{
-    newFinalDate = undefined;
+    newFinalDate = format(new Date(), 'yyyy/MM/dd\'T\'23:59:59');
   }
 
   useEffect(() => {
@@ -44,13 +44,13 @@ export default observer(function RankSPTByConvertion({ initialDate, finalDate }:
     <>
     <Grid>
       <Grid.Row>
-        <Grid.Column width='10'>
-          <h1>Rank de CONVERSÃO</h1>
+        <Grid.Column width='16' textAlign="center">
+          <h1>RANK DE CONVERSÃO</h1>
         </Grid.Column>
       </Grid.Row>
     </Grid>
     <Grid>
-      <Grid.Column width='16'>
+      <Grid.Column width='16' textAlign="center">
         {salePerformanceTeamStore.loadingInitial && !loadingNext ? (
           <PlaceHolderRank />
         ) : (

@@ -27,6 +27,7 @@ namespace Persistence
         public DbSet<HublaCanceledSale> HublaCanceledSales { get; set; }
         public DbSet<Bookmaker> Bookmakers { get; set; }
         public DbSet<SalesPerformanceTeam> SalesPerformanceTeams { get; set; }
+        public DbSet<ProjectWeight> ProjectWeights { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -140,6 +141,10 @@ namespace Persistence
                     .OnDelete(DeleteBehavior.NoAction);
             });
 
+            builder.Entity<Project>()
+                .HasMany(p => p.ProjectWeights)
+                .WithOne(pw => pw.Project)
+                .HasForeignKey(pw => pw.ProjectId);
         }
     }
 }

@@ -25,7 +25,7 @@ function App() {
 
   if (!commonStore.appLoaded) return <LoadingComponent content='Loading app...' />
 
-  const pathsWithoutNavBar = ["/registers/rankProject", "/registers/rankseller", "/sales/rankProject", "/sales/rank"];
+  const pathsWithoutNavBar = ["/registers/rankProject", "/registers/rankseller", "/sales/rankProject", "/sales/rank", "/spt/ranks"];
 
   const showNavBar = !pathsWithoutNavBar.includes(location.pathname);
 

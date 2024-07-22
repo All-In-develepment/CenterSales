@@ -1,16 +1,17 @@
 using Application.Activities;
-using Application.Comments;
-using Application.Profiles;
-using Domain;
-using Application.Config;
-using Application.Sales;
-using Application.Project;
-using Application.Seller;
-using Application.Products;
 using Application.Bookmakers;
-using Application.Register;
+using Application.Comments;
+using Application.Config;
 using Application.Events;
+using Application.Products;
+using Application.Profiles;
+using Application.Project;
+using Application.ProjectWeight;
+using Application.Register;
+using Application.Sales;
 using Application.SalesPerformanceTeam;
+using Application.Seller;
+using Domain;
 
 namespace Application.Core
 {
@@ -73,6 +74,7 @@ namespace Application.Core
                 .ForMember(d => d.SPTEventId, o => o.MapFrom(s => s.SPTEvent.EventsId))
                 .ReverseMap();
             CreateMap<SalesPerformaceTeamDto, SalesPerformaceTeamDto>();
+            CreateMap<Domain.ProjectWeight, ProjectWeightDto>().ReverseMap();
         }
     }
 }
