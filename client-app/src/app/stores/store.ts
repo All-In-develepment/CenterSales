@@ -13,6 +13,7 @@ import BookmakerStore from "./bookmakerStore";
 import EventStore from "./eventStore";
 import RegisterStore from "./registerStore";
 import SalePerformanceTeamStore from "./salePerformanceTeam";
+import ProjectWeightStore from "./projectWeightStore";
 
 interface Store {
   activityStore: ActivityStore;
@@ -29,6 +30,7 @@ interface Store {
   eventStore: EventStore;
   registerStore: RegisterStore;
   salePerformanceTeamStore: SalePerformanceTeamStore;
+  projectWeightStore: ProjectWeightStore;
 }
 
 export const store: Store = {
@@ -46,6 +48,7 @@ export const store: Store = {
   eventStore: new EventStore(),
   registerStore: new RegisterStore(),
   salePerformanceTeamStore: new SalePerformanceTeamStore(),
+  projectWeightStore: new ProjectWeightStore(),
 };
 
 export const StoreContext = createContext(store);

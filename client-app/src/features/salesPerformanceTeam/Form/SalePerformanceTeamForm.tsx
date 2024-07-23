@@ -36,7 +36,7 @@ export default observer(function SalePerformanceTeamForm() {
   // const salePerformanceTeam = new SalePerformanceTeamFormValues();
 
   const validationSchema = Yup.object({
-    sptSellerId: Yup.string().required("The seller name is required"),
+    sptSellerId: Yup.string().required("Preencha o vendedor"),
     sptProjectId: Yup.string().required("The project name is required"),
     sptTotalLeads: Yup.number().required("The total leads is required"),
     sptTotalSales: Yup.number().required("The total sales is required"),
@@ -45,7 +45,7 @@ export default observer(function SalePerformanceTeamForm() {
     sptTotalRegisterAmont: Yup.number().required("The total register amount is required"),
     sptTotalRedeposit: Yup.number().required("The total redeposit is required"),
     sptTotalRedepositAmont: Yup.number().required("The total redeposit amount is required"),
-    sptDate: Yup.string().required("The date is required"),
+    sptDate: Yup.string().required("Data é obrigatória"),
   });
 
   useEffect(() => {

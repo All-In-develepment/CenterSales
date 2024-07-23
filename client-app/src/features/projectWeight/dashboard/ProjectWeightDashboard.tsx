@@ -2,14 +2,14 @@ import { observer } from "mobx-react-lite";
 import { useStore } from "../../../app/stores/store";
 import { useEffect, useState } from "react";
 import { Grid } from "semantic-ui-react";
-import ProjectListItemPlaceHolder from "./ProjectListItemPlaceHolder";
+import ProjectWeightListItemPlaceHolder from "./ProjectWeightListItemPlaceHolder";
 import InfiniteScroll from "react-infinite-scroller";
-import ProjectList from "./ProjectList";
+import ProjectWeightList from "./ProjectWeightList";
 import { useNavigate } from "react-router-dom";
 
-export default observer(function ProjectDashboard() {
-  const { projectStore } = useStore();
-  const { loadProjects, setPagination, pagination } = projectStore;
+export default observer(function ProjectWeightDashboard() {
+  const { projectWeightStore } = useStore();
+  const { loadProjectWeights, setPagination, pagination } = projectWeightStore;
   const [loadingNext, setLoadingNext] = useState(false);
 
   const navigate = useNavigate();
@@ -17,23 +17,23 @@ export default observer(function ProjectDashboard() {
   function handleGetNext() {
     setLoadingNext(true);
     setPagination({ ...pagination!, currentPage: pagination!.currentPage + 1 });
-    loadProjects().then(() => setLoadingNext(false));
+    loadProjectWeights().then(() => setLoadingNext(false));
   }
 
   useEffect(() => {
-    loadProjects();
-  }, [loadProjects]);
+    loadProjectWeights();
+  }, [loadProjectWeights]);
 
-  return (
+  return(
     <>
       <Grid>
         <Grid.Row>
           <Grid.Column width="10">
-            <h1>Project Dashboard</h1>
+            <h1>Project Weight Dashboard</h1>
           </Grid.Column>
           <Grid.Column width="6" textAlign="right">
             <button
-              onClick={() => navigate("/projects/save")}
+              onClick={() => navigate("/projectweight/save")}
               className="ui primary button"
               style={{ marginTop: "1.5em" }}
             >
@@ -44,8 +44,8 @@ export default observer(function ProjectDashboard() {
       </Grid>
       <Grid>
         <Grid.Column width="16">
-          {projectStore.loadingInitial && !loadingNext ? (
-            <ProjectListItemPlaceHolder />
+          {projectWeightStore.loadingInitial && !loadingNext ? (
+            <ProjectWeightListItemPlaceHolder />
           ) : (
             <InfiniteScroll
               pageStart={0}
@@ -57,11 +57,11 @@ export default observer(function ProjectDashboard() {
               }
               initialLoad={false}
             >
-              <ProjectList />
+              <ProjectWeightList />
             </InfiniteScroll>
           )}
         </Grid.Column>
       </Grid>
     </>
-  );
+  )
 });

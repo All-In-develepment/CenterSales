@@ -57,10 +57,10 @@ export default observer(function RankSPTDashBoard() {
               <Form.Field>
                 <label>Data Final</label>
                 <DatePicker
-                selected={finalDate} // Use o estado para controlar a data selecionada
-                onChange={(date: Date) => handleChangeFinalDate(date)} // Atualize o estado quando a data for alterada
-                dateFormat="dd/MM/yyyy" // Formato da data exibida
-              />
+                  selected={finalDate} // Use o estado para controlar a data selecionada
+                  onChange={(date: Date) => handleChangeFinalDate(date)} // Atualize o estado quando a data for alterada
+                  dateFormat="dd/MM/yyyy" // Formato da data exibida
+                />
               </Form.Field>
             </Form>
           </Grid.Column>

@@ -14,6 +14,7 @@ import { Bookmaker } from "../models/bookmaker";
 import { OriginEvent } from "../models/originEvent";
 import { Register } from "../models/register";
 import { SalePerformanceTeam } from "../models/salePerformanceTeam";
+import { ProjectWeight } from "../models/projectWeight";
 
 const sleep = (delay: number) => {
   return new Promise((resolve) => {
@@ -257,6 +258,18 @@ const SalePerformanceTeams = {
       .then(responseBody),
 };
 
+const ProjectWeights = {
+  list: (params: URLSearchParams) =>
+    axios
+      .get<PaginatedResult<ProjectWeight[]>>("/ProjectWeight", { params })
+      .then(responseBody),
+  details: (id: string) => requests.get<ProjectWeight>(`/ProjectWeight/${id}`),
+  create: (pw: ProjectWeight) => requests.post<void>("/ProjectWeight", pw),
+  update: (pw: ProjectWeight) =>
+    requests.put<void>(`/ProjectWeight/${pw.projectWeightId}`, pw),
+  delete: (id: string) => requests.del<void>(`/ProjectWeight/${id}`),
+};
+
 const agent = {
   Activities,
   Account,
@@ -269,6 +282,7 @@ const agent = {
   Events,
   Registers,
   SalePerformanceTeams,
+  ProjectWeights,
 };
 
 export default agent;

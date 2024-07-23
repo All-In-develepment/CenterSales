@@ -32,6 +32,8 @@ import RankSPTByConvertion from "../../features/salesPerformanceTeam/Rank/Conver
 import RankSPTByDeposit from "../../features/salesPerformanceTeam/Rank/Depoist/RankSPTByDeposit";
 import RankSPTByTotalSales from "../../features/salesPerformanceTeam/Rank/Sales/RankSPTByTotalSales";
 import RankDashboard from "../../features/salesPerformanceTeam/Rank/RankDashboard";
+import ProjectWeightDashboard from "../../features/projectWeight/dashboard/ProjectWeightDashboard";
+import ProjectWeightForm from "../../features/projectWeight/form/ProjectWeightFrom";
 
 export const routes: RouteObject[] = [
   {
@@ -77,6 +79,8 @@ export const routes: RouteObject[] = [
       { path: "spt/ranks", element: <RankDashboard /> },
       { path: "spt/deposit-rank", element: <RankSPTByDeposit /> },
       { path: "spt/sales-rank", element: <RankSPTByTotalSales /> },
+      { path: "projectweight/save", element: <ProjectWeightForm /> },
+      { path: "projectweight", element: <ProjectWeightDashboard /> },
       { path: "/", element: <Navigate to="/activities" /> },
       { path: "*", element: <Navigate replace to="/not-found" /> },
     ],
