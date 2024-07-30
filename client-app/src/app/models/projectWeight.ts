@@ -1,6 +1,7 @@
 export interface ProjectWeight {
   projectWeightId: string
   projectId: string
+  projectName: string
   month: string
   salesValueWeight: number
   conversionWeight: number

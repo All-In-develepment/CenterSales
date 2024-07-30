@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Item, Button, Segment, Label } from 'semantic-ui-react';
+import { Item, Button, Segment, Label, Grid, Divider } from 'semantic-ui-react';
 import { ProjectWeight } from '../../../app/models/projectWeight';
 
 interface Props {
@@ -13,17 +13,16 @@ export default function ProjectWeightListItem({ projectWeight }: Props) {
         <Item.Group>
           <Item>
             <Item.Content>
-              <Item.Header as={Link} to={`/projectWeights/${projectWeight.projectWeightId}`}>
-                {projectWeight.projectId}
+              <Item.Header>
+                {projectWeight.projectName} - {projectWeight.month.split('T')[0].split('-')[1]}/{projectWeight.month.split('T')[0].split('-')[0]}
               </Item.Header>
-              <Item.Description>{projectWeight.month}</Item.Description>
-              <Item.Description>{projectWeight.salesValueWeight}</Item.Description>
-              <Item.Description>{projectWeight.conversionWeight}</Item.Description>
-              <Item.Description>{projectWeight.registrationWeight}</Item.Description>
-              <Item.Description>{projectWeight.depositWeight}</Item.Description>
-              <Item></Item>
+              <Divider />
+              <Item.Description>Peso para vendas: {projectWeight.salesValueWeight}</Item.Description>
+              <Item.Description>Peso para conversão: {projectWeight.conversionWeight}</Item.Description>
+              <Item.Description>Peso para cadastro: {projectWeight.registrationWeight}</Item.Description>
+              <Item.Description>Peso para deposito: {projectWeight.depositWeight}</Item.Description>
               <Item.Extra>
-                <Button content='Editar' color='blue' floated='right' as={Link} to={`/projectWeight/${projectWeight.projectWeightId}`} />
+                <Button content='Editar' color='blue' floated='right' as={Link} to={`/projectweight/save/${projectWeight.projectWeightId}`} />
               </Item.Extra>
             </Item.Content>
           </Item>

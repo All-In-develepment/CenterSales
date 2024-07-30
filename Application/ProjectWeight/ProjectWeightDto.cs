@@ -4,6 +4,7 @@ namespace Application.ProjectWeight
     {
         public Guid ProjectWeightId { get; set; }
         public Guid ProjectId { get; set; }
+        public string ProjectName { get; set; }
         public DateTime Month { get; set; }
         public decimal SalesValueWeight { get; set; }
         public decimal ConversionWeight { get; set; }

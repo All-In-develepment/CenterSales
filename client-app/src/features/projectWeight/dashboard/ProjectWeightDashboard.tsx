@@ -29,7 +29,7 @@ export default observer(function ProjectWeightDashboard() {
       <Grid>
         <Grid.Row>
           <Grid.Column width="10">
-            <h1>Project Weight Dashboard</h1>
+            <h1>Painel de pesos</h1>
           </Grid.Column>
           <Grid.Column width="6" textAlign="right">
             <button

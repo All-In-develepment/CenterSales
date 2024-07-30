@@ -74,7 +74,9 @@ namespace Application.Core
                 .ForMember(d => d.SPTEventId, o => o.MapFrom(s => s.SPTEvent.EventsId))
                 .ReverseMap();
             CreateMap<SalesPerformaceTeamDto, SalesPerformaceTeamDto>();
-            CreateMap<Domain.ProjectWeight, ProjectWeightDto>().ReverseMap();
+            CreateMap<Domain.ProjectWeight, ProjectWeightDto>()
+                .ForMember(p => p.ProjectName, o => o.MapFrom(s => s.Project.ProjectName))
+                .ReverseMap();
         }
     }
 }

@@ -13,9 +13,9 @@ export default observer(function ProjectWeightList() {
     <>
       {allProjectWeights.map((projectWeight) => (
         <Fragment key={projectWeight.projectWeightId}>
-          <Header sub color="teal">
+          {/* <Header sub color="teal">
             {projectWeight.projectWeightId}
-          </Header>
+          </Header> */}
           <ProjectWeightListItem projectWeight={projectWeight} />
         </Fragment>
       ))}
