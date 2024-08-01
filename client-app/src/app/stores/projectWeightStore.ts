@@ -27,7 +27,10 @@ export default class ProjectWeightStore {
   }
 
   private setProjectWeight = (projectWeight: ProjectWeight) => {
-    this.projectWeightRegistry.set(projectWeight.projectWeightId, projectWeight);
+    this.projectWeightRegistry.set(
+      projectWeight.projectWeightId,
+      projectWeight
+    );
   };
 
   setLoadingInitial = (state: boolean) => {
@@ -47,7 +50,7 @@ export default class ProjectWeightStore {
     params.append("pageNumber", this.pagingParams.pageNumber.toString());
     params.append("pageSize", this.pagingParams.pageSize.toString());
     return params;
-  };
+  }
 
   private getProjectWeight = (id: string) => {
     return this.projectWeightRegistry.get(id);
@@ -57,7 +60,7 @@ export default class ProjectWeightStore {
     this.loadingInitial = true;
     try {
       const result = await agent.ProjectWeights.list(this.axiosParams);
-      result.data.forEach(projectWeight => {
+      result.data.forEach((projectWeight) => {
         this.setProjectWeight(projectWeight);
       });
       this.setPagination(result.pagination);
@@ -92,7 +95,10 @@ export default class ProjectWeightStore {
     this.loading = true;
     try {
       await agent.ProjectWeights.create(projectWeight);
-      this.projectWeightRegistry.set(projectWeight.projectWeightId, projectWeight);
+      this.projectWeightRegistry.set(
+        projectWeight.projectWeightId,
+        projectWeight
+      );
       this.selectedProjectWeight = projectWeight;
       this.editMode = false;
       this.loading = false;
@@ -106,7 +112,10 @@ export default class ProjectWeightStore {
     this.loading = true;
     try {
       await agent.ProjectWeights.update(projectWeight);
-      this.projectWeightRegistry.set(projectWeight.projectWeightId, projectWeight);
+      this.projectWeightRegistry.set(
+        projectWeight.projectWeightId,
+        projectWeight
+      );
       this.selectedProjectWeight = projectWeight;
       this.editMode = false;
       this.loading = false;

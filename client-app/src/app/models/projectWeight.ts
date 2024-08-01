@@ -1,18 +1,18 @@
 export interface ProjectWeight {
-  projectWeightId: string
-  projectId: string
-  projectName: string
-  month: string
-  salesValueWeight: number
-  conversionWeight: number
-  registrationWeight: number
-  depositWeight: number
+  projectWeightId: string;
+  projectId: string;
+  projectName?: string;
+  month: string;
+  salesValueWeight: number;
+  conversionWeight: number;
+  registrationWeight: number;
+  depositWeight: number;
 }
 
 export class ProjectWeightFormValues {
-  projectWeightId: string = '';
-  projectId: string = '';
-  month: string = '';
+  projectWeightId: string = "";
+  projectId: string = "";
+  month: string = "";
   salesValueWeight: number = 0;
   conversionWeight: number = 0;
   registrationWeight: number = 0;
