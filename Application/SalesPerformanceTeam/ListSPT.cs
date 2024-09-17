@@ -34,51 +34,6 @@ namespace Application.SalesPerformanceTeam
                 {
                     Console.WriteLine("request.Params.StartDate: " + request.Params.StartDate);
                 }
-                Console.WriteLine("request.Params.EndDate: " + request.Params.EndDate);
-                Console.WriteLine("request.Params.Seller ID: " + request.Params.SellerId);
-                Console.WriteLine("request.Params.Project ID: " + request.Params.ProjectId);
-                Console.WriteLine("----------------------------------------------------------------------------------------------------------------------");
-                // var query = _context.SalesPerformanceTeams
-                //     .Include(s => s.SPTSeller)
-                //     .Include(b => b.SPTProject)
-                //     .Include(p => p.SPTEvent)
-                //     .Select(spt => new SalesPerformaceTeamDto
-                //     {
-                //         SPTId = spt.SPTId,
-                //         SPTDate = spt.SPTDate,
-                //         SPTTotalLeads = spt.SPTTotalLeads,
-                //         SPTTotalSales = spt.SPTTotalSales,
-                //         SPTCreatedAt = spt.SPTCreatedAt,
-                //         SPTUpdatedAt = spt.SPTUpdatedAt,
-                //         SPTSellerId = spt.SPTSellerId,
-                //         SPTSellerName = spt.SPTSeller.SellerName,
-                //         SPTProjectId = spt.SPTProjectId,
-                //         SPTProjectName = spt.SPTProject.ProjectName,
-                //         SPTEventId = spt.SPTEventId,
-                //         SPTEventName = spt.SPTEvent.EventName,
-                //         SPTBookmakerId = spt.SPTBookmakerId,
-                //         SPTBookmakerName = spt.SPTBookmaker.BookmakerName,
-                //         SPTTotalSalesAmont = spt.SPTTotalSalesAmont,
-                //         SPTAVGSales = spt.SPTAVGSales,
-                //         SPTAVGSalesAmont = spt.SPTAVGSalesAmont,
-                //         SPTTotalRegister = spt.SPTTotalRegister,
-                //         SPTTotalRegisterAmont = spt.SPTTotalRegisterAmont,
-                //         SPTAVGRegister = spt.SPTAVGRegister,
-                //         SPTAVGRegisterAmont = spt.SPTAVGRegisterAmont,
-                //         SPTTotalRedeposit = spt.SPTTotalRedeposit,
-                //         SPTTotalRedepositAmont = spt.SPTTotalRedepositAmont,
-                //         SPTAVGRedeposit = spt.SPTAVGRedeposit,
-                //         SPTAVGRedepositAmont = spt.SPTAVGRedepositAmont,
-                //         SPTAVGConvertion = spt.SPTAVGConvertion
-                //     })
-                //     .Where(x => 
-                //         request.Params.StartDate == null ? x.SPTDate >= DateTime.Today.AddDays(-30) : x.SPTDate >= request.Params.StartDate
-                //         && request.Params.EndDate == null ? x.SPTDate <= DateTime.Today : x.SPTDate <= request.Params.EndDate 
-                //         && x.SPTSellerId == request.Params.SellerId 
-                //         && x.SPTProjectId == request.Params.ProjectId)
-                //     .OrderBy(d => d.SPTDate)
-                //     .ProjectTo<SalesPerformaceTeamDto>(_mapper.ConfigurationProvider)
-                //     .AsQueryable();
                 var query = _context.SalesPerformanceTeams
                 .Include(s => s.SPTSeller)
                 .Include(b => b.SPTProject)

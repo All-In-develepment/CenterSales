@@ -142,6 +142,11 @@ export default observer(function NavBar() {
                 <Typography textAlign="center" className="menuName">Eventos</Typography>
               </NavLink>
             </MenuItem>
+            <MenuItem onClick={handleCloseNavMenu}>
+              <NavLink to="/projectweight" >
+                <Typography textAlign="center" className="menuName">Pesos</Typography>
+              </NavLink>
+            </MenuItem>
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
