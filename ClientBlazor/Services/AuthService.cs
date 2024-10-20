@@ -20,7 +20,7 @@ public class AuthService
         var loginData = new { email, password };
 
         // Realiza a requisição POST para o endpoint de login
-        var response = await _httpClient.PostAsJsonAsync("http://localhost:8080/api/account/login", loginData);
+        var response = await _httpClient.PostAsJsonAsync("account/login", loginData);
 
         if (response.IsSuccessStatusCode)
         {
@@ -34,7 +34,7 @@ public class AuthService
                 await _localStorageService.SetItemAsync("displayName", loginResponse.DisplayName);
 
                 // Retorna o token para possível uso futuro
-                return loginResponse.Token;
+                return loginResponse.Token!;
             }
             else
             {
@@ -51,7 +51,7 @@ public class AuthService
     // Método para obter o token armazenado
     public async Task<string> GetTokenAsync()
     {
-        return await _localStorageService.GetItemAsync<string>("authToken");
+        return await _localStorageService.GetItemAsync<string>("authToken") ?? string.Empty;
     }
 
     // Método para remover o token (logout)

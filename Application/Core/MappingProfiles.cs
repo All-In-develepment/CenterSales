@@ -58,6 +58,7 @@ namespace Application.Core
             CreateMap<Domain.Project, ProjectDto>().ReverseMap();
             CreateMap<Domain.Seller, SellerDto>();
             CreateMap<SellerDto, Domain.Seller>();
+            CreateMap<SellerDto, SellerDto>().ReverseMap();
             CreateMap<Product, ProductDto>().ReverseMap();
             CreateMap<Bookmaker, BookmakerDto>().ReverseMap();
             CreateMap<Domain.Register, RegisterDto>()

@@ -17,7 +17,7 @@ public class ProjectService
     {
         var token = await _authService.GetTokenAsync();
         _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-        var response = await _httpClient.PostAsJsonAsync("http://localhost:8080/api/projects", projectModel);
+        var response = await _httpClient.PostAsJsonAsync("projects", projectModel);
         return response.IsSuccessStatusCode;
     }
 
@@ -33,7 +33,7 @@ public class ProjectService
         }
 
         // Chama a API para buscar os projetos
-        var response = await _httpClient.GetFromJsonAsync<List<Project>>("http://localhost:8080/api/projects");
+        var response = await _httpClient.GetFromJsonAsync<List<Project>>("projects");
 
         return response ?? new List<Project>();
     }
@@ -48,7 +48,7 @@ public class ProjectService
                 new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
         }
 
-        var response = await _httpClient.PutAsJsonAsync($"http://localhost:8080/api/projects/{id}", updatedProject);
+        var response = await _httpClient.PutAsJsonAsync($"projects/{id}", updatedProject);
         return response.IsSuccessStatusCode;
     }
 
@@ -63,7 +63,7 @@ public class ProjectService
         }
 
         // Faz a requisição GET para buscar o projeto pelo ID
-        var response = await _httpClient.GetAsync($"http://localhost:8080/api/projects/{id}");
+        var response = await _httpClient.GetAsync($"projects/{id}");
 
         if (response.IsSuccessStatusCode)
         {
@@ -88,7 +88,21 @@ public class ProjectService
                 new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
         }
 
-        var response = await _httpClient.DeleteAsync($"http://localhost:8080/api/projects/{id}");
+        var response = await _httpClient.DeleteAsync($"projects/{id}");
         return response.IsSuccessStatusCode;
+    }
+
+    public async Task<List<Project>> GetActiveProjectsAsync()
+    {
+        var token = await _authService.GetTokenAsync();
+        if (!string.IsNullOrEmpty(token))
+        {
+            _httpClient.DefaultRequestHeaders.Authorization =
+                new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+        }
+
+        var response = await _httpClient.GetFromJsonAsync<List<Project>>("projects/active");
+
+        return response ?? new List<Project>();
     }
 }

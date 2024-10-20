@@ -24,5 +24,11 @@ namespace API.Controllers
             seller.SellerId = id;
             return HandleResult(await Mediator.Send(new EditSeller.Command { Seller = seller }));
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetSellerById(Guid id)
+        {
+            return HandleResult(await Mediator.Send(new DetailsSeller.Query { Id = id }));
+        }
     }
 }

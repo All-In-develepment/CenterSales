@@ -2,6 +2,7 @@ using Application.Core;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Persistence;
 
 namespace Application.Seller
@@ -27,6 +28,15 @@ namespace Application.Seller
             public async Task<Result<PagedList<SellerDto>>> Handle(Query request, CancellationToken cancellationToken)
             {
                 var query = _context.Sellers
+                    .Include(p => p.Project)
+                    .Select(s => new SellerDto
+                    {
+                        SellerId = s.SellerId,
+                        SellerName = s.SellerName,
+                        SellerIsActive = s.SellerIsActive,
+                        ProjectId = s.ProjectId,
+                        ProjectName = s.Project.ProjectName
+                    })
                     .OrderBy(x => x.SellerName)
                     .ProjectTo<SellerDto>(_mapper.ConfigurationProvider)
                     .AsQueryable();

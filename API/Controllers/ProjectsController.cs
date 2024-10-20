@@ -31,5 +31,11 @@ namespace API.Controllers
         {
             return HandleResult(await Mediator.Send(new DetailsProject.Query { Id = id }));
         }
+
+        [HttpGet("active")]
+        public async Task<IActionResult> GetActiveProjects([FromQuery] ProjectParams param)
+        {
+            return HandlePagedResult(await Mediator.Send(new ListActiveProjects.Query { Params = param }));
+        }
     }
 }

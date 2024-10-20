@@ -9,9 +9,18 @@ builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 builder.Services.AddAuthorizationCore();
 
-builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+var apiBaseUrl = builder.HostEnvironment.IsDevelopment()
+    ? "http://localhost:8080/api/"  // URL da API para desenvolvimento
+    : "https://api.minhaaplicacao.com/api/"; // URL da API para produção
+
+// builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+builder.Services.AddScoped(sp => new HttpClient 
+{ 
+    BaseAddress = new Uri(apiBaseUrl) 
+});
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<ProjectService>();
+builder.Services.AddScoped<SellerService>();
 
 // Registrando o Blazored.LocalStorage
 builder.Services.AddBlazoredLocalStorage();

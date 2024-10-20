@@ -6,5 +6,6 @@ namespace Application.Seller
         public string SellerName { get; set; }
         public bool SellerIsActive { get; set; }
         public Guid ProjectId { get; set; }
+        public string ProjectName { get; set; }
     }
 }
