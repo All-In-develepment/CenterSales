@@ -3,7 +3,7 @@ import { SalePerformanceTeam } from "../../../../app/models/salePerformanceTeam"
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import { CardContent, Typography } from "@mui/material";
-import Grid from '@mui/material/Unstable_Grid2'; // Grid version 2
+import Grid from "@mui/material/Grid2";
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import HowToVoteIcon from '@mui/icons-material/HowToVote';

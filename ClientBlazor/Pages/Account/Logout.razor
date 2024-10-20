@@ -1,0 +1,17 @@
+@page "/logout"
+@using ClientBlazor.Services
+@inject AuthService AuthService
+@inject NavigationManager NavigationManager
+
+<h3>Saindo...</h3>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        // Chama o serviço de logout
+        await AuthService.Logout();
+        
+        // Redireciona o usuário para a página de login
+        NavigationManager.NavigateTo("/login", true);
+    }
+}

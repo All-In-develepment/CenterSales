@@ -1,0 +1,89 @@
+@page "/login"
+@using ClientBlazor.Services
+@layout EmptyLayout
+
+@using System.Threading.Tasks
+@inject AuthService authService
+@inject NavigationManager navigationManager
+
+<main>
+	<div class="container">
+		<section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+						<div class="d-flex justify-content-center py-4">
+							<a href="/" class="logo d-flex align-items-center w-auto">
+								<img src="/assets/img/logo.png" alt="">
+								<span class="d-none d-lg-block">NiceAdmin</span>
+							</a>
+						</div><!-- End Logo -->
+
+						<div class="card mb-3">
+							<div class="card-body">
+								<div class="pt-4 pb-2">
+									<h5 class="card-title text-center pb-0 fs-4">Login</h5>
+									<p class="text-center small">Digite seu e-Mail e senha</p>
+								</div>
+
+								<EditForm Model="@loginModel" OnValidSubmit="HandleLogin" class="row g-3 needs-validation">
+									<DataAnnotationsValidator />
+									<ValidationSummary />
+
+									<div class="col-12">
+										<label class="form-label">Email</label>
+										<div class="input-group has-validation">
+										<InputText @bind-Value="loginModel.Email" class="form-control" />
+										</div>
+									</div>
+
+									<div class="col-12">
+										<label class="form-label">Password</label>
+										<InputText @bind-Value="loginModel.Password" type="password" class="form-control" />
+									</div>
+									<button type="submit" class="btn btn-primary">Login</button>
+								</EditForm>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</main>
+
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+	<div class="alert alert-danger">@errorMessage</div>
+}
+
+@code {
+	private LoginModel loginModel = new LoginModel();
+	private string? errorMessage;
+
+	private async Task HandleLogin()
+	{
+		try
+		{
+			if (string.IsNullOrEmpty(loginModel.Email) || string.IsNullOrEmpty(loginModel.Password))
+			{
+				errorMessage = "Email and Password cannot be empty.";
+				return;
+			}
+
+			var result = await authService.Login(loginModel.Email, loginModel.Password);
+			// Caso o login seja bem-sucedido, redirecionamos o usuário (pode ser para a home ou dashboard)
+			navigationManager.NavigateTo("/");
+		}
+		catch (HttpRequestException)
+		{
+			errorMessage = "Login failed. Please check your credentials.";
+		}
+	}
+
+	public class LoginModel
+	{
+		public string? Email { get; set; }
+		public string? Password { get; set; }
+	}
+}

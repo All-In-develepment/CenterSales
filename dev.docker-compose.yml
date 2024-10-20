@@ -13,22 +13,30 @@ services:
   #   networks:
   #     - result-scores
 
-  frontend:
-    build:
-      context: ./client-app/.
-      dockerfile: Dockerfile
-    container_name: client-app
+  # frontend:
+  #   build:
+  #     context: ./client-app/.
+  #     dockerfile: Dockerfile
+  #   container_name: client-app
+  #   restart: always
+  #   # depends_on:
+  #   #   - backend_dev
+  #   environment:
+  #     TZ: America/Sao_Paulo
+  #   ports:
+  #     - "3333:3000"
+  #   volumes:
+  #     - ./client-app:/app
+  #   networks:
+  #     - result-scores
+
+  # Serviço para mssql
+  mssql:
+    image: "mcr.microsoft.com/mssql/server:2019-latest"
+    container_name: mssql
     restart: always
-    # depends_on:
-    #   - backend_dev
     environment:
-      TZ: America/Sao_Paulo
-    ports:
-      - "3333:3000"
-    volumes:
-      - ./client-app:/app
-    networks:
-      - result-scores
+      SA_PASSWORD: "Password123"
 
 networks:
   result-scores:

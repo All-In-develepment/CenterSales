@@ -1,38 +1,46 @@
-version: "3.4"
-
 services:
-  backend:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    # restart: always
-    environment:
-      TZ: America/Sao_Paulo
-    # command: sleep infinity
-    ports:
-      - "8080:8080"
-    # volumes:
-    #   - .:/app
-    networks:
-      - result-scores
+  # backend:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   # restart: always
+  #   environment:
+  #     TZ: America/Sao_Paulo
+  #   # command: sleep infinity
+  #   ports:
+  #     - "8080:8080"
+  #   # volumes:
+  #   #   - .:/app
+  #   networks:
+  #     - result-scores
 
-  frontend:
-    build:
-      context: ./client-app/.
-      dockerfile: Dockerfile
-    container_name: client-app
+  # frontend:
+  #   build:
+  #     context: ./client-app/.
+  #     dockerfile: Dockerfile
+  #   container_name: client-app
+  #   restart: always
+  #   depends_on:
+  #     - backend
+  #   environment:
+  #     TZ: America/Sao_Paulo
+  #   ports:
+  #     - "3333:3000"
+  #   volumes:
+  #     - ./client-app:/app
+  #     # - ./client-app:/app/node_modules
+  #   networks:
+  #     - result-scores
+  
+  mssql:
+    image: "mcr.microsoft.com/mssql/server:2019-latest"
+    container_name: mssql
     restart: always
-    depends_on:
-      - backend
     environment:
-      TZ: America/Sao_Paulo
+      SA_PASSWORD: "Password123"
+      ACCEPT_EULA: "Y"
     ports:
-      - "3333:3000"
-    volumes:
-      - ./client-app:/app
-      - /app/node_modules
-    networks:
-      - result-scores
+      - "1433:1433"
 
 networks:
   result-scores:

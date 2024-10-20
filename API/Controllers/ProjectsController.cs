@@ -1,8 +1,10 @@
 using Application.Project;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
+    [Authorize]
     public class ProjectsController : BaseApiController
     {
         [HttpGet]
@@ -22,6 +24,12 @@ namespace API.Controllers
         {
             project.ProjectId = id;
             return HandleResult(await Mediator.Send(new EditProject.Command { Project = project }));
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetProjectById(Guid id)
+        {
+            return HandleResult(await Mediator.Send(new DetailsProject.Query { Id = id }));
         }
     }
 }

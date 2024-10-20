@@ -1,0 +1,83 @@
+@page "/projects/edit/{id:guid}"
+@using Domain
+@using ClientBlazor.Services
+@inject ProjectService projectService
+@inject NavigationManager navigationManager
+
+<h3>Editar Projeto</h3>
+
+@if (project == null)
+{
+  <p>Carregando...</p>
+}
+else
+{
+  <EditForm Model="@project" OnValidSubmit="HandleUpdateProject">
+  <DataAnnotationsValidator />
+  <ValidationSummary />
+
+  <div class="form-group">
+    <label>Nome do Projeto</label>
+    <InputText @bind-Value="project.ProjectName" class="form-control" />
+  </div>
+  <div class="form-group">
+    <label>Status</label>
+    <InputCheckbox @bind-Value="project.ProjectIsActive" />
+    <label for="projectStatus">Ativo</label>
+  </div>
+  <button type="submit" class="btn btn-primary">Salvar</button>
+</EditForm>
+
+  @if (!string.IsNullOrEmpty(errorMessage))
+  {
+    <div class="alert alert-danger">@errorMessage</div>
+  }
+}
+
+@code {
+  [Parameter]
+  public Guid Id { get; set; }
+
+  private Project? project;
+  private string? errorMessage;
+
+  protected override async Task OnInitializedAsync()
+  {
+    try
+    {
+      project = await projectService.GetProjectByIdAsync(Id);
+    }
+    catch (Exception ex)
+    {
+      errorMessage = "Erro ao carregar o projeto: " + ex.Message;
+    }
+  }
+
+  private async Task HandleUpdateProject()
+  {
+    try
+    {
+      if (project != null)
+      {
+        bool success = await projectService.UpdateProjectAsync(Id, project);
+        if (success)
+        {
+          // Redireciona para a lista de projetos ou outra página apropriada
+          navigationManager.NavigateTo("/projects");
+        }
+        else
+        {
+          errorMessage = "Erro ao atualizar o projeto.";
+        }
+      }
+      else
+      {
+        errorMessage = "Projeto não encontrado.";
+      }
+    }
+    catch (Exception ex)
+    {
+      errorMessage = "Erro ao atualizar o projeto: " + ex.Message;
+    }
+  }
+}

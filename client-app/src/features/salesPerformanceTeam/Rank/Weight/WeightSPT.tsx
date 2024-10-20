@@ -1,9 +1,9 @@
-import HowToVoteIcon from "@mui/icons-material/HowToVote";
+import HowToVoteIcon from '@mui/icons-material/HowToVote';
 import LocalAtmIcon from "@mui/icons-material/LocalAtm";
 import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
 import PriceCheckIcon from "@mui/icons-material/PriceCheck";
 import { Box, CardContent, Paper, styled, Typography } from "@mui/material";
-import Grid from "@mui/material/Unstable_Grid2"; // Grid version 2
+import Grid from "@mui/material/Grid2";
 import { observer } from "mobx-react-lite";
 import { Card } from "semantic-ui-react";
 import { IWeightedData } from "../RankDashboard";

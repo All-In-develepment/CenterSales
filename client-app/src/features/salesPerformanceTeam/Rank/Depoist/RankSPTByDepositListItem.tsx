@@ -2,7 +2,7 @@ import { observer } from "mobx-react-lite";
 import { SalePerformanceTeam } from "../../../../app/models/salePerformanceTeam";
 import { Card, Feed, FeedEvent, Icon } from "semantic-ui-react";
 import { styled, Paper, CardContent, Box, Typography } from '@mui/material';
-import Grid from '@mui/material/Unstable_Grid2'; // Grid version 2
+import Grid from "@mui/material/Grid2";
 import HowToVoteIcon from '@mui/icons-material/HowToVote';
 import PercentIcon from '@mui/icons-material/Percent';
 import GroupsIcon from '@mui/icons-material/Groups';

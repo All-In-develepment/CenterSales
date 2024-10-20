@@ -1,10 +1,12 @@
 using Application.Core;
 using Application.ProjectWeight;
 using Domain;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
+    [Authorize]
     public class ProjectWeightController : BaseApiController
     {
         [HttpGet]

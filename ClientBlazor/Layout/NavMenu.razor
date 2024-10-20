@@ -1,0 +1,37 @@
+﻿@* <div class="top-row ps-3 navbar navbar-dark">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="">ClientBlazor</a>
+		<button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+	</div>
+</div> *@
+
+<ul class="sidebar-nav" id="sidebar-nav">
+	<div class="nav-item px-3">
+		<a class="nav-link collapsed" href="/projects" Match="NavLinkMatch.All">
+			<span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Projetos
+		</a>
+	</div>
+	<div class="nav-item px-3">
+		<a class="nav-link collapsed" href="counter">
+			<span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter
+		</a>
+	</div>
+	<div class="nav-item px-3">
+		<a class="nav-link collapsed" href="weather">
+			<span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
+		</a>
+	</div>
+</ul>
+
+@code {
+	private bool collapseNavMenu = true;
+
+	private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+	private void ToggleNavMenu()
+	{
+		collapseNavMenu = !collapseNavMenu;
+	}
+}
