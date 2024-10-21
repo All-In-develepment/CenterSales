@@ -1,0 +1,77 @@
+@page "/events/edit/{id:guid}"
+@using ClientBlazor.Services
+@using Domain
+@inject EventServices eventServices
+@inject NavigationManager navigationManager
+
+<h3>Editar Evento</h3>
+
+@if (eventModel == null)
+{
+  <p>Carregando...</p>
+}
+else
+{
+  <EditForm Model="@eventModel" OnValidSubmit="HandleUpdateEventAsync">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+      <label>Nome do Evento</label>
+      <InputText @bind-Value="eventModel.EventName" class="form-control" />
+    </div>
+    <div class="form-group">
+      <label>Descrição do Evento</label>
+      <InputText @bind-Value="eventModel.EventDescription" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Salvar</button>
+  </EditForm>
+
+  @if (!string.IsNullOrEmpty(errorMessage))
+  {
+    <div class="alert alert-danger">@errorMessage</div>
+  }
+}
+
+@code {
+  [Parameter]
+  public Guid Id { get; set; }
+  private Events? eventModel;
+  private string? errorMessage;
+
+  protected override async Task OnInitializedAsync()
+  {
+    try
+    {
+      eventModel = await eventServices.GetEventByIdAsync(Id);
+    }
+    catch (Exception ex)
+    {
+      errorMessage = "Erro ao carregar o evento: " + ex.Message;
+    }
+  }
+
+  private async Task HandleUpdateEventAsync()
+  {
+    try
+    {
+      if (eventModel != null)
+      {
+        bool isSuccess = await eventServices.UpdateEventAsync(Id, eventModel);
+
+        if (isSuccess)
+        {
+          navigationManager.NavigateTo("/events");
+        }
+        else
+        {
+          errorMessage = "Falha ao atualizar o evento. Tente novamente.";
+        }
+      }
+    }
+    catch (Exception ex)
+    {
+      errorMessage = $"Ocorreu um erro: {ex.Message}";
+    }
+  }
+}

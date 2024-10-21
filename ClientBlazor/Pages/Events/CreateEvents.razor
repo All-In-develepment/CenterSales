@@ -1,0 +1,59 @@
+@page "/events/create"
+@using ClientBlazor.Services
+@using Domain
+@inject EventServices eventServices
+@inject NavigationManager navigationManager
+
+<h3>Criar Evento</h3>
+
+<EditForm Model="@eventModel" OnValidSubmit="HandleCreateEventAsync">
+  <DataAnnotationsValidator />
+  <ValidationSummary />
+
+  <div class="form-group">
+    <label>Nome do Evento</label>
+    <InputText @bind-Value="eventModel.EventName" class="form-control" />
+  </div>
+  <div class="form-group">
+    <label>Descrição do Evento</label>
+    <InputText @bind-Value="eventModel.EventDescription" class="form-control" />
+  </div>
+  <button type="submit" class="btn btn-primary">Criar Evento</button>
+</EditForm>
+
+@if (!string.IsNullOrEmpty(successMessage))
+{
+  <div class="alert alert-success">@successMessage</div>
+}
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+  <div class="alert alert-danger">@errorMessage</div>
+}
+
+@code{
+  private Events eventModel = new Events();
+  private string successMessage = string.Empty;
+  private string errorMessage = string.Empty;
+  private async Task HandleCreateEventAsync()
+  {
+    try
+    {
+      bool isSuccess = await eventServices.CreateEventAsync(eventModel);
+
+      if (isSuccess)
+      {
+        successMessage = "Evento criado com sucesso!";
+        // Redirecionar para outra página se necessário
+        navigationManager.NavigateTo("/events");
+      }
+      else
+      {
+        errorMessage = "Falha ao criar o evento. Tente novamente.";
+      }
+    }
+    catch (Exception ex)
+    {
+      errorMessage = $"Ocorreu um erro: {ex.Message}";
+    }
+  }
+}

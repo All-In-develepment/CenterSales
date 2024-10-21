@@ -1,0 +1,47 @@
+@page "/bookmakers"
+@using ClientBlazor.Services
+@using Domain
+@inject BookMakerServices bookMakerServices
+
+<h3>Lista de Bookmakers</h3>
+<a class="btn btn-primary" href="/bookmakers/create">Criar Bookmaker</a>
+@if (bookmakers == null)
+{
+  <p>Carregando...</p>
+}
+else if (!bookmakers.Any())
+{
+  <p>Nenhum bookmaker cadastrado.</p>
+}
+else
+{
+  <table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Nome do Bookmaker</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (var bookmaker in bookmakers)
+      {
+        <tr>
+          <td>@bookmaker.BookmakerName</td>
+          @* <td>@(bookmaker.BookmakerIsActive ? "Ativo" : "Inativo")</td> *@
+          <td>
+            <a href="/bookmakers/edit/@bookmaker.BookmakerId" class="btn btn-warning">Editar</a>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+}
+
+@code {
+  private List<Bookmaker> bookmakers = new List<Bookmaker>();
+
+  protected override async Task OnInitializedAsync()
+  {
+    bookmakers = await bookMakerServices.GetBookmakersAsync();
+  }
+}

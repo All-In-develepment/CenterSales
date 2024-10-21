@@ -21,6 +21,8 @@ builder.Services.AddScoped(sp => new HttpClient
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<ProjectService>();
 builder.Services.AddScoped<SellerService>();
+builder.Services.AddScoped<BookMakerServices>();
+builder.Services.AddScoped<EventServices>();
 
 // Registrando o Blazored.LocalStorage
 builder.Services.AddBlazoredLocalStorage();
