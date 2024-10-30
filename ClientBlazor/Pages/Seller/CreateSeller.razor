@@ -27,8 +27,9 @@
     </InputSelect>
   </div>
   <div class="form-group">
-    <label>Ativo</label>
-    <InputCheckbox @bind-Value="sellerModel.SellerIsActive" class="form-control" />
+    <label>Status</label>
+    <InputCheckbox @bind-Value="sellerModel.SellerIsActive" />
+    <label for="sellerStatus">Ativo</label>
   </div>
   <button type="submit" class="btn btn-primary">Cadastrar Vendedor</button>
 </EditForm>

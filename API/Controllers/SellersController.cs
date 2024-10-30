@@ -30,5 +30,11 @@ namespace API.Controllers
         {
             return HandleResult(await Mediator.Send(new DetailsSeller.Query { Id = id }));
         }
+
+        [HttpGet("active")]
+        public async Task<IActionResult> GetActiveSellers([FromQuery] PagingParams param)
+        {
+            return HandleResult(await Mediator.Send(new ListActiveSellers.Query { Params = param }));
+        }
     }
 }

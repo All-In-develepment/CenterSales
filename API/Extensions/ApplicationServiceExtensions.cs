@@ -32,7 +32,7 @@ namespace API.Extensions
                         .AllowAnyHeader()
                         .AllowCredentials()
                         .WithOrigins("http://localhost:3000", "http://191.252.5.225:3333", "http://191.252.5.225:3000")
-                        .WithOrigins("http://localhost:3333","http://127.0.0.1:5094");
+                        .WithOrigins("http://localhost:3333","http://localhost:5900");
                 });
             });
             services.AddMediatR(typeof(List.Handler));

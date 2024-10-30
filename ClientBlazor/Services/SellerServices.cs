@@ -36,6 +36,20 @@ public class SellerService
         return response ?? new List<Seller>();
     }
 
+    public async Task<List<Seller>> GetActiveSellersAsync()
+    {
+        var token = await _authService.GetTokenAsync();
+        if (!string.IsNullOrEmpty(token))
+        {
+            _httpClient.DefaultRequestHeaders.Authorization =
+                new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+        }
+
+        var response = await _httpClient.GetFromJsonAsync<List<Seller>>("sellers/active");
+
+        return response ?? new List<Seller>();
+    }
+
     public async Task<bool> UpdateSellerAsync(Guid id, Seller updatedSeller)
     {
         var token = await _authService.GetTokenAsync();

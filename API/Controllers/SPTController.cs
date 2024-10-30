@@ -19,6 +19,12 @@ namespace API.Controllers
             return HandlePagedResult(await Mediator.Send(new ListSPT.Query { Params = param }));
         }
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetSPTById(int id)
+        {
+            return HandleResult(await Mediator.Send(new DetailsSalesPerformaceTeam.Query { Id = id }));
+        }
+
         [HttpGet("bySeller")]
         public async Task<IActionResult> GetSPTBySeller([FromQuery] SPTParams param)
         {

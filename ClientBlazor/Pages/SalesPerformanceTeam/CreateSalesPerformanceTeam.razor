@@ -1,0 +1,144 @@
+@page "/salesperformanceteam/create"
+@using Domain
+@using ClientBlazor.Services
+@inject SalesPerformanceTeamServices salesPerformanceTeamServices
+@inject NavigationManager navigationManager
+@inject ProjectService projectService
+@inject SellerService sellerService
+@inject BookMakerServices bookmakerService
+@inject EventServices eventServices
+
+<h3>Cadastrar Ação do Vendedor</h3>
+
+<EditForm Model="@salesPerformanceTeamModel" OnValidSubmit="HandleCreateSalesPerformanceTeam">
+  <DataAnnotationsValidator />
+  <ValidationSummary />
+
+  <div class="form-group">
+    <label>Vendedor</label>
+    <InputSelect @bind-Value="salesPerformanceTeamModel.SPTSellerId" class="form-control">
+      <option value="">Selecione um vendedor</option>
+      @foreach (var seller in sellers)
+      {
+        <option value="@seller.SellerId">@seller.SellerName</option>
+      }
+    </InputSelect>
+  </div>
+  <div class="form-group">
+    <label>Projeto</label>
+    <InputSelect @bind-Value="salesPerformanceTeamModel.SPTProjectId" class="form-control">
+      <option value="">Selecione um projeto</option>
+      @foreach (var project in projects)
+      {
+        <option value="@project.ProjectId">@project.ProjectName</option>
+      }
+    </InputSelect>
+  </div>
+  <div class="form-group">
+    <label>Total de Leads</label>
+    <InputNumber @bind-Value="salesPerformanceTeamModel.SPTTotalLeads" class="form-control" />
+  </div>
+  <div class="form-group">
+    <label>Total de Vendas</label>
+    <InputNumber @bind-Value="salesPerformanceTeamModel.SPTTotalSales" class="form-control" />
+  </div>
+  <div class="form-group">
+    <label>Total em Vendas</label>
+    <InputNumber @bind-Value="salesPerformanceTeamModel.SPTTotalSalesAmont" class="form-control" />
+  </div>
+  <div class="form-group">
+    <label>Total de Cadastros</label>
+    <InputNumber @bind-Value="salesPerformanceTeamModel.SPTTotalRegister" class="form-control" />
+  </div>
+  <div class="form-group">
+    <label>Total em Depositos</label>
+    <InputNumber @bind-Value="salesPerformanceTeamModel.SPTTotalRegisterAmont" class="form-control" />
+  </div>
+  <div class="form-group">
+    <label>Total de redepositos</label>
+    <InputNumber @bind-Value="salesPerformanceTeamModel.SPTTotalRedeposit" class="form-control" />
+  </div>
+  <div class="form-group">
+    <label>Total em redepositos</label>
+    <InputNumber @bind-Value="salesPerformanceTeamModel.SPTTotalRedepositAmont" class="form-control" />
+  </div>
+  <div class="form-group">
+    <label>Casa de aposta</label>
+    <InputSelect @bind-Value="salesPerformanceTeamModel.SPTBookmakerId" class="form-control">
+      <option value="">Selecione uma Casa de Aposta</option>
+      @foreach (var bookmaker in bookmakers)
+      {
+        <option value="@bookmaker.BookmakerId">@bookmaker.BookmakerName</option>
+      }
+    </InputSelect>
+  </div>
+  <div class="form-group">
+    <label>Evento</label>
+    <InputSelect @bind-Value="salesPerformanceTeamModel.SPTEventId" class="form-control">
+      <option value="">Selecione um evento</option>
+      @foreach (var eve in eventos)
+      {
+        <option value="@eve.EventsId">@eve.EventName</option>
+      }
+    </InputSelect>
+  </div>
+  <div class="form-group">
+    <label>Data</label>
+    <InputDate @bind-Value="salesPerformanceTeamModel.SPTDate" class="form-control" />
+  </div>
+  <button type="submit" class="btn btn-primary">Cadastrar Ação do Vendedor</button>
+</EditForm>
+
+@if (!string.IsNullOrEmpty(successMessage))
+{
+  <div class="alert alert-success">@successMessage</div>
+}
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+  <div class="alert alert-danger">@errorMessage</div>
+}
+
+@code{
+  private SalesPerformanceTeam salesPerformanceTeamModel = new SalesPerformanceTeam();
+  private string successMessage = string.Empty;
+  private string errorMessage = string.Empty;
+
+  private async Task HandleCreateSalesPerformanceTeam()
+  {
+    try
+    {
+      bool isSuccess = await salesPerformanceTeamServices.CreateSalesTeamPerformanceAsync(salesPerformanceTeamModel);
+
+      if (isSuccess)
+      {
+        successMessage = "Cadastrar ação do vendedor cadastrada com sucesso!";
+        // Redirecionar para outra página se necessário
+        navigationManager.NavigateTo("/salesperformanceteam");
+      }
+      else
+      {
+        errorMessage = "Erro ao cadastrar ação do vendedor.";
+      }
+    }
+    catch (Exception ex)
+    {
+      errorMessage = $"Ocorreu um erro: {ex.Message}";
+    }
+  }
+
+  @* Busca projetos para lista suspensa *@
+  private List<Project> projects = new List<Project>();
+
+  @* Busca vendedores para lista suspensa *@
+  private List<Seller> sellers = new List<Seller>();
+  private List<Bookmaker> bookmakers = new List<Bookmaker>();
+  private List<Events> eventos = new List<Events>();
+  protected override async Task OnInitializedAsync()
+  {
+    salesPerformanceTeamModel.SPTDate = DateTime.Now;
+    projects = await projectService.GetActiveProjectsAsync();
+    sellers = await sellerService.GetActiveSellersAsync();
+    bookmakers = await bookmakerService.GetBookmakersAsync();
+    eventos = await eventServices.GetEventsAsync();
+  }
+}
