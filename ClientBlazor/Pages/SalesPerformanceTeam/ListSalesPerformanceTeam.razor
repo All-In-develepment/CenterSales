@@ -46,13 +46,6 @@ else
   protected override async Task OnInitializedAsync()
   {
     var domainSalesPerformanceTeams = await salesPerformanceTeamServices.GetSalesTeamPerformanceAsync();
-    @* salesPerformanceTeams = domainSalesPerformanceTeams.Select(s => new SalesPerformanceTeam
-    {
-      SPTId = s.SPTId,
-      SPTTotalLeads = s.SPTTotalLeads,
-      SPTAVGConvertion = s.SPTAVGConvertion,
-      SPTTotalSales = s.SPTTotalSales
-    }).ToList(); *@
     salesPerformanceTeams = domainSalesPerformanceTeams;
   }
 }

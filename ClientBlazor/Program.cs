@@ -24,6 +24,7 @@ builder.Services.AddScoped<SellerService>();
 builder.Services.AddScoped<BookMakerServices>();
 builder.Services.AddScoped<EventServices>();
 builder.Services.AddScoped<SalesPerformanceTeamServices>();
+builder.Services.AddScoped<ProjectWeightServices>();
 
 // Registrando o Blazored.LocalStorage
 builder.Services.AddBlazoredLocalStorage();

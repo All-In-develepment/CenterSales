@@ -30,7 +30,6 @@ namespace Application.Bookmakers
             }
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
-                Console.WriteLine(request.Bookmaker.BookmakerName);
                 _context.Bookmakers.Add(request.Bookmaker);
 
                 var result = await _context.SaveChangesAsync() > 0;

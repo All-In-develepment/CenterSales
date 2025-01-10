@@ -39,5 +39,11 @@ namespace API.Controllers
         {
             return HandleResult(await Mediator.Send(new DeleteProjectWeight.Command { Id = id }));
         }
+
+        [HttpGet("normalize")]
+        public async Task<IActionResult> NormalizeProjectWeight([FromQuery] PagingParams param, DateTime initialDate, DateTime finalDate)
+        {
+            return HandlePagedResult(await Mediator.Send(new NormalizeProjectWeight.Query { Params = param, InitialDate = initialDate, FinalDate = finalDate }));
+        }
     }
 }
