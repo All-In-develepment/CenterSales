@@ -1,16 +1,6 @@
 using Application.Activities;
-using Application.Bookmakers;
 using Application.Comments;
-using Application.Config;
-using Application.Events;
-using Application.Products;
 using Application.Profiles;
-using Application.Project;
-using Application.ProjectWeight;
-using Application.Register;
-using Application.Sales;
-using Application.SalesPerformanceTeam;
-using Application.Seller;
 using Domain;
 
 namespace Application.Core
@@ -50,34 +40,6 @@ namespace Application.Core
                 .ForMember(d => d.Category, o => o.MapFrom(s => s.Activity.Category))
                 .ForMember(d => d.HostUsername, o => o.MapFrom(s =>
                     s.Activity.Attendees.FirstOrDefault(x => x.IsHost).AppUser.UserName));
-            CreateMap<Configuration, ConfigurationDto>();
-            CreateMap<ConfigurationDto, Configuration>();
-            CreateMap<Sale, SaleDto>();
-            CreateMap<SaleDto, Sale>();
-            CreateMap<SaleDto, SaleDto>();
-            CreateMap<Domain.Project, ProjectDto>().ReverseMap();
-            CreateMap<Domain.Seller, SellerDto>();
-            CreateMap<SellerDto, Domain.Seller>();
-            CreateMap<SellerDto, SellerDto>().ReverseMap();
-            CreateMap<Product, ProductDto>().ReverseMap();
-            CreateMap<Bookmaker, BookmakerDto>().ReverseMap();
-            CreateMap<Domain.Register, RegisterDto>()
-                .ForMember(d => d.EventsId, o => o.MapFrom(s => s.Events.EventsId))
-                .ForMember(d => d.BookmakerId, o => o.MapFrom(s => s.Bookmaker.BookmakerId))
-                .ForMember(d => d.SellerId, o => o.MapFrom(s => s.Seller.SellerId))
-                .ReverseMap();
-            CreateMap<Domain.Events, EventDto>().ReverseMap();
-            CreateMap<RegisterDto, RegisterDto>();
-
-            CreateMap<Domain.SalesPerformanceTeam, SalesPerformaceTeamDto>()
-                .ForMember(d => d.SPTSellerId, o => o.MapFrom(s => s.SPTSeller.SellerId))
-                .ForMember(d => d.SPTProjectId, o => o.MapFrom(s => s.SPTProject.ProjectId))
-                .ForMember(d => d.SPTEventId, o => o.MapFrom(s => s.SPTEvent.EventsId))
-                .ReverseMap();
-            CreateMap<SalesPerformaceTeamDto, SalesPerformaceTeamDto>();
-            CreateMap<Domain.ProjectWeight, ProjectWeightDto>()
-                .ForMember(p => p.ProjectName, o => o.MapFrom(s => s.Project.ProjectName))
-                .ReverseMap();
         }
     }
 }

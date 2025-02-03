@@ -19,12 +19,6 @@ builder.Services.AddScoped(sp => new HttpClient
     BaseAddress = new Uri(apiBaseUrl) 
 });
 builder.Services.AddScoped<AuthService>();
-builder.Services.AddScoped<ProjectService>();
-builder.Services.AddScoped<SellerService>();
-builder.Services.AddScoped<BookMakerServices>();
-builder.Services.AddScoped<EventServices>();
-builder.Services.AddScoped<SalesPerformanceTeamServices>();
-builder.Services.AddScoped<ProjectWeightServices>();
 
 // Registrando o Blazored.LocalStorage
 builder.Services.AddBlazoredLocalStorage();
