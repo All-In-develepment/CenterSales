@@ -1,7 +1,9 @@
 using Application.Activities;
+using Application.BettingHouse;
 using Application.Comments;
 using Application.Profiles;
 using Application.TelegramUsers;
+using Application.UserBettingHouse;
 using Domain;
 
 namespace Application.Core
@@ -41,7 +43,9 @@ namespace Application.Core
                 .ForMember(d => d.Category, o => o.MapFrom(s => s.Activity.Category))
                 .ForMember(d => d.HostUsername, o => o.MapFrom(s =>
                     s.Activity.Attendees.FirstOrDefault(x => x.IsHost).AppUser.UserName));
-            CreateMap<TelegramUser, TelegramUserDto>();
+            CreateMap<TelegramUser, TelegramUserDto>().ReverseMap();
+            CreateMap<Domain.BettingHouse, BettingHouseDto>().ReverseMap();
+            CreateMap<Domain.BettingUser, BettingUserDto>().ReverseMap();
         }
     }
 }

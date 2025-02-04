@@ -1,5 +1,6 @@
 using Application.Core;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Domain;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -9,12 +10,12 @@ namespace Application.TelegramUsers
 {
     public class TelegramUserList
     {
-        public class Query : IRequest<Result<List<TelegramUser>>>
+        public class Query : IRequest<Result<List<TelegramUserDto>>>
         {
             
         }
 
-        public class Handler : IRequestHandler<Query, Result<List<TelegramUser>>>
+        public class Handler : IRequestHandler<Query, Result<List<TelegramUserDto>>>
         {
             private readonly DataContext _context;
             private readonly IMapper _mapper;
@@ -25,13 +26,14 @@ namespace Application.TelegramUsers
                 _mapper = mapper;
             }
 
-            public async Task<Result<List<TelegramUser>>> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<Result<List<TelegramUserDto>>> Handle(Query request, CancellationToken cancellationToken)
             {
                 var query = _context.TelegramUsers
                     .OrderBy(x => x.CreatedAt)
+                    .ProjectTo<TelegramUserDto>(_mapper.ConfigurationProvider)
                     .AsQueryable();
 
-                return Result<List<TelegramUser>>.Success(await query.ToListAsync());
+                return Result<List<TelegramUserDto>>.Success(await query.ToListAsync());
             }
         }
     }
