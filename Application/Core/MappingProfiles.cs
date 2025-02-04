@@ -1,6 +1,7 @@
 using Application.Activities;
 using Application.Comments;
 using Application.Profiles;
+using Application.TelegramUsers;
 using Domain;
 
 namespace Application.Core
@@ -40,6 +41,7 @@ namespace Application.Core
                 .ForMember(d => d.Category, o => o.MapFrom(s => s.Activity.Category))
                 .ForMember(d => d.HostUsername, o => o.MapFrom(s =>
                     s.Activity.Attendees.FirstOrDefault(x => x.IsHost).AppUser.UserName));
+            CreateMap<TelegramUser, TelegramUserDto>();
         }
     }
 }

@@ -15,6 +15,9 @@ namespace Persistence
         public DbSet<Photo> Photos { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<UserFollowing> UserFollowings { get; set; }
+        public DbSet<BettingHouse> BettingHouses { get; set; }
+        public DbSet<BettingUser> BettingUsers { get; set; }
+        public DbSet<TelegramUser> TelegramUsers { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -50,6 +53,25 @@ namespace Persistence
                     .WithMany(f => f.Followers)
                     .HasForeignKey(t => t.TargetId)
                     .OnDelete(DeleteBehavior.NoAction);
+            });
+
+            // Configuration for BettingUser
+            builder.Entity<BettingUser>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+
+                entity.Property(e => e.AfiliateCode)
+                    .IsRequired();
+
+                entity.HasOne(e => e.TelegramUser)
+                    .WithMany()
+                    .HasForeignKey(e => e.TelegramUserId)
+                    .OnDelete(DeleteBehavior.Cascade);
+
+                entity.HasOne(e => e.BettingHouse)
+                    .WithMany()
+                    .HasForeignKey(e => e.BettingHouseId)
+                    .OnDelete(DeleteBehavior.Cascade);
             });
         }
     }
